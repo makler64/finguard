@@ -73,6 +73,11 @@
             fill: var(--text-secondary);
         }
 
+        .dark-mode .transaction-date {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
         .dark-mode .btn-danger {
             background-color: var(--danger);
         }
@@ -176,6 +181,39 @@
 
         .dark-mode .modal-actions .btn-primary:hover {
             background: linear-gradient(135deg, var(--success), var(--primary));
+        }
+
+        .dark-mode .btn-info {
+            background-color: #138496;
+        }
+
+        .dark-mode .btn-info:hover {
+            background-color: #117a8b;
+        }
+
+        .dark-mode .btn-warning {
+            background-color: #e0a800;
+            color: #000;
+        }
+
+        .dark-mode .btn-warning:hover {
+            background-color: #d39e00;
+        }
+
+        /* Стили для заголовка завершенных целей */
+        .completed-goals-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .completed-goals-header h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Темная тема для заголовка */
+        .dark-mode .completed-goals-header {
+            border-bottom-color: var(--border-color-dark);
         }
 
         /* Анимация сетки категорий в темной теме убрана */
@@ -341,6 +379,209 @@
         .empty-state p {
             margin-bottom: var(--spacing-md);
             line-height: 1.5;
+        }
+
+        /* Стили для заглушки завершенных целей */
+        .completed-goals-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.05));
+            border-radius: var(--border-radius);
+            border: 2px dashed rgba(67, 97, 238, 0.2);
+            margin: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        /* Стили для заглушки актуальных целей */
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)) !important;
+            border-color: rgba(76, 175, 80, 0.2) !important;
+        }
+
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.08)) !important;
+            border-color: rgba(76, 175, 80, 0.4) !important;
+        }
+
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] svg {
+            fill: rgba(76, 175, 80, 0.7);
+        }
+
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover svg {
+            fill: rgba(76, 175, 80, 1);
+        }
+
+        .completed-goals-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.4);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(76, 201, 240, 0.08));
+            transform: translateY(-2px);
+        }
+
+        .completed-goals-placeholder svg {
+            fill: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .completed-goals-placeholder:hover svg {
+            fill: var(--primary);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .completed-goals-placeholder h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .completed-goals-placeholder p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Стили для кнопки в заглушке */
+        .completed-goals-placeholder .btn {
+            margin-top: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .completed-goals-placeholder .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Специальные стили для кнопки "Создать цель +" */
+        .create-goal-btn {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .create-goal-btn:hover {
+            background: linear-gradient(135deg, #059669, #10b981);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .create-goal-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .create-goal-btn {
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Темная тема для заглушки */
+        .dark-mode .completed-goals-placeholder {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(76, 201, 240, 0.1));
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .completed-goals-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.5);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.15), rgba(76, 201, 240, 0.15));
+        }
+
+        .dark-mode .completed-goals-placeholder svg {
+            fill: var(--text-secondary);
+        }
+
+        .dark-mode .completed-goals-placeholder:hover svg {
+            fill: var(--success);
+        }
+
+        /* Темная тема для кнопки в заглушке */
+        .dark-mode .completed-goals-placeholder .btn:hover {
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Темная тема для кнопки "Создать цель +" */
+        .dark-mode .create-goal-btn {
+            background: linear-gradient(135deg, #34d399, #10b981);
+            box-shadow: 0 4px 15px rgba(52, 211, 153, 0.4);
+        }
+
+        .dark-mode .create-goal-btn:hover {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            box-shadow: 0 8px 25px rgba(52, 211, 153, 0.5);
+        }
+
+        /* Темная тема для заглушки актуальных целей */
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.1)) !important;
+            border-color: rgba(76, 175, 80, 0.3) !important;
+        }
+
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.15)) !important;
+            border-color: rgba(76, 175, 80, 0.5) !important;
+        }
+
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] svg {
+            fill: rgba(76, 175, 80, 0.8);
+        }
+
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover svg {
+            fill: rgba(76, 175, 80, 1);
+        }
+
+        /* Анимация появления заглушки */
+        @keyframes placeholderFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .completed-goals-placeholder {
+            animation: placeholderFadeIn 0.6s ease-out;
+        }
+
+        /* Анимация для иконки */
+        .completed-goals-placeholder svg {
+            animation: placeholderFadeIn 0.8s ease-out 0.2s both;
+        }
+
+        /* Анимация для текста */
+        .completed-goals-placeholder h3,
+        .completed-goals-placeholder p {
+            animation: placeholderFadeIn 0.6s ease-out 0.4s both;
+        }
+
+        /* Анимация для кнопки */
+        .completed-goals-placeholder .btn {
+            animation: placeholderFadeIn 0.6s ease-out 0.6s both;
+        }
+
+        /* Анимация для кнопки "Создать цель +" */
+        .create-goal-btn {
+            animation: placeholderFadeIn 0.6s ease-out 0.6s both;
+        }
+
+        /* Заглушки показываются/скрываются через JavaScript */
+        .completed-goals-placeholder {
+            display: block;
         }
 
         * {
@@ -529,6 +770,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            position: relative;
         }
 
         .rate-value-inline {
@@ -536,6 +778,61 @@
             font-size: 14px;
             color: var(--text-primary);
             font-family: 'Inter', monospace;
+        }
+
+        /* Индикаторы изменения курса */
+        .change-indicator {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 4px;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .rate-up {
+            color: #4caf50;
+        }
+
+        .rate-down {
+            color: #f44336;
+        }
+
+        .change-indicator.rate-up {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .change-indicator.rate-down {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+        }
+
+        /* Темная тема для индикаторов */
+        .dark-mode .change-indicator.rate-up {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+        }
+
+        .dark-mode .change-indicator.rate-down {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #e57373;
+        }
+
+        /* Анимация появления индикаторов */
+        .change-indicator {
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
 
@@ -657,6 +954,68 @@
             color: var(--text-primary);
         }
 
+        /* Стили для разделителя валют */
+        .currency-section-divider {
+            margin: 20px 0 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .currency-section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--text-secondary), transparent);
+        }
+
+        .currency-section-divider span {
+            background: var(--background);
+            padding: 0 15px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Стили для криптовалют */
+        .crypto-currencies {
+            margin-top: 15px;
+        }
+
+        .crypto-currencies .currency-checkbox {
+            border-left: 3px solid transparent;
+            padding-left: 12px;
+        }
+
+        .crypto-currencies .currency-checkbox:hover {
+            border-left-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.08);
+        }
+
+        /* Анимация вращения для иконки обновления */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Скрываем кнопку обновления курсов */
+        #refreshCurrencyRates {
+            display: none !important;
+        }
+
+        /* Скрываем кнопки тестирования */
+        .btn-info[onclick*="testCurrencyIndicators"],
+        .btn-info[onclick*="testCryptoIndicators"],
+        .btn-warning[onclick*="forceUpdateCurrencyRates"] {
+            display: none !important;
+        }
+
         .btn-secondary {
             background-color: var(--gray);
             color: white;
@@ -674,15 +1033,62 @@
             background-color: #5a6268;
         }
 
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
         .balance-section {
             margin-bottom: 25px;
             animation: slideUp 0.5s ease;
         }
 
+        .accounts-section-header {
+            margin-top: 20px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .accounts-section-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 20px 0;
+            padding: 0;
+        }
+
         .account-selector {
             display: flex;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
             overflow-x: auto;
             overflow-y: hidden;
             scrollbar-width: none; /* Firefox */
@@ -1258,11 +1664,75 @@
             fill: var(--primary);
         }
 
+        .balance-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
         .balance-card {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: transparent;
             color: white;
             padding: var(--spacing-lg);
             animation: scaleIn 0.5s ease;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Переливающийся градиент фона */
+        .balance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                #4361ee 0%, 
+                #3a0ca3 25%, 
+                #8b5cf6 50%, 
+                #ec4899 75%, 
+                #4361ee 100%);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: flowingGradient 8s ease-in-out infinite;
+        }
+
+        /* Анимация переливающегося градиента */
+        @keyframes flowingGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 50% 0%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 50% 100%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Fallback для браузеров без поддержки анимации */
+        @supports not (animation: flowingGradient 4s ease-in-out infinite) {
+            .balance-card::before {
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                animation: none;
+            }
+        }
+
+        /* Hover эффект - ускорение анимации */
+        .balance-card:hover::before {
+            animation: flowingGradient 4s ease-in-out infinite;
+        }
+
+        .balance-header {
+            text-align: center;
             margin-bottom: var(--spacing-lg);
         }
 
@@ -1270,11 +1740,211 @@
             font-size: 32px;
             font-weight: 700;
             margin: var(--spacing-sm) 0;
+            position: relative;
+            z-index: 2;
         }
 
         .balance-label {
             font-size: 14px;
             opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .accounts-balance-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .account-balance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .account-balance-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        .account-balance-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .account-balance-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .account-balance-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .account-balance-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Стили для плиток с расходами и доходами за месяц */
+        .monthly-stats-container {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .monthly-stat-card {
+            flex: 1;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .monthly-stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .monthly-stat-card .stat-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .expense-stat .stat-icon {
+            background-color: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+        }
+
+        .income-stat .stat-icon {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .monthly-stat-card .stat-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .monthly-stat-card .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .monthly-stat-card .stat-amount {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .expense-stat .stat-amount {
+            color: #ff6b6b;
+        }
+
+        .income-stat .stat-amount {
+            color: #4caf50;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .balance-section {
+                gap: var(--spacing-sm);
+            }
+
+            .balance-amount {
+                font-size: 24px;
+            }
+
+            .account-balance-item {
+                padding: var(--spacing-sm);
+            }
+
+            .account-balance-name {
+                font-size: 13px;
+            }
+
+            .account-balance-amount {
+                font-size: 14px;
+            }
+
+            .monthly-stats-container {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+            
+            .monthly-stat-card {
+                padding: var(--spacing-sm);
+            }
+            
+            .monthly-stat-card .stat-amount {
+                font-size: 16px;
+            }
+            
+            .accounts-section-header h3 {
+                font-size: 14px;
+            }
+            
+            .currency-section-divider {
+                margin: 15px 0 10px 0;
+            }
+            
+            .currency-section-divider span {
+                font-size: 11px;
+                padding: 0 10px;
+            }
+            
+            .crypto-currencies .currency-checkbox {
+                padding-left: 8px;
+            }
+
+            /* Оптимизация анимации фона для мобильных устройств */
+            .balance-card::before {
+                animation: flowingGradient 12s ease-in-out infinite;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .balance-card::before {
+                animation: flowingGradient 16s ease-in-out infinite;
+            }
+
+            .balance-amount {
+                font-size: 20px;
+            }
+
+            .balance-label {
+                font-size: 12px;
+            }
         }
 
         .stats-grid {
@@ -1501,6 +2171,96 @@
             fill: currentColor;
         }
 
+        /* Специальные стили для кнопок добавления транзакций */
+        #addExpenseBtn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        #addExpenseBtn:hover {
+            background: linear-gradient(135deg, #ff5252, #d32f2f);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #addIncomeBtn {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        #addIncomeBtn:hover {
+            background: linear-gradient(135deg, #43a047, #388e3c);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Темная тема для кнопок */
+        .dark-mode #addExpenseBtn {
+            background: linear-gradient(135deg, #ff5252, #d32f2f);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .dark-mode #addExpenseBtn:hover {
+            background: linear-gradient(135deg, #ff1744, #b71c1c);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .dark-mode #addIncomeBtn {
+            background: linear-gradient(135deg, #43a047, #388e3c);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .dark-mode #addIncomeBtn:hover {
+            background: linear-gradient(135deg, #388e3c, #2e7d32);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+        }
+
+        /* Темная тема для плиток с расходами и доходами за месяц */
+        .dark-mode .monthly-stat-card {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .monthly-stat-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .monthly-stat-card .stat-label {
+            color: var(--text-secondary);
+        }
+
+
+
+        .dark-mode .monthly-stat-card .stat-amount {
+            color: var(--text-primary);
+        }
+
+        /* Темная тема для заголовка счетов */
+        .dark-mode .accounts-section-header h3 {
+            color: var(--text-primary);
+        }
+
+        /* Темная тема для разделителя валют */
+        .dark-mode .currency-section-divider::before {
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .dark-mode .currency-section-divider span {
+            background: var(--background);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Темная тема для криптовалют */
+        .dark-mode .crypto-currencies .currency-checkbox:hover {
+            background-color: rgba(67, 97, 238, 0.15);
+        }
+
+
+
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1712,19 +2472,14 @@
             overflow: hidden;
         }
 
-        .modal .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        /* Градиентный эффект убран */
+
+        /* Стили для блокировки прокрутки */
+        body.modal-open {
+            overflow: hidden;
+            position: fixed;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .modal .btn:hover::before {
-            left: 100%;
         }
 
         /* Анимация кнопок действий убрана */
@@ -1739,21 +2494,21 @@
         }
 
         .modal-actions .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-color: var(--primary);
             color: white;
         }
 
         .modal-actions .btn-primary:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background-color: var(--secondary);
         }
 
         .modal-actions .btn-danger {
-            background: linear-gradient(135deg, var(--danger), #d1144a);
+            background-color: var(--danger);
             color: white;
         }
 
         .modal-actions .btn-danger:hover {
-            background: linear-gradient(135deg, #d1144a, var(--danger));
+            background-color: #d1144a;
         }
 
         /* Анимация для кнопок с иконками */
@@ -1803,6 +2558,12 @@
         .transaction-category {
             font-size: 14px;
             color: var(--text-secondary);
+        }
+
+        .transaction-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.8;
         }
 
         .transaction-amount {
@@ -1959,9 +2720,42 @@
                 min-height: 80px;
                 padding: var(--spacing-sm);
             }
+            
+            .transaction-date {
+                font-size: 11px;
+            }
         }
 
         @media (max-width: 480px) {
+            /* Адаптация заглушки для очень маленьких экранов */
+            .completed-goals-placeholder {
+                padding: var(--spacing-md) var(--spacing-xs);
+                margin: var(--spacing-xs);
+            }
+
+            .completed-goals-placeholder svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            .completed-goals-placeholder h3 {
+                font-size: 15px;
+            }
+
+            .completed-goals-placeholder p {
+                font-size: 12px;
+            }
+
+            .completed-goals-placeholder .btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .create-goal-btn {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
             .modal-content {
                 padding: var(--spacing-md);
                 width: 100%;
@@ -1982,6 +2776,7 @@
             
             .modal-actions .btn {
                 height: 44px;
+                padding: var(--spacing-xs) var(--spacing-sm);
                 font-size: 13px;
             }
             
@@ -1998,6 +2793,10 @@
             .category-item svg {
                 width: 24px;
                 height: 24px;
+            }
+            
+            .transaction-date {
+                font-size: 10px;
             }
         }
 
@@ -2262,26 +3061,235 @@
             display: block;
         }
 
-        .goal-progress {
-            height: 10px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            margin: var(--spacing-sm) 0;
+        /* Современные стили для карточек целей */
+        .goal-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .progress-bar {
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6, #ec4899);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(108, 117, 125, 0.2);
+        }
+
+        .goal-card.completed-goal {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .goal-card.completed-goal::before {
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+        }
+
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .goal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .goal-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .goal-status.active {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(139, 92, 246, 0.1));
+            color: var(--primary);
+            border: 1px solid rgba(67, 97, 238, 0.2);
+        }
+
+        .goal-status.completed {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .goal-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .goal-stat-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(108, 117, 125, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(108, 117, 125, 0.08);
+        }
+
+        .goal-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .goal-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .goal-progress {
+            margin-bottom: 24px;
+        }
+
+        .goal-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .goal-progress-percentage {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .goal-progress-deadline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .goal-progress-bar {
+            height: 12px;
+            background: rgba(108, 117, 125, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .goal-progress-bar .progress-bar {
             height: 100%;
-            background-color: var(--primary);
-            border-radius: 5px;
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            border-radius: 6px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .goal-progress-bar .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .goal-actions {
             display: flex;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-md);
+            gap: 12px;
             justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        /* Адаптивные стили для карточек целей */
+        @media (max-width: 768px) {
+            .goal-card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+
+            .goal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .goal-title {
+                font-size: 18px;
+            }
+
+            .goal-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .goal-stat-item {
+                padding: 12px;
+            }
+
+            .goal-stat-value {
+                font-size: 20px;
+            }
+
+            .goal-actions {
+                justify-content: stretch;
+            }
+
+            .goal-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .goal-card {
+                padding: 16px;
+                border-radius: 12px;
+            }
+
+            .goal-title {
+                font-size: 16px;
+            }
+
+            .goal-stat-value {
+                font-size: 18px;
+            }
+
+            .goal-progress-percentage {
+                font-size: 16px;
+            }
+
+            .goal-progress-deadline {
+                font-size: 12px;
+            }
         }
 
         /* Стили для кнопок в целях и счетах */
@@ -2591,6 +3599,44 @@
                 opacity: 1;
                 transform: scale(1);
             }
+        }
+
+        /* Темная тема для карточек целей */
+        .dark-mode .goal-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 0, 0, 0.2) 100%);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Темная тема для плашек счетов */
+        .dark-mode .account-balance-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .account-balance-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .account-balance-icon {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+
+
+        .dark-mode .goal-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .goal-stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .goal-progress-bar {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         @keyframes pulse {
@@ -2927,6 +3973,174 @@
             border-color: #059669 !important;
         }
 
+        /* Стили для управления категориями */
+        .categories-section {
+            margin-bottom: 20px;
+        }
+
+        .categories-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        /* Специальные стили для аккордеона категорий */
+        #categoriesAccordionContent {
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        #categoriesAccordionContent.expanded {
+            max-height: 2000px !important;
+            padding: 20px 0 !important;
+            overflow: visible !important;
+        }
+
+        #categoriesAccordionContent.collapsed {
+            max-height: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .category-settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .category-settings-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .category-settings-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-settings-icon {
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .category-settings-item:hover .category-settings-icon {
+            background-color: rgba(67, 97, 238, 0.2);
+            transform: scale(1.1);
+        }
+
+        .category-settings-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-settings-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .category-settings-type {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: capitalize;
+        }
+
+        .category-settings-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .category-settings-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .category-settings-btn:hover {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .category-settings-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+        }
+
+        /* Стили для модального окна категорий */
+        .icon-hints {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .icon-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+
+        .icon-hint-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+
+        .icon-hint-btn:hover {
+            border-color: var(--primary);
+            background: var(--light);
+        }
+
+        /* Темная тема для категорий */
+        .dark-mode .category-settings-item {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .category-settings-item:hover {
+            border-color: var(--primary);
+        }
+
+        .dark-mode .icon-hint-btn {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .icon-hint-btn:hover {
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .category-settings-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
         /* Стили для группы выбора цели */
         #goalSelectionGroup {
             transition: all 0.3s ease;
@@ -2991,6 +4205,35 @@
         @media (max-width: 768px) {
             body {
                 padding: 15px;
+            }
+
+            /* Адаптация заглушки для мобильных */
+            .completed-goals-placeholder {
+                padding: var(--spacing-lg) var(--spacing-sm);
+                margin: var(--spacing-sm);
+            }
+
+            .completed-goals-placeholder svg {
+                width: 48px;
+                height: 48px;
+            }
+
+            .completed-goals-placeholder h3 {
+                font-size: 16px;
+            }
+
+            .completed-goals-placeholder p {
+                font-size: 13px;
+            }
+
+            .completed-goals-placeholder .btn {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
+            .create-goal-btn {
+                font-size: 14px;
+                padding: 10px 20px;
             }
             
             .card {
@@ -3457,16 +4700,44 @@ bedtime
             <!-- Курсы будут добавлены через JS -->
         </div>
 
+        <!-- Заголовок для счетов -->
+        <div class="accounts-section-header">
+            <h3>Мои счета</h3>
+        </div>
+        
+        <div class="account-selector" id="accountSelector">
+            <!-- Счета будут добавлены через JS -->
+        </div>
+
         <!-- Блок с балансом и выбором счета -->
         <div class="balance-section">
             <div class="card balance-card">
-                <div class="balance-label">Ваш баланс</div>
-                <div class="balance-amount" id="totalBalance">0.00 руб.</div>
-                <div class="balance-label">За все время</div>
+                <div class="balance-header">
+                    <div class="balance-label">Общий баланс</div>
+                    <div class="balance-amount" id="totalBalance">0.00 руб.</div>
+                </div>
+                <div class="accounts-balance-list" id="accountsBalanceList">
+                    <!-- Плашки с балансом каждого счета будут добавлены через JS -->
+                </div>
             </div>
             
-            <div class="account-selector" id="accountSelector">
-                <!-- Счета будут добавлены через JS -->
+            <!-- Плитки с расходами и доходами за месяц -->
+            <div class="monthly-stats-container">
+                <div class="monthly-stat-card expense-stat">
+                    <div class="stat-icon">📉</div>
+                    <div class="stat-content">
+                        <div class="stat-label">Расходы за месяц</div>
+                        <div class="stat-amount" id="monthlyExpenses">0.00 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="monthly-stat-card income-stat">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-content">
+                        <div class="stat-label">Доходы за месяц</div>
+                        <div class="stat-amount" id="monthlyIncome">0.00 ₽</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -3629,27 +4900,6 @@ bedtime
 
                 <!-- Статистика -->
                 <div class="tab-content" id="stats-tab">
-                    <div class="stats-grid">
-                        <div class="card stat-card">
-                            <div class="stat-value" id="monthExpenses">0.00 руб.</div>
-                            <div class="stat-label">Расходы за месяц</div>
-                        </div>
-                        <div class="card stat-card">
-                            <div class="stat-value" id="monthIncome">0.00 руб.</div>
-                            <div class="stat-label">Доходы за месяц</div>
-                        </div>
-                        <div class="card stat-card clickable-stat" data-tab="goals" data-goal-tab="active">
-                            <div class="stat-value" id="activeGoalsCount">0</div>
-                            <div class="stat-label">Актуальные цели</div>
-                            <div class="stat-hint">Нажмите для перехода</div>
-                        </div>
-                        <div class="card stat-card clickable-stat" data-tab="goals" data-goal-tab="completed">
-                            <div class="stat-value" id="completedGoalsCount">0</div>
-                            <div class="stat-label">Завершенные цели</div>
-                            <div class="stat-hint">Нажмите для перехода</div>
-                        </div>
-                    </div>
-
                     <div class="card">
                         <div class="card-title">
                             <span>Расходы по категориям (месяц)</span>
@@ -3693,6 +4943,27 @@ bedtime
                             <canvas id="goalsChart"></canvas>
                         </div>
                     </div>
+
+                    <div class="stats-grid">
+                        <div class="card stat-card">
+                            <div class="stat-value" id="monthExpenses">0.00 руб.</div>
+                            <div class="stat-label">Расходы за месяц</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-value" id="monthIncome">0.00 руб.</div>
+                            <div class="stat-label">Доходы за месяц</div>
+                        </div>
+                        <div class="card stat-card clickable-stat" data-tab="goals" data-goal-tab="active">
+                            <div class="stat-value" id="activeGoalsCount">0</div>
+                            <div class="stat-label">Актуальные цели</div>
+                            <div class="stat-hint">Нажмите для перехода</div>
+                        </div>
+                        <div class="card stat-card clickable-stat" data-tab="goals" data-goal-tab="completed">
+                            <div class="stat-value" id="completedGoalsCount">0</div>
+                            <div class="stat-label">Завершенные цели</div>
+                            <div class="stat-hint">Нажмите для перехода</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Цели -->
@@ -3726,15 +4997,35 @@ bedtime
                         
                         <!-- Контент для актуальных целей -->
                         <div class="goal-tab-content active" id="activeGoalsContent">
-                            <div id="activeGoalsList">
-                                <!-- Актуальные цели будут добавлены через JS -->
+                                                        <div id="activeGoalsList">
+                                <!-- Заглушка по умолчанию для актуальных целей -->
+                                <div class="completed-goals-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)); border-color: rgba(76, 175, 80, 0.2);">
+                                    <h3>У вас пока нет финансовых целей</h3>
+                                    <p>Создайте свою первую цель для начала планирования</p>
+                                    <button class="btn btn-primary create-goal-btn" onclick="openGoalModal()">
+                                        Создать цель +
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
                         <!-- Контент для завершенных целей -->
                         <div class="goal-tab-content" id="completedGoalsContent">
-                            <div id="completedGoalsList">
-                                <!-- Завершенные цели будут добавлены через JS -->
+                            <div class="completed-goals-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 10px;">
+                                <h4 style="margin: 0; color: var(--text-primary);">Завершенные цели</h4>
+                                <button class="btn btn-danger" id="clearCompletedGoalsBtn" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                        <path d="M6 19c0 1.1.9 2 2 2h8c1.41 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                    </svg>
+                                    Очистить все
+                                </button>
+                            </div>
+                                                        <div id="completedGoalsList">
+                                <!-- Заглушка по умолчанию для завершенных целей -->
+                                <div class="completed-goals-placeholder">
+                                    <h3>Нет завершенных целей</h3>
+                                    <p>Завершите свою первую цель</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3784,9 +5075,71 @@ bedtime
                                             <span>JPY - Иена</span>
                                         </label>
                                     </div>
+                                    
+                                    <div class="currency-section-divider">
+                                        <span>Криптовалюты</span>
+                                    </div>
+                                    
+                                    <div class="currency-checkboxes crypto-currencies">
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="BTC">
+                                            <span>BTC - Bitcoin</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="ETH">
+                                            <span>ETH - Ethereum</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="BNB">
+                                            <span>BNB - Binance Coin</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="ADA">
+                                            <span>ADA - Cardano</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="SOL">
+                                            <span>SOL - Solana</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="DOT">
+                                            <span>DOT - Polkadot</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="MATIC">
+                                            <span>MATIC - Polygon</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="LINK">
+                                            <span>LINK - Chainlink</span>
+                                        </label>
+                                    </div>
                                     <div style="margin-top: 15px;">
                                         <button class="btn btn-secondary" id="saveCurrencySettings">
                                             Сохранить настройки валют
+                                        </button>
+                                        <button class="btn btn-primary" id="refreshCurrencyRates" style="margin-left: 10px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="fill: currentColor; margin-right: 5px;">
+                                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                                            </svg>
+                                            Обновить курсы
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="currency-update-info" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
+                                        <span>Последнее обновление: </span>
+                                        <span id="lastUpdateTime">Неизвестно</span>
+                                    </div>
+                                    
+                                    <div style="margin-top: 10px;">
+                                        <button class="btn btn-info" onclick="testCurrencyIndicators()" style="font-size: 12px; padding: 5px 10px; margin-right: 10px;">
+                                            🧪 Тест всех валют
+                                        </button>
+                                        <button class="btn btn-info" onclick="testCryptoIndicators()" style="font-size: 12px; padding: 5px 10px; margin-right: 10px;">
+                                            🪙 Тест криптовалют
+                                        </button>
+                                        <button class="btn btn-warning" onclick="forceUpdateCurrencyRates()" style="font-size: 12px; padding: 5px 10px;">
+                                            🔄 Принудительное обновление
                                         </button>
                                     </div>
                                 </div>
@@ -3814,6 +5167,41 @@ bedtime
                                 </div>
                                 <div id="accountsList" style="margin-top: 20px;">
                                     <!-- Счета будут добавлены через JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Управление категориями -->
+                        <div class="settings-section">
+                            <div class="accordion-header" data-accordion="categories">
+                                <h3>Управление категориями</h3>
+                                <div class="accordion-toggle">
+                                    <span>Управлять</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M7 10l5 5 5-5z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="accordion-content" id="categoriesAccordionContent">
+                                <div style="margin-top: 15px;">
+                                    <button class="btn btn-primary" id="addCategoryBtn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                        </svg>
+                                        Добавить категорию
+                                    </button>
+                                </div>
+                                <div class="categories-section" style="margin-top: 20px;">
+                                    <h4 style="margin-bottom: 15px; color: var(--danger);">Категории расходов</h4>
+                                    <div id="expenseCategoriesList" class="categories-list">
+                                        <!-- Категории будут добавлены через JS -->
+                                    </div>
+                                </div>
+                                <div class="categories-section" style="margin-top: 20px;">
+                                    <h4 style="margin-bottom: 15px; color: var(--success);">Категории доходов</h4>
+                                    <div id="incomeCategoriesList" class="categories-list">
+                                        <!-- Категории будут добавлены через JS -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -4102,6 +5490,61 @@ bedtime
         </div>
     </div>
 
+    <!-- Модальное окно для добавления/редактирования категории -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="categoryModalTitle">Добавить категорию</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="categoryForm">
+                <input type="hidden" id="categoryId">
+                <input type="hidden" id="categoryType" value="expense">
+                <div class="form-group">
+                    <label class="form-label" for="categoryName">Название категории</label>
+                    <input type="text" class="form-input" id="categoryName" placeholder="Название" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="categoryIcon">Иконка</label>
+                    <input type="text" class="form-input" id="categoryIcon" placeholder="🎯" required>
+                    <div class="icon-hints">
+                        <span class="icon-hint">Популярные иконки:</span>
+                        <button type="button" class="icon-hint-btn" data-icon="🍕">🍕</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🚗">🚗</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🏠">🏠</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🎬">🎬</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🏥">🏥</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🛍️">🛍️</button>
+                        <button type="button" class="icon-hint-btn" data-icon="👶">👶</button>
+                        <button type="button" class="icon-hint-btn" data-icon="💳">💳</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🏦">🏦</button>
+                        <button type="button" class="icon-hint-btn" data-icon="💰">💰</button>
+                        <button type="button" class="icon-hint-btn" data-icon="💻">💻</button>
+                        <button type="button" class="icon-hint-btn" data-icon="📈">📈</button>
+                        <button type="button" class="icon-hint-btn" data-icon="🎁">🎁</button>
+                        <button type="button" class="icon-hint-btn" data-icon="📦">📦</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="categoryTypeSelect">Тип категории</label>
+                    <select class="form-select" id="categoryTypeSelect" required>
+                        <option value="expense">Расход</option>
+                        <option value="income">Доход</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button type="button" class="btn btn-danger" id="deleteCategoryBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.41 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                        Удалить категорию
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <script>
     // Основные переменные
     let accounts = JSON.parse(localStorage.getItem('accounts')) || [
@@ -4109,7 +5552,7 @@ bedtime
     ];
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     let goals = JSON.parse(localStorage.getItem('goals')) || [];
-    let categories = {
+    let categories = JSON.parse(localStorage.getItem('categories')) || {
         expense: [
             { id: 'food', name: 'Еда', icon: '🍕' },
             { id: 'transport', name: 'Транспорт', icon: '🚗' },
@@ -4117,6 +5560,9 @@ bedtime
             { id: 'entertainment', name: 'Развлечения', icon: '🎬' },
             { id: 'health', name: 'Здоровье', icon: '🏥' },
             { id: 'shopping', name: 'Шопинг', icon: '🛍️' },
+            { id: 'children', name: 'Дети', icon: '👶' },
+            { id: 'loan', name: 'Заем', icon: '💳' },
+            { id: 'credit', name: 'Кредиты', icon: '🏦' },
             { id: 'goals', name: 'Цели', icon: '🎯' },
             { id: 'other', name: 'Другое', icon: '📦' }
         ],
@@ -4135,22 +5581,91 @@ bedtime
     // Функция для получения курсов валют
     async function fetchCurrencyRates() {
         try {
-            const response = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
-            const data = await response.json();
+            const selectedCurrencies = getSelectedCurrencies();
+            if (selectedCurrencies.length === 0) return;
             
-            if (data.rates) {
+            // Разделяем валюты на фиатные и криптовалюты
+            const fiatCurrencies = selectedCurrencies.filter(currency => 
+                !['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'DOT', 'MATIC', 'LINK'].includes(currency)
+            );
+            const cryptoCurrencies = selectedCurrencies.filter(currency => 
+                ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'DOT', 'MATIC', 'LINK'].includes(currency)
+            );
+            
+            let allRates = {};
+            
+            // Получаем курсы фиатных валют
+            if (fiatCurrencies.length > 0) {
+                try {
+                    const fiatResponse = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
+                    const fiatData = await fiatResponse.json();
+                    if (fiatData.rates) {
+                        allRates = { ...fiatData.rates };
+                    }
+                } catch (error) {
+                    console.error('Ошибка при получении курсов фиатных валют:', error);
+                }
+            }
+            
+            // Получаем курсы криптовалют
+            if (cryptoCurrencies.length > 0) {
+                try {
+                    const cryptoResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,cardano,solana,polkadot,matic,chainlink&vs_currencies=rub');
+                    const cryptoData = await cryptoResponse.json();
+                    
+                    // Преобразуем данные CoinGecko в формат, совместимый с нашей системой
+                    const cryptoMapping = {
+                        'BTC': 'bitcoin',
+                        'ETH': 'ethereum',
+                        'BNB': 'binancecoin',
+                        'ADA': 'cardano',
+                        'SOL': 'solana',
+                        'DOT': 'polkadot',
+                        'MATIC': 'matic',
+                        'LINK': 'chainlink'
+                    };
+                    
+                    cryptoCurrencies.forEach(crypto => {
+                        const coinId = cryptoMapping[crypto];
+                        if (cryptoData[coinId] && cryptoData[coinId].rub) {
+                            // Для криптовалют сохраняем курс в рублях (не инвертируем)
+                            allRates[crypto] = cryptoData[coinId].rub;
+                        }
+                    });
+                } catch (error) {
+                    console.error('Ошибка при получении курсов криптовалют:', error);
+                }
+            }
+            
+            if (Object.keys(allRates).length > 0) {
                 // Убеждаемся, что настройки валют загружены
                 loadCurrencySettings();
                 
-                // Обновляем курсы валют
-                updateCurrencyRates(data.rates);
+                // Сохраняем текущие курсы как предыдущие для сравнения
+                const currentRates = localStorage.getItem('currencyRates');
+                if (currentRates) {
+                    try {
+                        const currentData = JSON.parse(currentRates);
+                        if (currentData.rates) {
+                            localStorage.setItem('previousCurrencyRates', JSON.stringify(currentData.rates));
+                            console.log('Сохранены предыдущие курсы для сравнения');
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при сохранении предыдущих курсов:', error);
+                    }
+                }
                 
-                // Сохраняем курсы в localStorage
+                // Обновляем курсы валют
+                updateCurrencyRates(allRates);
+                
+                // Сохраняем новые курсы в localStorage
                 const now = new Date();
                 localStorage.setItem('currencyRates', JSON.stringify({
-                    rates: data.rates,
+                    rates: allRates,
                     timestamp: now.getTime()
                 }));
+                
+                console.log('Курсы валют успешно обновлены:', Object.keys(allRates));
             }
         } catch (error) {
             console.error('Ошибка при получении курсов валют:', error);
@@ -4158,7 +5673,7 @@ bedtime
     }
 
     // Функция для обновления отображения курсов валют
-    function updateCurrencyRates(rates) {
+    function updateCurrencyRates(rates, showChangeIndicators = true) {
         const selectedCurrencies = getSelectedCurrencies();
         const currencyContainer = document.getElementById('currencyRatesInline');
         
@@ -4176,10 +5691,64 @@ bedtime
         // Очищаем контейнер
         currencyContainer.innerHTML = '';
         
+        // Получаем предыдущие курсы ДО обновления отображения
+        const previousRates = JSON.parse(localStorage.getItem('previousCurrencyRates') || '{}');
+        
         selectedCurrencies.forEach(currency => {
             if (rates[currency]) {
+                // Определяем, является ли валюта криптовалютой
+                const isCrypto = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'DOT', 'MATIC', 'LINK'].includes(currency);
+                
                 // Рассчитываем курс в рублях за 1 единицу валюты
-                const rate = (1 / rates[currency]).toFixed(2);
+                let rate;
+                if (isCrypto) {
+                    // Для криптовалют курс уже в рублях
+                    rate = rates[currency].toFixed(2);
+                } else {
+                    // Для фиатных валют инвертируем курс
+                    rate = (1 / rates[currency]).toFixed(2);
+                }
+                
+                // Получаем предыдущий курс для сравнения
+                const previousRate = previousRates[currency];
+                
+                // Определяем изменение курса
+                let changeIndicator = '';
+                let changeClass = '';
+                
+                console.log(`Валюта: ${currency}, Текущий курс: ${rates[currency]}, Предыдущий: ${previousRate}, Крипто: ${isCrypto}`);
+                
+                if (showChangeIndicators && previousRate && previousRate !== 0) {
+                    let currentRateValue, previousRateValue;
+                    
+                    if (isCrypto) {
+                        // Для криптовалют сравниваем прямые курсы в рублях
+                        currentRateValue = rates[currency];
+                        previousRateValue = previousRate;
+                    } else {
+                        // Для фиатных валют инвертируем для сравнения
+                        currentRateValue = 1 / rates[currency];
+                        previousRateValue = 1 / previousRate;
+                    }
+                    
+                    const change = currentRateValue - previousRateValue;
+                    
+                    console.log(`Изменение для ${currency}: ${change} (текущий: ${currentRateValue}, предыдущий: ${previousRateValue})`);
+                    
+                    if (change > 0) {
+                        // Курс вырос (зеленый)
+                        changeIndicator = '↗';
+                        changeClass = 'rate-up';
+                        console.log(`${currency}: Курс вырос (зеленый)`);
+                    } else if (change < 0) {
+                        // Курс упал (красный)
+                        changeIndicator = '↘';
+                        changeClass = 'rate-down';
+                        console.log(`${currency}: Курс упал (красный)`);
+                    }
+                } else {
+                    console.log(`${currency}: Индикатор не показан (showChangeIndicators: ${showChangeIndicators}, previousRate: ${previousRate})`);
+                }
                 
                 // Создаем элемент валюты
                 const currencyElement = document.createElement('div');
@@ -4190,16 +5759,40 @@ bedtime
                         <span class="currency-full-name-inline">${getCurrencyFullName(currency)}</span>
                     </div>
                     <div class="currency-rate-inline">
-                        <span class="rate-value-inline">${rate} ₽</span>
+                        <span class="rate-value-inline ${changeClass}">${rate} ₽</span>
+                        ${changeIndicator ? `<span class="change-indicator ${changeClass}">${changeIndicator}</span>` : ''}
                     </div>
                 `;
                 
+                console.log(`HTML для ${currency}:`, currencyElement.innerHTML);
                 currencyContainer.appendChild(currencyElement);
             }
         });
         
         // Сохраняем текущие курсы как предыдущие для следующего сравнения
         localStorage.setItem('previousCurrencyRates', JSON.stringify(rates));
+        
+        // Обновляем время последнего обновления
+        updateLastUpdateTime();
+    }
+
+    // Функция для обновления времени последнего обновления курсов
+    function updateLastUpdateTime() {
+        const lastUpdateElement = document.getElementById('lastUpdateTime');
+        if (lastUpdateElement) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ru-RU', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+            const dateString = now.toLocaleDateString('ru-RU', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric' 
+            });
+            lastUpdateElement.textContent = `${dateString} ${timeString}`;
+        }
     }
 
     // Функция для получения полного названия валюты
@@ -4209,7 +5802,16 @@ bedtime
             'EUR': 'Евро',
             'CNY': 'Юань',
             'GBP': 'Фунт стерлингов',
-            'JPY': 'Иена'
+            'JPY': 'Иена',
+            // Криптовалюты
+            'BTC': 'Bitcoin',
+            'ETH': 'Ethereum',
+            'BNB': 'Binance Coin',
+            'ADA': 'Cardano',
+            'SOL': 'Solana',
+            'DOT': 'Polkadot',
+            'MATIC': 'Polygon',
+            'LINK': 'Chainlink'
         };
         return names[currency] || currency;
     }
@@ -4323,7 +5925,7 @@ bedtime
 
     // Функция для автоматического обновления курсов
     function startAutoUpdate() {
-        // Обновляем курсы каждые 30 минут (1800000 мс)
+        // Обновляем курсы каждые 5 минут для криптовалют и каждые 15 минут для фиатных валют
         setInterval(async () => {
             if (isCurrencyRatesActive()) {
                 try {
@@ -4333,7 +5935,19 @@ bedtime
                     console.error('Ошибка при автоматическом обновлении курсов:', error);
                 }
             }
-        }, 1800000); // 30 минут
+        }, 5 * 60 * 1000); // 5 минут
+        
+        // Дополнительное обновление каждые 15 минут для фиатных валют
+        setInterval(async () => {
+            if (isCurrencyRatesActive()) {
+                try {
+                    await fetchCurrencyRates();
+                    console.log('Курсы фиатных валют обновлены');
+                } catch (error) {
+                    console.error('Ошибка при обновлении фиатных валют:', error);
+                }
+            }
+        }, 15 * 60 * 1000); // 15 минут
     }
 
     // Функция для сохранения настроек валют
@@ -4366,11 +5980,20 @@ bedtime
             try {
                 const data = JSON.parse(savedRates);
                 const now = new Date().getTime();
-                const oneHour = 60 * 60 * 1000; // 1 час в миллисекундах
+                const fiveMinutes = 5 * 60 * 1000; // 5 минут в миллисекундах
+                const fifteenMinutes = 15 * 60 * 1000; // 15 минут в миллисекундах
                 
-                // Если курсы не устарели, используем их
-                if (now - data.timestamp < oneHour) {
-                    updateCurrencyRates(data.rates);
+                // Проверяем, есть ли криптовалюты среди выбранных
+                const hasCrypto = selectedCurrencies.some(currency => 
+                    ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'DOT', 'MATIC', 'LINK'].includes(currency)
+                );
+                
+                // Для криптовалют используем более короткий интервал (5 минут)
+                // Для фиатных валют - 15 минут
+                const maxAge = hasCrypto ? fiveMinutes : fifteenMinutes;
+                
+                if (now - data.timestamp < maxAge) {
+                    updateCurrencyRates(data.rates, false);
                 } else {
                     // Если курсы устарели, загружаем новые
                     fetchCurrencyRates();
@@ -4406,11 +6029,40 @@ bedtime
             try {
                 const data = JSON.parse(saved);
                 const now = new Date().getTime();
-                const oneHour = 60 * 60 * 1000; // 1 час в миллисекундах
+                const fiveMinutes = 5 * 60 * 1000; // 5 минут в миллисекундах
+                const fifteenMinutes = 15 * 60 * 1000; // 15 минут в миллисекундах
                 
-                // Если курсы не устарели (менее часа), загружаем их
-                if (now - data.timestamp < oneHour) {
-                    updateCurrencyRates(data.rates);
+                // Проверяем, есть ли криптовалюты среди выбранных
+                const selectedCurrencies = getSelectedCurrencies();
+                const hasCrypto = selectedCurrencies.some(currency => 
+                    ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'DOT', 'MATIC', 'LINK'].includes(currency)
+                );
+                
+                // Для криптовалют используем более короткий интервал (5 минут)
+                // Для фиатных валют - 15 минут
+                const maxAge = hasCrypto ? fiveMinutes : fifteenMinutes;
+                
+                if (now - data.timestamp < maxAge) {
+                    // При загрузке сохраненных курсов не показываем индикаторы изменения
+                    // так как у нас нет предыдущих курсов для сравнения
+                    updateCurrencyRates(data.rates, false);
+                    // Обновляем время последнего обновления
+                    const lastUpdateElement = document.getElementById('lastUpdateTime');
+                    if (lastUpdateElement) {
+                        const updateDate = new Date(data.timestamp);
+                        const timeString = updateDate.toLocaleTimeString('ru-RU', { 
+                            hour: '2-digit', 
+                            minute: '2-digit', 
+                            second: '2-digit' 
+                        });
+                        const dateString = updateDate.toLocaleDateString('ru-RU', { 
+                            day: '2-digit', 
+                            month: '2-digit', 
+                            year: 'numeric' 
+                        });
+                        lastUpdateElement.textContent = `${dateString} ${timeString}`;
+                    }
+                    console.log('Загружены сохраненные курсы валют');
                     return;
                 }
             } catch (error) {
@@ -4419,6 +6071,7 @@ bedtime
         }
         
         // Если нет сохраненных курсов или они устарели, загружаем новые
+        console.log('Загружаем новые курсы валют...');
         fetchCurrencyRates();
     }
 
@@ -4439,6 +6092,7 @@ bedtime
         renderAccounts();
         renderTransactions();
         renderGoals();
+        showPlaceholdersIfNeeded(); // Показываем заглушки при необходимости
         updateDashboard();
         initCharts();
         setupEventListeners();
@@ -4462,13 +6116,37 @@ bedtime
             accountsAccordionContent.classList.remove('expanded');
         }
         
+        // Загружаем состояние аккордеона для управления категориями
+        const savedCategoriesAccordionState = localStorage.getItem('categoriesAccordionState');
+        const categoriesAccordionContent = document.getElementById('categoriesAccordionContent');
+        if (categoriesAccordionContent && savedCategoriesAccordionState === 'expanded') {
+            categoriesAccordionContent.classList.add('expanded');
+            categoriesAccordionContent.classList.remove('collapsed');
+            const toggle = document.querySelector('[data-accordion="categories"] .accordion-toggle');
+            if (toggle) {
+                toggle.classList.add('expanded');
+            }
+        } else if (categoriesAccordionContent) {
+            categoriesAccordionContent.classList.add('collapsed');
+            categoriesAccordionContent.classList.remove('expanded');
+        }
+        
         // Загружаем курсы валют
         loadSavedCurrencyRates();
         
         // Запускаем автоматическое обновление курсов
         startAutoUpdate();
         
-
+        // Загружаем категории в настройки
+        loadCategoriesSettings();
+        
+        // Инициализируем аккордеон категорий
+        initCategoriesAccordion();
+        
+        // Инициализируем заглушки при загрузке страницы
+        setTimeout(() => {
+            showPlaceholdersIfNeeded();
+        }, 100);
         
         // Установка начальной активной вкладки
         document.querySelectorAll('.tab-content').forEach(tab => {
@@ -4489,18 +6167,115 @@ bedtime
                 firstActiveTab.classList.add('fade-in');
             }, 100);
         }
+        
+        // Обновляем месячную статистику при инициализации
+        updateMonthlyStats();
     }
+
+
 
     // Обновление localStorage
     function updateLocalStorage() {
         localStorage.setItem('accounts', JSON.stringify(accounts));
         localStorage.setItem('transactions', JSON.stringify(transactions));
         localStorage.setItem('goals', JSON.stringify(goals));
+        localStorage.setItem('categories', JSON.stringify(categories));
     }
 
     // Генерация ID
     function generateId(items) {
         return items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
+    }
+
+    // Генерация ID для категорий
+    function generateCategoryId(type) {
+        const allCategories = [...categories.expense, ...categories.income];
+        let maxId = 0;
+        
+        allCategories.forEach(category => {
+            if (typeof category.id === 'string') {
+                // Для строковых ID просто генерируем уникальное имя
+                return;
+            } else if (typeof category.id === 'number') {
+                maxId = Math.max(maxId, category.id);
+            }
+        });
+        
+        // Если все ID строковые, создаем уникальное строковое имя
+        const baseName = type === 'expense' ? 'expense_' : 'income_';
+        const timestamp = Date.now();
+        return baseName + timestamp;
+    }
+
+    // Функция для загрузки категорий в настройки
+    function loadCategoriesSettings() {
+        const expenseCategoriesList = document.getElementById('expenseCategoriesList');
+        const incomeCategoriesList = document.getElementById('incomeCategoriesList');
+        
+        console.log('loadCategoriesSettings called');
+        console.log('expenseCategoriesList:', expenseCategoriesList);
+        console.log('incomeCategoriesList:', incomeCategoriesList);
+        console.log('categories:', categories);
+        
+        if (!expenseCategoriesList || !incomeCategoriesList) {
+            console.log('Categories lists not found, returning');
+            return;
+        }
+        
+        // Очистка
+        expenseCategoriesList.innerHTML = '';
+        incomeCategoriesList.innerHTML = '';
+        
+        // Заполняем категории расходов
+        categories.expense.forEach(category => {
+            const categoryItem = createCategorySettingsItem(category, 'expense');
+            expenseCategoriesList.appendChild(categoryItem);
+        });
+        
+        // Заполняем категории доходов
+        categories.income.forEach(category => {
+            const categoryItem = createCategorySettingsItem(category, 'income');
+            incomeCategoriesList.appendChild(categoryItem);
+        });
+        
+        console.log('Categories loaded successfully');
+    }
+
+    // Создание элемента категории для настроек
+    function createCategorySettingsItem(category, type) {
+        const categoryItem = document.createElement('div');
+        categoryItem.className = 'category-settings-item';
+        
+        categoryItem.innerHTML = `
+            <div class="category-settings-info">
+                <span class="category-settings-icon">${category.icon}</span>
+                <div class="category-settings-details">
+                    <div class="category-settings-name">${category.name}</div>
+                    <div class="category-settings-type">${type === 'expense' ? 'Расход' : 'Доход'}</div>
+                </div>
+            </div>
+            <div class="category-settings-actions">
+                <button class="category-settings-btn edit edit-category" data-id="${category.id}" data-type="${type}" title="Редактировать">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/>
+                    </svg>
+                </button>
+                <button class="category-settings-btn delete delete-category" data-id="${category.id}" data-type="${type}" title="Удалить">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.41 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                    </svg>
+                </button>
+            </div>
+        `;
+        
+        // Добавляем обработчики событий для редактирования и удаления
+        const editBtn = categoryItem.querySelector('.edit-category');
+        const deleteBtn = categoryItem.querySelector('.delete-category');
+        
+        editBtn.addEventListener('click', () => editCategory(category.id, type));
+        deleteBtn.addEventListener('click', () => deleteCategory(category.id, type));
+        
+        return categoryItem;
     }
 
     // Рендер счетов
@@ -4615,13 +6390,40 @@ bedtime
     // Обновление баланса
     function updateBalance() {
         const totalBalanceEl = document.getElementById('totalBalance');
-        if (!totalBalanceEl) return;
+        const accountsBalanceListEl = document.getElementById('accountsBalanceList');
         
+        if (!totalBalanceEl || !accountsBalanceListEl) return;
+        
+        // Общий баланс всех счетов
         const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
         totalBalanceEl.textContent = `${totalBalance.toFixed(2)} руб.`;
+        
+        // Очищаем список плашек счетов
+        accountsBalanceListEl.innerHTML = '';
+        
+        // Создаем плашку для каждого счета
+        accounts.forEach(account => {
+            const accountBalanceItem = document.createElement('div');
+            accountBalanceItem.className = 'account-balance-item';
+            
+            // Иконка для счета (первая буква названия)
+            const icon = account.name.charAt(0).toUpperCase();
+            
+            accountBalanceItem.innerHTML = `
+                <div class="account-balance-info">
+                    <div class="account-balance-icon">${icon}</div>
+                    <div class="account-balance-name">${account.name}</div>
+                </div>
+                <div class="account-balance-amount">${account.balance.toFixed(2)} руб.</div>
+            `;
+            
+            accountsBalanceListEl.appendChild(accountBalanceItem);
+        });
     }
 
     // Рендер транзакций
+    // Автоматически фильтрует транзакции с несуществующими счетами
+    // Сортирует по дате (новые первыми) и по ID (последние созданные сверху)
     function renderTransactions() {
         const allTransactionsList = document.getElementById('allTransactions');
         
@@ -4630,8 +6432,22 @@ bedtime
         // Очистка
         allTransactionsList.innerHTML = '';
         
-        // Сортировка по дате (новые сначала)
-        const sortedTransactions = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Фильтруем транзакции, исключая те, что ссылаются на несуществующие счета
+        const validTransactions = transactions.filter(transaction => {
+            const accountExists = accounts.find(a => a.id === transaction.accountId);
+            return accountExists; // Возвращаем только транзакции с существующими счетами
+        });
+        
+        // Сортировка по дате и ID (новые сначала, последние созданные сверху)
+        const sortedTransactions = [...validTransactions].sort((a, b) => {
+            // Сначала сортируем по дате (новые даты первыми)
+            const dateComparison = new Date(b.date) - new Date(a.date);
+            if (dateComparison !== 0) return dateComparison;
+            
+            // Если даты одинаковые, сортируем по ID (последние созданные первыми)
+            // Это обеспечивает, что транзакции, созданные позже в тот же день, будут сверху
+            return b.id - a.id;
+        });
         
         // Все транзакции
         sortedTransactions.forEach(transaction => {
@@ -4644,6 +6460,8 @@ bedtime
     }
 
     // Функция фильтрации транзакций
+    // Автоматически исключает транзакции с несуществующими счетами
+    // Сортирует по дате (новые первыми) и по ID (последние созданные сверху)
     function filterTransactions() {
         const filterType = document.getElementById('filterType')?.value || '';
         const filterAccount = document.getElementById('filterAccount')?.value || '';
@@ -4657,8 +6475,14 @@ bedtime
             // Фильтр по типу
             if (filterType && transaction.type !== filterType) return false;
             
-            // Фильтр по счету
-            if (filterAccount && transaction.accountId !== parseInt(filterAccount)) return false;
+            // Фильтр по счету (проверяем существование счета)
+            if (filterAccount) {
+                if (transaction.accountId !== parseInt(filterAccount)) return false;
+            } else {
+                // Если счет не выбран, проверяем что транзакция ссылается на существующий счет
+                const accountExists = accounts.find(a => a.id === transaction.accountId);
+                if (!accountExists) return false; // Пропускаем транзакции с несуществующими счетами
+            }
             
             // Фильтр по категории
             if (filterCategory && transaction.category !== filterCategory) return false;
@@ -4678,8 +6502,16 @@ bedtime
             return true;
         });
 
-        // Сортировка по дате (новые сначала)
-        filteredTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Сортировка по дате и ID (новые сначала, последние созданные сверху)
+        filteredTransactions.sort((a, b) => {
+            // Сначала сортируем по дате (новые даты первыми)
+            const dateComparison = new Date(b.date) - new Date(a.date);
+            if (dateComparison !== 0) return dateComparison;
+            
+            // Если даты одинаковые, сортируем по ID (последние созданные первыми)
+            // Это обеспечивает, что транзакции, созданные позже в тот же день, будут сверху
+            return b.id - a.id;
+        });
 
         // Обновляем отображение отфильтрованных транзакций
         const allTransactionsList = document.getElementById('allTransactions');
@@ -4704,6 +6536,9 @@ bedtime
                 allTransactionsList.appendChild(transactionElement);
             });
         }
+        
+        // Обновляем месячную статистику
+        updateMonthlyStats();
     }
 
     // Функция сброса фильтров
@@ -4721,17 +6556,32 @@ bedtime
             }
         });
         
-        // Перерисовываем все транзакции
+        // Сворачиваем фильтр после сброса
+        const filtersContent = document.getElementById('filtersAccordionContent');
+        const filtersToggle = document.querySelector('[data-accordion="filters"] .filters-toggle');
+        
+        if (filtersContent && filtersToggle) {
+            filtersContent.classList.remove('expanded');
+            filtersContent.classList.add('collapsed');
+            filtersToggle.classList.remove('expanded');
+            filtersToggle.querySelector('span').textContent = 'Показать';
+            localStorage.setItem('filtersAccordionState', 'collapsed');
+        }
+        
+        // Перерисовываем все транзакции (с фильтрацией несуществующих счетов)
         renderTransactions();
     }
 
     // Функция инициализации фильтров
+    // В фильтре по счетам показываются только существующие (не удаленные) счета
     function initFilters() {
-        // Заполняем фильтр по счетам
+        // Заполняем фильтр по счетам (только существующие счета)
         const filterAccount = document.getElementById('filterAccount');
         if (filterAccount) {
             filterAccount.innerHTML = '<option value="">Все счета</option>';
-            accounts.forEach(account => {
+            // Фильтруем только существующие счета
+            const existingAccounts = accounts.filter(account => account && account.id);
+            existingAccounts.forEach(account => {
                 const option = document.createElement('option');
                 option.value = account.id;
                 option.textContent = account.name;
@@ -4748,7 +6598,7 @@ bedtime
             categories.expense.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category.id;
-                option.textContent = `💸 ${category.name}`;
+                option.textContent = category.name;
                 filterCategory.appendChild(option);
             });
             
@@ -4756,7 +6606,7 @@ bedtime
             categories.income.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category.id;
-                option.textContent = `💰 ${category.name}`;
+                option.textContent = category.name;
                 filterCategory.appendChild(option);
             });
         }
@@ -4827,7 +6677,68 @@ bedtime
         });
     }
 
+    // Функция инициализации аккордеона категорий
+    function initCategoriesAccordion() {
+        const categoriesHeader = document.querySelector('[data-accordion="categories"]');
+        const categoriesContent = document.getElementById('categoriesAccordionContent');
+        const categoriesToggle = document.querySelector('[data-accordion="categories"] .accordion-toggle');
+        
+        console.log('initCategoriesAccordion called');
+        console.log('categoriesHeader:', categoriesHeader);
+        console.log('categoriesContent:', categoriesContent);
+        console.log('categoriesToggle:', categoriesToggle);
+        
+        if (!categoriesHeader || !categoriesContent || !categoriesToggle) {
+            console.log('Some elements not found, returning');
+            return;
+        }
+        
+        // Загружаем сохраненное состояние аккордеона
+        const savedState = localStorage.getItem('categoriesAccordionState');
+        console.log('Saved state:', savedState);
+        
+        if (savedState === 'expanded') {
+            categoriesContent.classList.add('expanded');
+            categoriesContent.classList.remove('collapsed');
+            categoriesToggle.classList.add('expanded');
+            categoriesToggle.querySelector('span').textContent = 'Скрыть';
+        } else {
+            categoriesContent.classList.add('collapsed');
+            categoriesContent.classList.remove('expanded');
+            categoriesToggle.classList.remove('expanded');
+            categoriesToggle.querySelector('span').textContent = 'Управлять';
+        }
+        
+        // Обработчик клика по заголовку
+        categoriesHeader.addEventListener('click', (e) => {
+            console.log('Categories header clicked');
+            e.stopPropagation(); // Предотвращаем всплытие события
+            
+            const isExpanded = categoriesContent.classList.contains('expanded');
+            console.log('Is expanded:', isExpanded);
+            
+            if (isExpanded) {
+                // Сворачиваем
+                categoriesContent.classList.remove('expanded');
+                categoriesContent.classList.add('collapsed');
+                categoriesToggle.classList.remove('expanded');
+                categoriesToggle.querySelector('span').textContent = 'Управлять';
+                localStorage.setItem('categoriesAccordionState', 'collapsed');
+            } else {
+                // Разворачиваем
+                categoriesContent.classList.remove('collapsed');
+                categoriesContent.classList.add('expanded');
+                categoriesToggle.classList.add('expanded');
+                categoriesToggle.querySelector('span').textContent = 'Скрыть';
+                localStorage.setItem('categoriesAccordionState', 'expanded');
+            }
+        });
+        
+        console.log('Categories accordion initialized successfully');
+    }
+
     // Создание элемента транзакции
+    // Включает дату транзакции в формате ДД.ММ.ГГГГ
     function createTransactionElement(transaction) {
         const li = document.createElement('li');
         li.className = 'transaction-item';
@@ -4844,11 +6755,20 @@ bedtime
             }
         }
         
+        // Форматируем дату для отображения
+        const transactionDate = new Date(transaction.date);
+        const formattedDate = transactionDate.toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        
         li.innerHTML = `
             <div class="transaction-content">
                 <div class="transaction-info">
                     <div class="transaction-title">${transaction.description || 'Без описания'}</div>
                     <div class="transaction-category">${category ? category.icon + ' ' + category.name : 'Без категории'} • ${account?.name || 'Неизвестный счет'}</div>
+                    <div class="transaction-date">📅 ${formattedDate}</div>
                     ${goalInfo}
                 </div>
                 <div class="transaction-amount ${transaction.type === 'income' ? 'income' : 'expense'}">
@@ -4894,47 +6814,18 @@ bedtime
             }
         });
         
-        // Скрываем или показываем кнопку "Добавить цель" в зависимости от наличия целей
+        // Скрываем или показываем кнопку "Добавить цель" только когда есть актуальные цели
         if (addGoalBtn) {
-            if (goals.length === 0) {
-                addGoalBtn.style.display = 'none';
-            } else {
+            if (activeGoals.length > 0) {
                 addGoalBtn.style.display = 'inline-flex';
+            } else {
+                addGoalBtn.style.display = 'none';
             }
         }
         
-        // Если нет целей вообще
-        if (goals.length === 0) {
-            activeGoalsList.innerHTML = `
-                <div style="text-align: center; color: var(--text-secondary); padding: 40px 20px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" style="fill: var(--text-secondary); margin-bottom: 20px;">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
-                    </svg>
-                    <h3 style="margin-bottom: 10px; color: var(--text-primary);">У вас пока нет финансовых целей</h3>
-                    <p style="margin-bottom: 20px;">Создайте свою первую цель для начала планирования</p>
-                    <button class="btn btn-primary" onclick="openGoalModal()">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                        </svg>
-                        Создать цель
-                    </button>
-                </div>
-            `;
-            return;
-        }
-        
-        // Рендер актуальных целей
-        if (activeGoals.length === 0) {
-            activeGoalsList.innerHTML = `
-                <div style="text-align: center; color: var(--text-secondary); padding: 40px 20px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" style="fill: var(--text-secondary); margin-bottom: 20px;">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                    <h3 style="margin-bottom: 10px; color: var(--text-primary);">Нет активных целей</h3>
-                    <p style="margin-bottom: 20px;">Все ваши цели завершены или истекли</p>
-                </div>
-            `;
-        } else {
+        // Рендер активных целей
+        if (activeGoals.length > 0) {
+            activeGoalsList.innerHTML = '';
             activeGoals.forEach(goal => {
                 const goalElement = createGoalElement(goal, false);
                 activeGoalsList.appendChild(goalElement);
@@ -4942,54 +6833,231 @@ bedtime
         }
         
         // Рендер завершенных целей
-        if (completedGoals.length === 0) {
-            completedGoalsList.innerHTML = `
-                <div style="text-align: center; color: var(--text-secondary); padding: 40px 20px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" style="fill: var(--text-secondary); margin-bottom: 20px;">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
-                    </svg>
-                    <h3 style="margin-bottom: 10px; color: var(--text-primary);">Нет завершенных целей</h3>
-                    <p style="margin-bottom: 20px;">Создайте и завершите свою первую цель</p>
-                </div>
-            `;
-        } else {
+        const clearCompletedGoalsBtn = document.getElementById('clearCompletedGoalsBtn');
+        
+        if (completedGoals.length > 0) {
+            // Очищаем список и добавляем завершенные цели
+            completedGoalsList.innerHTML = '';
             completedGoals.forEach(goal => {
                 const goalElement = createGoalElement(goal, true);
                 completedGoalsList.appendChild(goalElement);
             });
+            
+            // Показываем кнопку очистки, если есть завершенные цели
+            if (clearCompletedGoalsBtn) {
+                clearCompletedGoalsBtn.style.display = 'inline-flex';
+            }
+        } else {
+            // Скрываем кнопку очистки, если нет завершенных целей
+            if (clearCompletedGoalsBtn) {
+                clearCompletedGoalsBtn.style.display = 'none';
+            }
         }
         
         // Обновление счетчиков целей в статистике
         updateGoalsCounters();
+        
+        // Показываем заглушки, если они нужны
+        showPlaceholdersIfNeeded();
+    }
+
+    // Функция для показа заглушек при необходимости
+    function showPlaceholdersIfNeeded() {
+        const activeGoalsList = document.getElementById('activeGoalsList');
+        const completedGoalsList = document.getElementById('completedGoalsList');
+        
+        if (!activeGoalsList || !completedGoalsList) return;
+        
+        // Определяем статус целей
+        const activeGoals = goals.filter(goal => {
+            const progress = (goal.current / goal.target) * 100;
+            const deadline = new Date(goal.deadline);
+            const now = new Date();
+            return progress < 100 && deadline >= now;
+        });
+        
+        const completedGoals = goals.filter(goal => {
+            const progress = (goal.current / goal.target) * 100;
+            const deadline = new Date(goal.deadline);
+            const now = new Date();
+            return progress >= 100 || deadline < now;
+        });
+        
+        // Если нет целей вообще, показываем заглушку в активных целях
+        if (goals.length === 0) {
+            activeGoalsList.innerHTML = `
+                <div class="completed-goals-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)); border-color: rgba(76, 175, 80, 0.2);">
+                    <h3>У вас пока нет финансовых целей</h3>
+                    <p>Создайте свою первую цель для начала планирования</p>
+                    <button class="btn btn-primary create-goal-btn" onclick="openGoalModal()">
+                        Создать цель +
+                    </button>
+                </div>
+            `;
+        }
+        // Если нет активных целей, но есть завершенные, показываем заглушку в активных целях
+        else if (activeGoals.length === 0 && goals.length > 0) {
+            activeGoalsList.innerHTML = `
+                <div class="completed-goals-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)); border-color: rgba(76, 175, 80, 0.2);">
+                    <h3>Нет активных целей</h3>
+                    <p>Все ваши цели завершены или истекли</p>
+                    <button class="btn btn-primary create-goal-btn" onclick="openGoalModal()">
+                        Создать цель +
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Если нет завершенных целей, показываем заглушку в завершенных целях
+        if (completedGoals.length === 0) {
+            // Если есть активные цели, не показываем кнопку "Создать цель +"
+            if (activeGoals.length > 0) {
+                completedGoalsList.innerHTML = `
+                    <div class="completed-goals-placeholder">
+                        <h3>Нет завершенных целей</h3>
+                        <p>Завершите свою первую цель</p>
+                    </div>
+                `;
+            } else {
+                completedGoalsList.innerHTML = `
+                    <div class="completed-goals-placeholder">
+                        <h3>Нет завершенных целей</h3>
+                        <p>Завершите свою первую цель</p>
+                        <button class="btn btn-primary create-goal-btn" onclick="openGoalModal()">
+                            Создать цель +
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Обновляем видимость кнопки "Добавить цель" в зависимости от наличия актуальных целей
+        const addGoalBtn = document.getElementById('addGoalBtn');
+        if (addGoalBtn) {
+            if (activeGoals.length > 0) {
+                addGoalBtn.style.display = 'inline-flex';
+            } else {
+                addGoalBtn.style.display = 'none';
+            }
+        }
+    }
+
+    // Функция для очистки всех завершенных целей
+    function clearCompletedGoals() {
+        if (confirm('Вы уверены, что хотите удалить все завершенные цели? Это действие нельзя отменить.')) {
+            // Фильтруем цели, оставляя только активные
+            goals = goals.filter(goal => {
+                const progress = (goal.current / goal.target) * 100;
+                const deadline = new Date(goal.deadline);
+                const now = new Date();
+                
+                // Оставляем только те цели, которые не завершены и не истекли
+                return progress < 100 && deadline >= now;
+            });
+            
+            // Сохраняем обновленный список целей
+            updateLocalStorage();
+            
+            // Скрываем кнопку очистки
+            const clearCompletedGoalsBtn = document.getElementById('clearCompletedGoalsBtn');
+            if (clearCompletedGoalsBtn) {
+                clearCompletedGoalsBtn.style.display = 'none';
+            }
+            
+            // Показываем заглушку "Нет завершенных целей"
+            const completedGoalsList = document.getElementById('completedGoalsList');
+            if (completedGoalsList) {
+                // Проверяем, есть ли активные цели после очистки
+                const activeGoalsAfterClear = goals.filter(goal => {
+                    const progress = (goal.current / goal.target) * 100;
+                    const deadline = new Date(goal.deadline);
+                    const now = new Date();
+                    return progress < 100 && deadline >= now;
+                });
+                
+                // Если есть активные цели, не показываем кнопку "Создать цель +"
+                if (activeGoalsAfterClear.length > 0) {
+                    completedGoalsList.innerHTML = `
+                        <div class="completed-goals-placeholder">
+                            <h3>Нет завершенных целей</h3>
+                            <p>Завершите свою первую цель</p>
+                        </div>
+                    `;
+                } else {
+                    completedGoalsList.innerHTML = `
+                        <div class="completed-goals-placeholder">
+                            <h3>Нет завершенных целей</h3>
+                            <p>Завершите свою первую цель</p>
+                            <button class="btn btn-primary create-goal-btn" onclick="openGoalModal()">
+                                Создать цель +
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Обновляем счетчики на дашборде
+            updateDashboard();
+            
+            // Показываем заглушки при необходимости
+            showPlaceholdersIfNeeded();
+            
+            console.log('Все завершенные цели удалены');
+        }
     }
 
     // Создание элемента цели
     function createGoalElement(goal, isCompleted) {
         const progress = (goal.current / goal.target) * 100;
         const goalCard = document.createElement('div');
-        goalCard.className = 'card';
-        goalCard.style.marginBottom = '15px';
+        goalCard.className = 'goal-card';
         
         // Добавляем класс для завершенных целей
         if (isCompleted) {
             goalCard.classList.add('completed-goal');
         }
         
+        // Форматируем дату
+        const deadline = new Date(goal.deadline);
+        const deadlineFormatted = deadline.toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        
         goalCard.innerHTML = `
-            <h3 style="margin-bottom: 10px; ${isCompleted ? 'color: var(--text-secondary);' : ''}">${goal.name}</h3>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <span>Накоплено: ${goal.current.toFixed(2)} руб.</span>
-                <span>Цель: ${goal.target.toFixed(2)} руб.</span>
+            <div class="goal-header">
+                <h3 class="goal-title">${goal.name}</h3>
+                <span class="goal-status ${isCompleted ? 'completed' : 'active'}">
+                    ${isCompleted ? 'Завершено' : 'Активно'}
+                </span>
             </div>
+            
+            <div class="goal-stats">
+                <div class="goal-stat-item">
+                    <span class="goal-stat-value">${goal.current.toFixed(2)}</span>
+                    <span class="goal-stat-label">Накоплено (руб.)</span>
+                </div>
+                <div class="goal-stat-item">
+                    <span class="goal-stat-value">${goal.target.toFixed(2)}</span>
+                    <span class="goal-stat-label">Цель (руб.)</span>
+                </div>
+            </div>
+            
             <div class="goal-progress">
-                <div class="progress-bar" style="width: ${progress}%; ${isCompleted ? 'background-color: var(--success);' : ''}"></div>
+                <div class="goal-progress-header">
+                    <span class="goal-progress-percentage">${progress.toFixed(0)}%</span>
+                    <span class="goal-progress-deadline">
+                        ${isCompleted ? 'Завершено' : `До ${deadlineFormatted}`}
+                    </span>
+                </div>
+                <div class="goal-progress-bar">
+                    <div class="progress-bar" style="width: ${progress}%; ${isCompleted ? 'background: linear-gradient(90deg, #22c55e, #16a34a);' : ''}"></div>
+                </div>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-top: 5px;">
-                <span>${progress.toFixed(0)}%</span>
-                <span>${isCompleted ? 'Завершено' : `До ${new Date(goal.deadline).toLocaleDateString()}`}</span>
-            </div>
+            
             <div class="goal-actions">
-                ${!isCompleted ? `
+                ${!isCompleted && progress < 100 ? `
                     <button class="btn btn-primary btn-sm pay-goal" data-id="${goal.id}" data-target="${goal.target}" data-current="${goal.current}" title="Оплатить с баланса">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -5397,10 +7465,49 @@ bedtime
         });
     }
 
+    // Обновление месячной статистики
+    function updateMonthlyStats() {
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+        
+        // Фильтруем транзакции за текущий месяц
+        const monthlyTransactions = transactions.filter(transaction => {
+            const transactionDate = new Date(transaction.date);
+            return transactionDate.getMonth() === currentMonth && 
+                   transactionDate.getFullYear() === currentYear;
+        });
+        
+        // Считаем расходы и доходы за месяц
+        let monthlyExpenses = 0;
+        let monthlyIncome = 0;
+        
+        monthlyTransactions.forEach(transaction => {
+            if (transaction.type === 'expense') {
+                monthlyExpenses += transaction.amount;
+            } else if (transaction.type === 'income') {
+                monthlyIncome += transaction.amount;
+            }
+        });
+        
+        // Обновляем отображение
+        const monthlyExpensesElement = document.getElementById('monthlyExpenses');
+        const monthlyIncomeElement = document.getElementById('monthlyIncome');
+        
+        if (monthlyExpensesElement) {
+            monthlyExpensesElement.textContent = `${monthlyExpenses.toFixed(2)} ₽`;
+        }
+        
+        if (monthlyIncomeElement) {
+            monthlyIncomeElement.textContent = `${monthlyIncome.toFixed(2)} ₽`;
+        }
+    }
+
     // Обновление дашборда
     function updateDashboard() {
         updateBalance();
         updateStats();
+        updateMonthlyStats();
         renderTransactions();
         
         // Обновляем графики только если они существуют
@@ -5419,7 +7526,8 @@ bedtime
             updateGoalsChart(goalsCanvas.getContext('2d'));
         }
         
-
+        // Показываем заглушки при необходимости
+        showPlaceholdersIfNeeded();
     }
 
     // Функция изменения типа графика
@@ -5469,24 +7577,34 @@ bedtime
             }
         }
 
-        // Функциональность аккордеона для настроек
+
+
+        // Функциональность аккордеона для настроек (исключая категории)
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', function() {
                 const accordionId = this.dataset.accordion;
+                
+                // Пропускаем аккордеон категорий, так как у него своя логика
+                if (accordionId === 'categories') return;
+                
                 const content = document.getElementById(accordionId + 'AccordionContent');
                 const toggle = this.querySelector('.accordion-toggle');
                 
                 if (content && toggle) {
                     const isExpanded = content.classList.contains('expanded');
                     
-                    // Закрываем все аккордеоны
+                    // Закрываем все аккордеоны (кроме категорий)
                     document.querySelectorAll('.accordion-content').forEach(accContent => {
-                        accContent.classList.remove('expanded');
-                        accContent.classList.add('collapsed');
+                        if (accContent.id !== 'categoriesAccordionContent') {
+                            accContent.classList.remove('expanded');
+                            accContent.classList.add('collapsed');
+                        }
                     });
                     
                     document.querySelectorAll('.accordion-toggle').forEach(accToggle => {
-                        accToggle.classList.remove('expanded');
+                        if (!accToggle.closest('[data-accordion="categories"]')) {
+                            accToggle.classList.remove('expanded');
+                        }
                     });
                     
                     // Открываем текущий аккордеон, если он был закрыт
@@ -5634,6 +7752,117 @@ bedtime
             saveCurrencySettingsBtn.addEventListener('click', saveCurrencySettings);
         }
 
+        // Кнопка обновления курсов валют
+        const refreshCurrencyRatesBtn = document.getElementById('refreshCurrencyRates');
+        if (refreshCurrencyRatesBtn) {
+            refreshCurrencyRatesBtn.addEventListener('click', async () => {
+                refreshCurrencyRatesBtn.disabled = true;
+                refreshCurrencyRatesBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="fill: currentColor; margin-right: 5px; animation: spin 1s linear infinite;">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                    </svg>
+                    Обновление...
+                `;
+                
+                try {
+                    await fetchCurrencyRates();
+                    alert('Курсы валют успешно обновлены!');
+                } catch (error) {
+                    alert('Ошибка при обновлении курсов валют');
+                    console.error('Ошибка обновления курсов:', error);
+                } finally {
+                    refreshCurrencyRatesBtn.disabled = false;
+                    refreshCurrencyRatesBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="fill: currentColor; margin-right: 5px;">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Обновить курсы
+                    `;
+                }
+            });
+        }
+
+        // Тестовая функция для проверки индикаторов
+        window.testCurrencyIndicators = function() {
+            console.log('Тестируем индикаторы валют...');
+            
+            // Создаем тестовые курсы
+            const testRates = {
+                'USD': 0.011, // фиатная валюта (инвертируется)
+                'EUR': 0.010, // фиатная валюта (инвертируется)
+                'BTC': 5000000, // криптовалюта (курс в рублях)
+                'ETH': 300000   // криптовалюта (курс в рублях)
+            };
+            
+            // Сохраняем как предыдущие курсы
+            localStorage.setItem('previousCurrencyRates', JSON.stringify(testRates));
+            
+            // Создаем новые курсы с изменениями
+            const newRates = {
+                'USD': 0.012, // вырос (0.011 -> 0.012)
+                'EUR': 0.009, // упал (0.010 -> 0.009)
+                'BTC': 5200000, // вырос (5M -> 5.2M)
+                'ETH': 280000   // упал (300K -> 280K)
+            };
+            
+            // Обновляем отображение
+            updateCurrencyRates(newRates, true);
+            
+            console.log('Тест завершен. Проверьте консоль и отображение.');
+        };
+
+        // Тестовая функция только для криптовалют
+        window.testCryptoIndicators = function() {
+            console.log('Тестируем индикаторы криптовалют...');
+            
+            // Создаем тестовые курсы криптовалют (в рублях)
+            const testCryptoRates = {
+                'BTC': 5000000,  // 5M рублей
+                'ETH': 300000,   // 300K рублей
+                'BNB': 40000,    // 40K рублей
+                'ADA': 50        // 50 рублей
+            };
+            
+            // Сохраняем как предыдущие курсы
+            localStorage.setItem('previousCurrencyRates', JSON.stringify(testCryptoRates));
+            
+            // Создаем новые курсы с изменениями
+            const newCryptoRates = {
+                'BTC': 5200000,  // вырос на 200K
+                'ETH': 280000,   // упал на 20K
+                'BNB': 42000,    // вырос на 2K
+                'ADA': 45        // упал на 5
+            };
+            
+            // Обновляем отображение
+            updateCurrencyRates(newCryptoRates, true);
+            
+            console.log('Тест криптовалют завершен. Проверьте консоль и отображение.');
+        };
+
+        // Функция для принудительного обновления курсов с сохранением предыдущих
+        window.forceUpdateCurrencyRates = async function() {
+            console.log('Принудительно обновляем курсы валют...');
+            
+            // Сохраняем текущие курсы как предыдущие
+            const currentRates = localStorage.getItem('currencyRates');
+            if (currentRates) {
+                try {
+                    const currentData = JSON.parse(currentRates);
+                    if (currentData.rates) {
+                        localStorage.setItem('previousCurrencyRates', JSON.stringify(currentData.rates));
+                        console.log('Сохранены предыдущие курсы для сравнения');
+                    }
+                } catch (error) {
+                    console.error('Ошибка при сохранении предыдущих курсов:', error);
+                }
+            }
+            
+            // Обновляем курсы
+            await fetchCurrencyRates();
+            console.log('Курсы принудительно обновлены');
+        };
+
 
 
         // Выбор счета - отключено, теперь счета выбираются только через выпадающий список в транзакциях
@@ -5687,6 +7916,24 @@ bedtime
         if (goalForm) goalForm.addEventListener('submit', handleGoalSubmit);
         if (accountForm) accountForm.addEventListener('submit', handleAccountSubmit);
 
+        // Форма категорий
+        const categoryForm = document.getElementById('categoryForm');
+        if (categoryForm) categoryForm.addEventListener('submit', handleCategorySubmit);
+
+        // Кнопка удаления категории в модальном окне
+        const deleteCategoryBtn = document.getElementById('deleteCategoryBtn');
+        if (deleteCategoryBtn) {
+            deleteCategoryBtn.addEventListener('click', function() {
+                const categoryId = document.getElementById('categoryId').value;
+                const categoryTypeSelect = document.getElementById('categoryTypeSelect');
+                const categoryType = categoryTypeSelect ? categoryTypeSelect.value : document.getElementById('categoryType').value;
+                if (categoryId && categoryType) {
+                    deleteCategory(categoryId, categoryType);
+                    closeAllModals();
+                }
+            });
+        }
+
         // Кнопка удаления счета в модальном окне
         const deleteAccountBtn = document.getElementById('deleteAccountBtn');
         if (deleteAccountBtn) {
@@ -5710,6 +7957,14 @@ bedtime
                 }
             });
         }
+
+        // Кнопка очистки всех завершенных целей
+        const clearCompletedGoalsBtn = document.getElementById('clearCompletedGoalsBtn');
+        if (clearCompletedGoalsBtn) {
+            clearCompletedGoalsBtn.addEventListener('click', clearCompletedGoals);
+        }
+
+
 
         // Обработчики для модального окна оплаты цели
         const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
@@ -5740,6 +7995,17 @@ bedtime
                     }
                 }
             }
+
+            // Обработчик для кнопок с подсказками иконок категорий
+            if (e.target.classList.contains('icon-hint-btn')) {
+                const icon = e.target.dataset.icon;
+                if (icon) {
+                    const categoryIcon = document.getElementById('categoryIcon');
+                    if (categoryIcon) {
+                        categoryIcon.value = icon;
+                    }
+                }
+            }
         });
 
         // Обработчик изменения выбранного счета
@@ -5749,12 +8015,7 @@ bedtime
             }
         });
 
-        // Обработчик изменения типа транзакции
-        document.addEventListener('change', function(e) {
-            if (e.target.id === 'transactionType') {
-                updateTransactionCategories();
-            }
-        });
+
 
         // Обработчик изменения выбора цели
         document.addEventListener('change', function(e) {
@@ -5763,26 +8024,36 @@ bedtime
                 if (categorySelect && e.target.value) {
                     // Автоматически устанавливаем категорию "Цели"
                     categorySelect.value = 'goals';
+                    // Обновляем отображение целей
+                    updateGoalSelection();
                 }
             }
         });
 
-        // Обработчик изменения категории
+        // Обработчик для кнопки добавления категории
+        const addCategoryBtn = document.getElementById('addCategoryBtn');
+        if (addCategoryBtn) {
+            addCategoryBtn.addEventListener('click', () => openCategoryModal('expense'));
+        }
+
+        // Обработчик для закрытия модального окна категории
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('close-modal') && e.target.closest('#categoryModal')) {
+                closeCategoryModal();
+            }
+        });
+
+        // Обработчик для синхронизации выбора типа категории
         document.addEventListener('change', function(e) {
-            if (e.target.id === 'transactionCategory') {
-                const goalSelect = document.getElementById('transactionGoal');
-                if (goalSelect) {
-                    if (e.target.value === 'goals') {
-                        // Показываем поле выбора цели
-                        goalSelect.style.display = 'block';
-                    } else {
-                        // Скрываем поле выбора цели и очищаем выбор
-                        goalSelect.style.display = 'none';
-                        goalSelect.value = '';
-                    }
+            if (e.target.id === 'categoryTypeSelect') {
+                const categoryType = document.getElementById('categoryType');
+                if (categoryType) {
+                    categoryType.value = e.target.value;
                 }
             }
         });
+
+
 
         // Валидация поля суммы оплаты
         document.addEventListener('input', function(e) {
@@ -5825,6 +8096,12 @@ bedtime
         const transactionType = document.getElementById('transactionType');
         if (transactionType) {
             transactionType.addEventListener('change', updateTransactionCategories);
+        }
+
+        // Изменение категории транзакции
+        const transactionCategory = document.getElementById('transactionCategory');
+        if (transactionCategory) {
+            transactionCategory.addEventListener('change', updateGoalSelection);
         }
 
         // Делегирование событий для кнопок редактирования/удаления
@@ -5906,6 +8183,11 @@ bedtime
                 if (targetContent) {
                     targetContent.classList.add('active');
                 }
+                
+                // Показываем заглушки при необходимости после переключения таба
+                setTimeout(() => {
+                    showPlaceholdersIfNeeded();
+                }, 100);
             }
         });
 
@@ -5980,6 +8262,11 @@ bedtime
                                 targetGoalsContent.style.animation = 'none';
                                 targetGoalsContent.offsetHeight; // Trigger reflow
                                 targetGoalsContent.style.animation = 'fadeIn 0.3s ease';
+                                
+                                // Показываем заглушки при необходимости
+                                setTimeout(() => {
+                                    showPlaceholdersIfNeeded();
+                                }, 100);
                             }
                         }
                         
@@ -5994,6 +8281,11 @@ bedtime
                                 if (goalsContent) {
                                     goalsContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                 }
+                                
+                                // Показываем заглушки при необходимости
+                                setTimeout(() => {
+                                    showPlaceholdersIfNeeded();
+                                }, 100);
                             }, 300);
                         }
                     }
@@ -6031,6 +8323,9 @@ bedtime
         // Показать модальное окно с анимацией
         modal.style.display = 'flex';
         
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
         // Запускаем анимацию открытия
         requestAnimationFrame(() => {
             modal.classList.add('show');
@@ -6038,6 +8333,7 @@ bedtime
     }
 
     // Обновление категорий в зависимости от типа транзакции
+    // При открытии модального окна цели скрыты по умолчанию
     function updateTransactionCategories() {
         const typeSelect = document.getElementById('transactionType');
         const categorySelect = document.getElementById('transactionCategory');
@@ -6062,10 +8358,42 @@ bedtime
         
         // Показываем/скрываем поле выбора цели только для расходов
         if (type === 'expense') {
+            // Скрываем группу выбора цели по умолчанию
+            goalSelectionGroup.classList.remove('show');
+            goalSelectionGroup.classList.add('hide');
+            
+            // Очищаем поле цели
+            goalSelect.value = '';
+        } else {
+            goalSelectionGroup.classList.remove('show');
+            goalSelectionGroup.classList.add('hide');
+            // Очищаем поле цели при смене типа на доход
+            if (goalSelect) {
+                goalSelect.value = '';
+            }
+        }
+    }
+
+    // Функция для управления отображением целей в зависимости от выбранной категории
+    // Цели показываются только когда выбран тип "Расход" и категория "Цели" (🎯)
+    function updateGoalSelection() {
+        const categorySelect = document.getElementById('transactionCategory');
+        const goalSelectionGroup = document.getElementById('goalSelectionGroup');
+        const goalSelect = document.getElementById('transactionGoal');
+        const typeSelect = document.getElementById('transactionType');
+        
+        if (!categorySelect || !goalSelectionGroup || !goalSelect || !typeSelect) return;
+        
+        const selectedCategory = categorySelect.value;
+        const type = typeSelect.value;
+        
+        // Показываем цели только для расходов и только когда выбрана категория "Цели"
+        if (type === 'expense' && selectedCategory === 'goals') {
             goalSelectionGroup.classList.remove('hide');
             goalSelectionGroup.classList.add('show');
             
             // Заполняем список целей
+            goalSelect.innerHTML = '<option value="">Выберите цель</option>';
             goals.forEach(goal => {
                 if (goal.current < goal.target) { // Только активные цели
                     const option = document.createElement('option');
@@ -6077,13 +8405,9 @@ bedtime
         } else {
             goalSelectionGroup.classList.remove('show');
             goalSelectionGroup.classList.add('hide');
-            // Очищаем поле цели при смене типа на доход
-            if (goalSelect) {
-                goalSelect.value = '';
-            }
+            // Очищаем поле цели
+            goalSelect.value = '';
         }
-        
-
     }
 
     // Открытие модального окна цели
@@ -6110,6 +8434,9 @@ bedtime
         
         // Показать модальное окно с анимацией
         modal.style.display = 'flex';
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
         
         // Запускаем анимацию открытия
         requestAnimationFrame(() => {
@@ -6153,10 +8480,31 @@ bedtime
         // Показать модальное окно с анимацией
         modal.style.display = 'flex';
         
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
         // Запускаем анимацию открытия
         requestAnimationFrame(() => {
             modal.classList.add('show');
         });
+    }
+
+    // Функции для управления прокруткой страницы
+    function disablePageScroll() {
+        document.body.classList.add('modal-open');
+        // Сохраняем текущую позицию прокрутки
+        const scrollY = window.scrollY;
+        document.body.style.top = `-${scrollY}px`;
+    }
+
+    function enablePageScroll() {
+        document.body.classList.remove('modal-open');
+        // Восстанавливаем позицию прокрутки
+        const scrollY = document.body.style.top;
+        document.body.style.top = '';
+        if (scrollY) {
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
     }
 
     // Закрытие всех модальных окон
@@ -6182,6 +8530,22 @@ bedtime
         remainingAmountBtns.forEach(btn => {
             btn.classList.remove('success');
         });
+        
+        // Скрываем цели в модальном окне транзакций при закрытии
+        const goalSelectionGroup = document.getElementById('goalSelectionGroup');
+        if (goalSelectionGroup) {
+            goalSelectionGroup.classList.remove('show');
+            goalSelectionGroup.classList.add('hide');
+        }
+        
+        // Очищаем поле выбора цели
+        const goalSelect = document.getElementById('transactionGoal');
+        if (goalSelect) {
+            goalSelect.value = '';
+        }
+        
+        // Восстанавливаем прокрутку страницы
+        enablePageScroll();
     }
 
     // Обработка отправки формы транзакции
@@ -6441,6 +8805,51 @@ bedtime
         }
     }
 
+    // Обработка отправки формы категории
+    function handleCategorySubmit(e) {
+        e.preventDefault();
+        
+        const categoryId = document.getElementById('categoryId');
+        const categoryName = document.getElementById('categoryName');
+        const categoryIcon = document.getElementById('categoryIcon');
+        const categoryTypeSelect = document.getElementById('categoryTypeSelect');
+        
+        if (!categoryId || !categoryName || !categoryIcon || !categoryTypeSelect) return;
+        
+        const type = categoryTypeSelect.value;
+        
+        const formData = {
+            id: categoryId.value || generateCategoryId(type),
+            name: categoryName.value,
+            icon: categoryIcon.value
+        };
+        
+        // Поиск существующей категории
+        const existingIndex = categories[type].findIndex(c => c.id === formData.id);
+        
+        if (existingIndex >= 0) {
+            // Обновление существующей категории
+            categories[type][existingIndex] = formData;
+        } else {
+            // Добавление новой категории
+            categories[type].push(formData);
+        }
+        
+        // Обновление приложения
+        updateLocalStorage();
+        loadCategoriesSettings();
+        renderTransactions();
+        updateDashboard();
+        closeAllModals();
+        
+        // Анимация успеха
+        const button = e.target.querySelector('button[type="submit"]');
+        if (button) {
+            button.classList.add('pulse');
+            setTimeout(() => button.classList.remove('pulse'), 600);
+        }
+    }
+
     // Обработка отправки формы цели
     function handleGoalSubmit(e) {
         e.preventDefault();
@@ -6484,6 +8893,10 @@ bedtime
         updateLocalStorage();
         renderGoals();
         updateDashboard();
+        
+        // Показываем заглушки при необходимости после изменения цели
+        showPlaceholdersIfNeeded();
+        
         closeAllModals();
         
         // Анимация успеха
@@ -6567,7 +8980,12 @@ bedtime
         // Обновление приложения
         updateLocalStorage();
         renderAccounts();
+        renderTransactions(); // Обновляем транзакции (с фильтрацией несуществующих счетов)
         updateDashboard();
+        
+        // Обновляем фильтры (убираем удаленный счет из фильтра)
+        initFilters();
+        
         closeAllModals();
         
         // Показываем уведомление об успехе
@@ -6602,6 +9020,9 @@ bedtime
             goalSelect.value = transaction.goalId;
         }
         
+        // Обновляем отображение целей в зависимости от выбранной категории
+        updateGoalSelection();
+        
         // Обновление заголовка
         title.textContent = 'Редактировать транзакцию';
         
@@ -6610,6 +9031,9 @@ bedtime
         
         // Показать модальное окно с анимацией
         modal.style.display = 'flex';
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
         
         // Запускаем анимацию открытия
         requestAnimationFrame(() => {
@@ -6684,6 +9108,9 @@ bedtime
         // Показать модальное окно с анимацией
         modal.style.display = 'flex';
         
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
         // Запускаем анимацию открытия
         requestAnimationFrame(() => {
             modal.classList.add('show');
@@ -6704,6 +9131,121 @@ bedtime
         updateLocalStorage();
         renderGoals();
         updateDashboard();
+        
+        // Показываем заглушки при необходимости после удаления цели
+        showPlaceholdersIfNeeded();
+    }
+
+
+
+
+
+    // Редактирование категории
+    function editCategory(categoryId, type) {
+        const category = categories[type].find(c => c.id === categoryId);
+        if (!category) return;
+        
+        const modal = document.getElementById('categoryModal');
+        const form = document.getElementById('categoryForm');
+        const title = document.getElementById('categoryModalTitle');
+        const deleteBtn = document.getElementById('deleteCategoryBtn');
+        
+        if (!modal || !form || !title || !deleteBtn) return;
+        
+        // Заполняем форму данными категории
+        document.getElementById('categoryId').value = category.id;
+        document.getElementById('categoryName').value = category.name;
+        document.getElementById('categoryIcon').value = category.icon;
+        document.getElementById('categoryType').value = type;
+        
+        // Устанавливаем тип категории в селекте
+        const categoryTypeSelect = document.getElementById('categoryTypeSelect');
+        if (categoryTypeSelect) {
+            categoryTypeSelect.value = type;
+        }
+        
+        // Устанавливаем заголовок
+        title.textContent = 'Редактировать категорию';
+        
+        // Показываем кнопку удаления
+        deleteBtn.style.display = 'inline-flex';
+        
+        // Показываем модальное окно
+        modal.style.display = 'flex';
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+    }
+
+    // Удаление категории
+    function deleteCategory(categoryId, type) {
+        if (!confirm('Вы уверены, что хотите удалить эту категорию?')) return;
+        
+        const categoryIndex = categories[type].findIndex(c => c.id === categoryId);
+        if (categoryIndex === -1) return;
+        
+        // Удаление категории
+        categories[type].splice(categoryIndex, 1);
+        
+        // Обновление приложения
+        updateLocalStorage();
+        loadCategoriesSettings();
+        renderTransactions();
+        updateDashboard();
+    }
+
+    // Открытие модального окна для добавления категории
+    function openCategoryModal(type = 'expense') {
+        const modal = document.getElementById('categoryModal');
+        const form = document.getElementById('categoryForm');
+        const title = document.getElementById('categoryModalTitle');
+        const deleteBtn = document.getElementById('deleteCategoryBtn');
+        
+        if (!modal || !form || !title || !deleteBtn) return;
+        
+        // Сброс формы
+        form.reset();
+        document.getElementById('categoryId').value = '';
+        document.getElementById('categoryType').value = type;
+        
+        // Устанавливаем тип категории в селекте
+        const categoryTypeSelect = document.getElementById('categoryTypeSelect');
+        if (categoryTypeSelect) {
+            categoryTypeSelect.value = type;
+        }
+        
+        // Установка заголовка
+        title.textContent = 'Добавить категорию';
+        
+        // Скрыть кнопку удаления при добавлении новой категории
+        deleteBtn.style.display = 'none';
+        
+        // Показать модальное окно
+        modal.style.display = 'flex';
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+    }
+
+    // Закрытие модального окна категории
+    function closeCategoryModal() {
+        const modal = document.getElementById('categoryModal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                // Восстанавливаем прокрутку страницы
+                enablePageScroll();
+            }, 400);
+        }
     }
 
     // Открытие модального окна оплаты цели
@@ -6786,6 +9328,10 @@ bedtime
         
         // Показываем модальное окно
         modal.style.display = 'flex';
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
         requestAnimationFrame(() => {
             modal.classList.add('show');
         });
@@ -6871,6 +9417,22 @@ bedtime
         });
     }
 
+    // Функция для добавления обработчиков кнопок с подсказками иконок категорий
+    function addCategoryIconHintHandlers() {
+        const iconHintButtons = document.querySelectorAll('.icon-hint-btn');
+        iconHintButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.dataset.icon;
+                if (icon) {
+                    const categoryIcon = document.getElementById('categoryIcon');
+                    if (categoryIcon) {
+                        categoryIcon.value = icon;
+                    }
+                }
+            });
+        });
+    }
+
     // Оплата цели с баланса (частичная или полная)
     function payGoal(goalId, target, current) {
         // Открываем модальное окно для выбора суммы
@@ -6913,8 +9475,18 @@ bedtime
             return;
         }
         
+        // Проверяем, не достигнута ли уже цель
+        if (goal.current >= goal.target) {
+            alert('Цель уже достигнута. Дополнительная оплата не требуется.');
+            return;
+        }
+        
         // Проверяем, не превышает ли сумма оставшуюся часть цели
-        const remainingAmount = goal.target - goal.current;
+        const remainingAmount = Math.max(0, goal.target - goal.current);
+        if (remainingAmount <= 0) {
+            alert('Цель уже достигнута или превышена. Дополнительная оплата не требуется.');
+            return;
+        }
         if (amount > remainingAmount) {
             alert(`Сумма оплаты (${amount.toFixed(2)} руб.) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} руб.)`);
             return;
@@ -6945,6 +9517,9 @@ bedtime
         renderTransactions();
         renderGoals();
         updateDashboard();
+        
+        // Показываем заглушки при необходимости после оплаты цели
+        showPlaceholdersIfNeeded();
         
         // Закрываем модальное окно
         closeAllModals();
@@ -6996,7 +9571,11 @@ bedtime
         // Обновление приложения
         updateLocalStorage();
         renderAccounts();
+        renderTransactions(); // Обновляем транзакции (с фильтрацией несуществующих счетов)
         updateDashboard();
+        
+        // Обновляем фильтры (убираем удаленный счет из фильтра)
+        initFilters();
         
         // Закрываем модальное окно
         closeAllModals();
@@ -7010,6 +9589,7 @@ bedtime
             // Добавляем обработчики для кнопок с подсказками при загрузке страницы
             setTimeout(() => {
                 addPaymentHintHandlers();
+                addCategoryIconHintHandlers();
             }, 100);
         });
 
@@ -7018,6 +9598,13 @@ bedtime
             const activeTab = document.querySelector('.tab-item.active');
             if (activeTab) {
                 updateTabIndicator(activeTab);
+            }
+        });
+
+        // Обработчик клавиши Escape для закрытия модальных окон
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllModals();
             }
         });
 </script>
