@@ -117,7 +117,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             padding: 20px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
@@ -215,6 +215,213 @@
             font-size: 14px;
         }
 
+        /* Стили для inline курсов валют */
+        .currency-rates-inline {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        .currency-rates-inline::-webkit-scrollbar {
+            display: none;
+        }
+
+        .currency-item-inline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: var(--background);
+            border-radius: 8px;
+            transition: var(--transition);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .currency-item-inline:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+            border-color: rgba(67, 97, 238, 0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.1);
+        }
+
+        .currency-info-inline {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 60px;
+        }
+
+        .currency-name-inline {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .currency-full-name-inline {
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .currency-rate-inline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rate-value-inline {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+            font-family: 'Inter', monospace;
+        }
+
+
+
+        /* Стили для настроек */
+        .settings-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(108, 117, 125, 0.1);
+        }
+
+        .settings-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .settings-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Стили для свича курсов валют */
+        .currency-toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .currency-toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray);
+            transition: var(--transition);
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .currency-toggle-switch input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        .currency-toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Анимация для выпадающего контента */
+        .currency-settings-content {
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .currency-settings-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .currency-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .currency-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .currency-checkbox:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .currency-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .currency-checkbox span {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-1px);
+        }
+
         .balance-section {
             margin-bottom: 25px;
             animation: slideUp 0.5s ease;
@@ -224,7 +431,15 @@
             display: flex;
             gap: 15px;
             margin-bottom: 15px;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            padding-bottom: 10px;
+        }
+
+        .account-selector::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .account-item {
@@ -239,6 +454,7 @@
             gap: 10px;
             border: 2px solid transparent;
             position: relative;
+            flex-shrink: 0;
         }
 
         .account-item.active {
@@ -287,13 +503,29 @@
 
         @media (max-width: 968px) {
             .account-selector {
-                overflow-x: auto;
-                padding-bottom: 10px;
                 margin-bottom: 20px;
             }
             
             .account-item {
                 flex: 0 0 auto;
+            }
+
+            .currency-rates-inline {
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            .currency-item-inline {
+                padding: 6px 10px;
+                min-width: 90px;
+            }
+
+            .currency-name-inline {
+                font-size: 13px;
+            }
+
+            .rate-value-inline {
+                font-size: 13px;
             }
         }
 
@@ -1309,6 +1541,28 @@
                 padding: 8px 12px;
                 font-size: 12px;
             }
+
+            .currency-rates-inline {
+                gap: 6px;
+                margin-bottom: 10px;
+            }
+
+            .currency-item-inline {
+                padding: 6px 8px;
+                min-width: 70px;
+            }
+
+            .currency-name-inline {
+                font-size: 12px;
+            }
+
+            .currency-full-name-inline {
+                font-size: 9px;
+            }
+
+            .rate-value-inline {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -1334,6 +1588,11 @@ bedtime
                 </div>
             </label>
         </header>
+
+        <!-- Курсы валют -->
+        <div class="currency-rates-inline" id="currencyRatesInline">
+            <!-- Курсы будут добавлены через JS -->
+        </div>
 
         <!-- Блок с балансом и выбором счета -->
         <div class="balance-section">
@@ -1542,17 +1801,64 @@ bedtime
                 <div class="tab-content" id="settings-tab">
                     <div class="card">
                         <div class="card-title">
-
                             <span>Настройки</span>
                         </div>
-                        <button class="btn btn-primary" id="addAccountBtn">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                            </svg>
-                            Добавить счет
-                        </button>
-                        <div id="accountsList" style="margin-top: 20px;">
-                            <!-- Счета будут добавлены через JS -->
+                        
+                                                <!-- Настройки курсов валют -->
+                        <div class="settings-section">
+                            <div class="settings-header">
+                                <h3>Курсы валют</h3>
+                                <label class="currency-toggle-switch">
+                                    <input type="checkbox" id="currencyToggleSwitch">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="currency-settings-content" id="currencySettingsContent" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-label">Выберите валюты для отображения:</label>
+
+                                    <div class="currency-checkboxes">
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="USD" checked>
+                                            <span>USD - Доллар США</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="EUR" checked>
+                                            <span>EUR - Евро</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="CNY" checked>
+                                            <span>CNY - Юань</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="GBP">
+                                            <span>GBP - Фунт стерлингов</span>
+                                        </label>
+                                        <label class="currency-checkbox">
+                                            <input type="checkbox" value="JPY">
+                                            <span>JPY - Иена</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-top: 15px;">
+                                        <button class="btn btn-secondary" id="saveCurrencySettings">
+                                            Сохранить настройки валют
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Управление счетами</h3>
+                            <button class="btn btn-primary" id="addAccountBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                </svg>
+                                Добавить счет
+                            </button>
+                            <div id="accountsList" style="margin-top: 20px;">
+                                <!-- Счета будут добавлены через JS -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1708,6 +2014,309 @@ bedtime
     let currentAccountId = accounts[0]?.id || 1;
     let charts = {};
 
+    // Функция для получения курсов валют
+    async function fetchCurrencyRates() {
+        try {
+            const response = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
+            const data = await response.json();
+            
+            if (data.rates) {
+                // Убеждаемся, что настройки валют загружены
+                loadCurrencySettings();
+                
+                // Обновляем курсы валют
+                updateCurrencyRates(data.rates);
+                
+                // Сохраняем курсы в localStorage
+                const now = new Date();
+                localStorage.setItem('currencyRates', JSON.stringify({
+                    rates: data.rates,
+                    timestamp: now.getTime()
+                }));
+            }
+        } catch (error) {
+            console.error('Ошибка при получении курсов валют:', error);
+        }
+    }
+
+    // Функция для обновления отображения курсов валют
+    function updateCurrencyRates(rates) {
+        const selectedCurrencies = getSelectedCurrencies();
+        const currencyContainer = document.getElementById('currencyRatesInline');
+        
+        if (!currencyContainer) return;
+        
+        // Проверяем, есть ли выбранные валюты
+        if (selectedCurrencies.length === 0) {
+            currencyContainer.style.display = 'none';
+            return;
+        }
+        
+        // Показываем контейнер, если он был скрыт
+        currencyContainer.style.display = 'flex';
+        
+        // Очищаем контейнер
+        currencyContainer.innerHTML = '';
+        
+        selectedCurrencies.forEach(currency => {
+            if (rates[currency]) {
+                // Рассчитываем курс в рублях за 1 единицу валюты
+                const rate = (1 / rates[currency]).toFixed(2);
+                
+                // Создаем элемент валюты
+                const currencyElement = document.createElement('div');
+                currencyElement.className = 'currency-item-inline';
+                currencyElement.innerHTML = `
+                    <div class="currency-info-inline">
+                        <span class="currency-name-inline">${currency}</span>
+                        <span class="currency-full-name-inline">${getCurrencyFullName(currency)}</span>
+                    </div>
+                    <div class="currency-rate-inline">
+                        <span class="rate-value-inline">${rate} ₽</span>
+                    </div>
+                `;
+                
+                currencyContainer.appendChild(currencyElement);
+            }
+        });
+        
+        // Сохраняем текущие курсы как предыдущие для следующего сравнения
+        localStorage.setItem('previousCurrencyRates', JSON.stringify(rates));
+    }
+
+    // Функция для получения полного названия валюты
+    function getCurrencyFullName(currency) {
+        const names = {
+            'USD': 'Доллар США',
+            'EUR': 'Евро',
+            'CNY': 'Юань',
+            'GBP': 'Фунт стерлингов',
+            'JPY': 'Иена'
+        };
+        return names[currency] || currency;
+    }
+
+    // Функция для получения выбранных валют
+    function getSelectedCurrencies() {
+        // Проверяем, включен ли свич курсов валют
+        const toggleSwitch = document.getElementById('currencyToggleSwitch');
+        if (toggleSwitch && !toggleSwitch.checked) {
+            return []; // Если свич выключен, возвращаем пустой массив
+        }
+        
+        // Сначала пытаемся получить из чекбоксов на странице
+        const checkboxes = document.querySelectorAll('.currency-checkboxes input[type="checkbox"]:checked');
+        if (checkboxes.length > 0) {
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+        
+        // Если чекбоксы не найдены, загружаем из localStorage
+        const savedSettings = localStorage.getItem('currencySettings');
+        if (savedSettings) {
+            try {
+                const settings = JSON.parse(savedSettings);
+                const selected = Object.keys(settings).filter(currency => settings[currency]);
+                // Возвращаем выбранные валюты, даже если их 0
+                return selected;
+            } catch (error) {
+                console.error('Ошибка при чтении настроек валют:', error);
+            }
+        }
+        
+        // По умолчанию возвращаем основные валюты только при первом запуске
+        // Если настройки уже были сохранены, не возвращаем значения по умолчанию
+        return [];
+    }
+
+    // Функция для загрузки настроек валют
+    function loadCurrencySettings() {
+        // Загружаем состояние свича
+        const savedToggleState = localStorage.getItem('currencyToggleState');
+        const toggleSwitch = document.getElementById('currencyToggleSwitch');
+        const settingsContent = document.getElementById('currencySettingsContent');
+        
+        if (toggleSwitch && settingsContent) {
+            if (savedToggleState === 'true') {
+                toggleSwitch.checked = true;
+                settingsContent.style.display = 'block';
+                setTimeout(() => {
+                    settingsContent.classList.add('show');
+                }, 10);
+            } else {
+                toggleSwitch.checked = false;
+                settingsContent.style.display = 'none';
+                settingsContent.classList.remove('show');
+            }
+        }
+        
+        const savedSettings = localStorage.getItem('currencySettings');
+        if (savedSettings) {
+            try {
+                const settings = JSON.parse(savedSettings);
+                Object.keys(settings).forEach(currency => {
+                    const checkbox = document.querySelector(`.currency-checkboxes input[value="${currency}"]`);
+                    if (checkbox) {
+                        checkbox.checked = settings[currency];
+                    }
+                });
+                
+                // Проверяем, есть ли выбранные валюты
+                const selectedCurrencies = Object.keys(settings).filter(currency => settings[currency]);
+                if (selectedCurrencies.length === 0) {
+                    // Если все валюты отключены, скрываем блок курсов
+                    const currencyContainer = document.getElementById('currencyRatesInline');
+                    if (currencyContainer) {
+                        currencyContainer.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error('Ошибка при загрузке настроек валют:', error);
+                // Если ошибка, устанавливаем настройки по умолчанию
+                setDefaultCurrencySettings();
+            }
+        } else {
+            // Если нет сохраненных настроек, устанавливаем по умолчанию
+            setDefaultCurrencySettings();
+        }
+    }
+
+    // Функция для установки настроек валют по умолчанию
+    function setDefaultCurrencySettings() {
+        // Проверяем, были ли уже сохранены настройки
+        const existingSettings = localStorage.getItem('currencySettings');
+        if (existingSettings) {
+            // Если настройки уже есть, не перезаписываем их
+            return;
+        }
+        
+        const defaultCurrencies = ['USD', 'EUR', 'CNY'];
+        defaultCurrencies.forEach(currency => {
+            const checkbox = document.querySelector(`.currency-checkboxes input[value="${currency}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+        
+        // Сохраняем настройки по умолчанию только при первом запуске
+        const settings = {};
+        defaultCurrencies.forEach(currency => {
+            settings[currency] = true;
+        });
+        localStorage.setItem('currencySettings', JSON.stringify(settings));
+    }
+
+    // Функция для проверки активности курсов валют
+    function isCurrencyRatesActive() {
+        const toggleSwitch = document.getElementById('currencyToggleSwitch');
+        if (!toggleSwitch || !toggleSwitch.checked) {
+            return false;
+        }
+        
+        const selectedCurrencies = getSelectedCurrencies();
+        return selectedCurrencies.length > 0;
+    }
+
+    // Функция для автоматического обновления курсов
+    function startAutoUpdate() {
+        // Обновляем курсы каждые 30 минут (1800000 мс)
+        setInterval(async () => {
+            if (isCurrencyRatesActive()) {
+                try {
+                    await fetchCurrencyRates();
+                    console.log('Курсы валют автоматически обновлены');
+                } catch (error) {
+                    console.error('Ошибка при автоматическом обновлении курсов:', error);
+                }
+            }
+        }, 1800000); // 30 минут
+    }
+
+    // Функция для сохранения настроек валют
+    function saveCurrencySettings() {
+        const checkboxes = document.querySelectorAll('.currency-checkboxes input[type="checkbox"]');
+        const settings = {};
+        
+        checkboxes.forEach(cb => {
+            settings[cb.value] = cb.checked;
+        });
+        
+        localStorage.setItem('currencySettings', JSON.stringify(settings));
+        
+        // Проверяем, есть ли выбранные валюты
+        const selectedCurrencies = Object.keys(settings).filter(currency => settings[currency]);
+        
+        if (selectedCurrencies.length === 0) {
+            // Если нет выбранных валют, скрываем весь блок курсов валют
+            const currencyContainer = document.getElementById('currencyRatesInline');
+            if (currencyContainer) {
+                currencyContainer.style.display = 'none';
+            }
+            alert('Настройки валют сохранены! Все валюты отключены.');
+            return;
+        }
+        
+        // Обновляем отображение курсов
+        const savedRates = localStorage.getItem('currencyRates');
+        if (savedRates) {
+            try {
+                const data = JSON.parse(savedRates);
+                const now = new Date().getTime();
+                const oneHour = 60 * 60 * 1000; // 1 час в миллисекундах
+                
+                // Если курсы не устарели, используем их
+                if (now - data.timestamp < oneHour) {
+                    updateCurrencyRates(data.rates);
+                } else {
+                    // Если курсы устарели, загружаем новые
+                    fetchCurrencyRates();
+                }
+            } catch (error) {
+                console.error('Ошибка при обновлении курсов:', error);
+                // Если ошибка, загружаем новые курсы
+                fetchCurrencyRates();
+            }
+        } else {
+            // Если нет сохраненных курсов, загружаем новые
+            fetchCurrencyRates();
+        }
+        
+        // Показываем уведомление
+        alert('Настройки валют сохранены!');
+        
+        // Если курсы валют активны, обновляем их
+        if (isCurrencyRatesActive()) {
+            setTimeout(() => {
+                fetchCurrencyRates();
+            }, 1000); // Обновляем через 1 секунду после сохранения
+        }
+    }
+
+    // Функция для загрузки сохраненных курсов валют
+    function loadSavedCurrencyRates() {
+        // Убеждаемся, что настройки валют загружены
+        loadCurrencySettings();
+        
+        const saved = localStorage.getItem('currencyRates');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                const now = new Date().getTime();
+                const oneHour = 60 * 60 * 1000; // 1 час в миллисекундах
+                
+                // Если курсы не устарели (менее часа), загружаем их
+                if (now - data.timestamp < oneHour) {
+                    updateCurrencyRates(data.rates);
+                    return;
+                }
+            } catch (error) {
+                console.error('Ошибка при загрузке сохраненных курсов:', error);
+            }
+        }
+        
+        // Если нет сохраненных курсов или они устарели, загружаем новые
+        fetchCurrencyRates();
+    }
+
     // Инициализация приложения после загрузки DOM
     function initApp() {
         // Проверяем, первый ли это запуск
@@ -1728,6 +2337,15 @@ bedtime
         updateDashboard();
         initCharts();
         setupEventListeners();
+        
+        // Загружаем настройки валют
+        loadCurrencySettings();
+        
+        // Загружаем курсы валют
+        loadSavedCurrencyRates();
+        
+        // Запускаем автоматическое обновление курсов
+        startAutoUpdate();
         
         // Установка начальной активной вкладки
         document.querySelectorAll('.tab-content').forEach(tab => {
@@ -2532,6 +3150,43 @@ bedtime
             // Начальная проверка
             updateNavButtons();
         }
+
+        // Свич для включения/выключения курсов валют
+        const currencyToggleSwitch = document.getElementById('currencyToggleSwitch');
+        if (currencyToggleSwitch) {
+            currencyToggleSwitch.addEventListener('change', function() {
+                const settingsContent = document.getElementById('currencySettingsContent');
+                if (this.checked) {
+                    // Показываем настройки валют
+                    settingsContent.style.display = 'block';
+                    setTimeout(() => {
+                        settingsContent.classList.add('show');
+                    }, 10);
+                    localStorage.setItem('currencyToggleState', 'true');
+                } else {
+                    // Скрываем настройки валют
+                    settingsContent.classList.remove('show');
+                    setTimeout(() => {
+                        settingsContent.style.display = 'none';
+                    }, 300);
+                    localStorage.setItem('currencyToggleState', 'false');
+                    
+                    // Скрываем блок курсов валют на странице
+                    const currencyContainer = document.getElementById('currencyRatesInline');
+                    if (currencyContainer) {
+                        currencyContainer.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Кнопка сохранения настроек валют
+        const saveCurrencySettingsBtn = document.getElementById('saveCurrencySettings');
+        if (saveCurrencySettingsBtn) {
+            saveCurrencySettingsBtn.addEventListener('click', saveCurrencySettings);
+        }
+
+
 
         // Выбор счета
         document.addEventListener('click', function(e) {
