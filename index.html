@@ -768,8 +768,9 @@
 
         .currency-rate-inline {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
             position: relative;
         }
 
@@ -778,6 +779,23 @@
             font-size: 14px;
             color: var(--text-primary);
             font-family: 'Inter', monospace;
+            transition: color 0.3s ease;
+        }
+
+        .rate-value-up {
+            color: #4caf50 !important;
+        }
+
+        .rate-value-down {
+            color: #f44336 !important;
+        }
+
+        .dark-mode .rate-value-up {
+            color: #81c784 !important;
+        }
+
+        .dark-mode .rate-value-down {
+            color: #e57373 !important;
         }
 
         /* Индикаторы изменения курса */
@@ -810,18 +828,31 @@
 
         /* Темная тема для индикаторов */
         .dark-mode .change-indicator.rate-up {
-            background-color: rgba(76, 175, 80, 0.2);
+            background-color: rgba(76, 175, 80, 0.12);
             color: #81c784;
+            border-color: rgba(76, 175, 80, 0.25);
         }
 
         .dark-mode .change-indicator.rate-down {
-            background-color: rgba(244, 67, 54, 0.2);
+            background-color: rgba(244, 67, 54, 0.12);
             color: #e57373;
+            border-color: rgba(244, 67, 54, 0.25);
         }
 
         /* Анимация появления индикаторов */
         .change-indicator {
             animation: fadeInScale 0.3s ease-out;
+            font-size: 9px;
+            font-weight: 500;
+            padding: 1px 4px;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            min-width: 40px;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
         }
 
         @keyframes fadeInScale {
@@ -835,7 +866,71 @@
             }
         }
 
+        /* Улучшенные стили для индикаторов изменения курса */
+        .change-indicator.rate-up {
+            background: rgba(76, 175, 80, 0.08);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            animation: fadeInScale 0.3s ease-out;
+        }
 
+        .change-indicator.rate-down {
+            background: rgba(244, 67, 54, 0.08);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+        .change-indicator.rate-down::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+
+
+        /* Темная тема для индикаторов */
+        .dark-mode .change-indicator.rate-up {
+            background: rgba(76, 175, 80, 0.12);
+            color: #81c784;
+            border-color: rgba(76, 175, 80, 0.25);
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+        .dark-mode .change-indicator.rate-down {
+            background: rgba(244, 67, 54, 0.12);
+            color: #e57373;
+            border-color: rgba(244, 67, 54, 0.25);
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+
+
+        /* Hover эффекты для индикаторов */
+        .change-indicator.rate-up:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 6px rgba(76, 175, 80, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .change-indicator.rate-down:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 6px rgba(244, 67, 54, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .dark-mode .change-indicator.rate-up:hover {
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .dark-mode .change-indicator.rate-down:hover {
+            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+        }
 
         /* Стили для настроек */
         .settings-section {
@@ -1073,22 +1168,107 @@
         }
 
         .accounts-section-header {
-            margin-top: 20px;
-            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            margin-bottom: 8px;
         }
 
         .accounts-section-header h3 {
             font-size: 16px;
             font-weight: 600;
             color: var(--text-primary);
-            margin: 0 0 20px 0;
+            margin: 0;
             padding: 0;
+        }
+
+        .toggle-accounts-btn {
+            background-color: var(--background);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            transition: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+
+        .toggle-accounts-btn:hover {
+            background-color: var(--background);
+            border-color: rgba(108, 117, 125, 0.1);
+            color: var(--text-primary);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .toggle-icon {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            fill: currentColor;
+            stroke: currentColor;
+        }
+
+        .toggle-icon.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .accounts-section-collapsed {
+            display: none !important;
+        }
+
+        .account-selector {
+            height: auto;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 15px;
+            opacity: 1;
+            transform: translateY(0);
+            transform-origin: top;
+        }
+
+        .account-selector.accounts-section-collapsed {
+            height: 0;
+            margin-bottom: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(-20px) scaleY(0.8);
+        }
+
+        /* Анимация для элементов счетов */
+        .account-item,
+        .add-account-btn {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .account-item.animate,
+        .add-account-btn.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Задержка для каждого элемента */
+        .account-item:nth-child(1) { transition-delay: 0.05s; }
+        .account-item:nth-child(2) { transition-delay: 0.1s; }
+        .account-item:nth-child(3) { transition-delay: 0.15s; }
+        .account-item:nth-child(4) { transition-delay: 0.2s; }
+        .account-item:nth-child(5) { transition-delay: 0.25s; }
+        .add-account-btn { transition-delay: 0.3s; }
+
+        .accounts-section-collapsed.animate {
+            animation: slideUp 0.3s ease-out;
         }
 
         .account-selector {
             display: flex;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             overflow-x: auto;
             overflow-y: hidden;
             scrollbar-width: none; /* Firefox */
@@ -1803,55 +1983,74 @@
             color: white;
         }
 
-        /* Стили для плиток с расходами и доходами за месяц */
+        /* Современные стили для плиток с расходами и доходами за месяц */
         .monthly-stats-container {
-            display: flex;
-            gap: var(--spacing-md);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
             margin-bottom: var(--spacing-md);
         }
 
         .monthly-stat-card {
-            flex: 1;
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .monthly-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, currentColor 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .monthly-stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .monthly-stat-card:hover::before {
+            opacity: 0.6;
         }
 
         .monthly-stat-card .stat-icon {
-            font-size: 24px;
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
             flex-shrink: 0;
+            font-size: 18px;
         }
 
         .expense-stat .stat-icon {
-            background-color: rgba(255, 107, 107, 0.1);
+            background: none;
             color: #ff6b6b;
         }
 
         .income-stat .stat-icon {
-            background-color: rgba(76, 175, 80, 0.1);
+            background: none;
             color: #4caf50;
         }
 
         .monthly-stat-card .stat-content {
             flex: 1;
             min-width: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .monthly-stat-card .stat-label {
@@ -1859,20 +2058,93 @@
             color: var(--text-secondary);
             margin-bottom: 4px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .monthly-stat-card .stat-amount {
             font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-weight: 700;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .monthly-stat-card .stat-change {
+            font-size: 10px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            height: 60px;
+            width: 60px;
+            flex-shrink: 0;
         }
 
         .expense-stat .stat-amount {
             color: #ff6b6b;
         }
 
+        .expense-stat .stat-change {
+            color: #ff6b6b;
+        }
+
         .income-stat .stat-amount {
             color: #4caf50;
+        }
+
+        .income-stat .stat-change {
+            color: #4caf50;
+        }
+
+        /* Темная тема для сумм */
+        .dark-mode .expense-stat .stat-amount {
+            color: #ff8e8e !important;
+        }
+
+        .dark-mode .income-stat .stat-amount {
+            color: #66bb6a !important;
+        }
+
+        .stat-change.positive {
+            color: #4caf50;
+        }
+
+        .stat-change.negative {
+            color: #ff6b6b;
+        }
+
+        .stat-change-icon {
+            font-size: 10px;
+        }
+
+        /* Темная тема */
+        .dark-mode .monthly-stat-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .monthly-stat-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .dark-mode .expense-stat .stat-icon {
+            color: #ff8e8e;
+        }
+
+        .dark-mode .income-stat .stat-icon {
+            color: #66bb6a;
+        }
+
+        .dark-mode .expense-stat .stat-change {
+            color: #ff8e8e !important;
+        }
+
+        .dark-mode .income-stat .stat-change {
+            color: #66bb6a !important;
         }
 
         /* Адаптивность для мобильных устройств */
@@ -1898,16 +2170,33 @@
             }
 
             .monthly-stats-container {
-                flex-direction: column;
-                gap: var(--spacing-sm);
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
             
             .monthly-stat-card {
-                padding: var(--spacing-sm);
+                padding: 12px;
+            }
+            
+            .monthly-stat-card .stat-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
             }
             
             .monthly-stat-card .stat-amount {
                 font-size: 16px;
+            }
+            
+            .monthly-stat-card .stat-label {
+                font-size: 11px;
+            }
+            
+            .monthly-stat-card .stat-change {
+                font-size: 9px;
+                padding: 6px 8px;
+                height: 50px;
+                width: 50px;
             }
             
             .accounts-section-header h3 {
@@ -4700,15 +4989,6 @@ bedtime
             <!-- Курсы будут добавлены через JS -->
         </div>
 
-        <!-- Заголовок для счетов -->
-        <div class="accounts-section-header">
-            <h3>Мои счета</h3>
-        </div>
-        
-        <div class="account-selector" id="accountSelector">
-            <!-- Счета будут добавлены через JS -->
-        </div>
-
         <!-- Блок с балансом и выбором счета -->
         <div class="balance-section">
             <div class="card balance-card">
@@ -4720,22 +5000,52 @@ bedtime
                     <!-- Плашки с балансом каждого счета будут добавлены через JS -->
                 </div>
             </div>
+
+            <!-- Заголовок для счетов -->
+            <div class="accounts-section-header">
+                <h3>Мои счета</h3>
+                <button class="toggle-accounts-btn" id="toggleAccountsBtn" title="Скрыть/показать счета">
+                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
+                </button>
+            </div>
             
-            <!-- Плитки с расходами и доходами за месяц -->
+            <div class="account-selector" id="accountSelector">
+                <!-- Счета будут добавлены через JS -->
+            </div>
+            
+            <!-- Современные плитки с расходами и доходами за месяц -->
             <div class="monthly-stats-container">
                 <div class="monthly-stat-card expense-stat">
-                    <div class="stat-icon">📉</div>
+                    <div class="stat-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/>
+                        </svg>
+                    </div>
                     <div class="stat-content">
                         <div class="stat-label">Расходы за месяц</div>
                         <div class="stat-amount" id="monthlyExpenses">0.00 ₽</div>
                     </div>
+                    <div class="stat-change" id="expenseChange">
+                        <span class="stat-change-icon">↗</span>
+                        <span>+12.5%</span>
+                    </div>
                 </div>
                 
                 <div class="monthly-stat-card income-stat">
-                    <div class="stat-icon">📈</div>
+                    <div class="stat-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                        </svg>
+                    </div>
                     <div class="stat-content">
                         <div class="stat-label">Доходы за месяц</div>
                         <div class="stat-amount" id="monthlyIncome">0.00 ₽</div>
+                    </div>
+                    <div class="stat-change" id="incomeChange">
+                        <span class="stat-change-icon">↗</span>
+                        <span>+8.3%</span>
                     </div>
                 </div>
             </div>
@@ -4745,13 +5055,13 @@ bedtime
         <div class="transaction-actions-container">
             <button class="btn btn-primary transaction-action-btn" id="addExpenseBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/>
                 </svg>
                 Добавить расход
             </button>
             <button class="btn btn-primary transaction-action-btn" id="addIncomeBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
                 </svg>
                 Добавить доход
             </button>
@@ -5578,11 +5888,86 @@ bedtime
     let currentAccountId = accounts[0]?.id || 1;
     let charts = {};
 
+    // Функция для получения курсов валют за предыдущий день от ЦБ РФ
+    async function fetchPreviousDayRates() {
+        try {
+            const selectedCurrencies = getSelectedCurrencies();
+            if (selectedCurrencies.length === 0) {
+                return {};
+            }
+            
+            const fiatCurrencies = selectedCurrencies.filter(currency => 
+                !['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'DOT', 'MATIC', 'LINK'].includes(currency)
+            );
+            
+            let previousRates = {};
+            
+            if (fiatCurrencies.length > 0) {
+                try {
+                    // Сначала получаем текущие курсы, чтобы получить ссылку на предыдущий день
+                    const currentCbrResponse = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+                    if (!currentCbrResponse.ok) {
+                        console.error('Ошибка при получении текущих курсов от ЦБ РФ, статус:', currentCbrResponse.status);
+                        return {};
+                    }
+                    
+                    const currentCbrData = await currentCbrResponse.json();
+                    
+                    // Используем ссылку на предыдущий день из текущего ответа
+                    if (currentCbrData.PreviousURL) {
+                        const previousUrl = `https://www.cbr-xml-daily.ru${currentCbrData.PreviousURL.replace('//www.cbr-xml-daily.ru', '')}`;
+                        
+                        const cbrResponse = await fetch(previousUrl);
+                        
+                        if (!cbrResponse.ok) {
+                            console.error('Ошибка при получении курсов за предыдущий день от ЦБ РФ, статус:', cbrResponse.status);
+                            return {};
+                        }
+                        
+                        const cbrData = await cbrResponse.json();
+                    
+                    if (cbrData.Valute) {
+                        const cbrCurrencyMapping = {
+                            'USD': 'USD',
+                            'EUR': 'EUR',
+                            'CNY': 'CNY',
+                            'GBP': 'GBP',
+                            'JPY': 'JPY'
+                        };
+                        
+                        fiatCurrencies.forEach(currency => {
+                            const cbrCode = cbrCurrencyMapping[currency];
+                            if (cbrCode && cbrData.Valute[cbrCode]) {
+                                previousRates[currency] = cbrData.Valute[cbrCode].Value;
+                            }
+                        });
+                        
+                        console.log('Курсы валют за предыдущий день получены от ЦБ РФ:', Object.keys(previousRates));
+                    } else {
+                        console.log('Данные Valute не найдены в ответе ЦБ РФ');
+                    }
+                    } else {
+                        console.log('Ссылка на предыдущий день не найдена в ответе ЦБ РФ');
+                    }
+                } catch (error) {
+                    console.error('Ошибка при получении курсов за предыдущий день от ЦБ РФ:', error);
+                }
+            }
+            
+            return previousRates;
+        } catch (error) {
+            console.error('Ошибка при получении курсов за предыдущий день:', error);
+            return {};
+        }
+    }
+
     // Функция для получения курсов валют
     async function fetchCurrencyRates() {
         try {
             const selectedCurrencies = getSelectedCurrencies();
-            if (selectedCurrencies.length === 0) return;
+            if (selectedCurrencies.length === 0) {
+                return;
+            }
             
             // Разделяем валюты на фиатные и криптовалюты
             const fiatCurrencies = selectedCurrencies.filter(currency => 
@@ -5594,16 +5979,54 @@ bedtime
             
             let allRates = {};
             
-            // Получаем курсы фиатных валют
+            // Получаем курсы фиатных валют от ЦБ РФ
             if (fiatCurrencies.length > 0) {
                 try {
-                    const fiatResponse = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
-                    const fiatData = await fiatResponse.json();
-                    if (fiatData.rates) {
-                        allRates = { ...fiatData.rates };
+                    // API ЦБ РФ для получения курсов валют
+                    const cbrResponse = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+                    
+                    if (!cbrResponse.ok) {
+                        console.error('Ошибка при получении курсов от ЦБ РФ, статус:', cbrResponse.status);
+                        throw new Error(`HTTP ${cbrResponse.status}`);
+                    }
+                    
+                    const cbrData = await cbrResponse.json();
+                    
+                    if (cbrData.Valute) {
+                        // Маппинг валют ЦБ РФ на наши коды
+                        const cbrCurrencyMapping = {
+                            'USD': 'USD',
+                            'EUR': 'EUR',
+                            'CNY': 'CNY',
+                            'GBP': 'GBP',
+                            'JPY': 'JPY'
+                        };
+                        
+                        fiatCurrencies.forEach(currency => {
+                            const cbrCode = cbrCurrencyMapping[currency];
+                            if (cbrCode && cbrData.Valute[cbrCode]) {
+                                // ЦБ РФ предоставляет курс за 1 единицу валюты в рублях
+                                allRates[currency] = cbrData.Valute[cbrCode].Value;
+                            }
+                        });
+                        
+                        console.log('Курсы валют получены от ЦБ РФ:', Object.keys(allRates));
+                    } else {
+                        console.log('Данные Valute не найдены в ответе ЦБ РФ');
                     }
                 } catch (error) {
-                    console.error('Ошибка при получении курсов фиатных валют:', error);
+                    console.error('Ошибка при получении курсов валют от ЦБ РФ:', error);
+                    
+                    // Fallback на старый API если ЦБ РФ недоступен
+                    try {
+                        const fiatResponse = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
+                        const fiatData = await fiatResponse.json();
+                        if (fiatData.rates) {
+                            allRates = { ...fiatData.rates };
+                        }
+                    } catch (fallbackError) {
+                        console.error('Ошибка при получении курсов фиатных валют (fallback):', fallbackError);
+                    }
                 }
             }
             
@@ -5641,31 +6064,32 @@ bedtime
                 // Убеждаемся, что настройки валют загружены
                 loadCurrencySettings();
                 
-                // Сохраняем текущие курсы как предыдущие для сравнения
-                const currentRates = localStorage.getItem('currencyRates');
-                if (currentRates) {
-                    try {
-                        const currentData = JSON.parse(currentRates);
-                        if (currentData.rates) {
-                            localStorage.setItem('previousCurrencyRates', JSON.stringify(currentData.rates));
-                            console.log('Сохранены предыдущие курсы для сравнения');
-                        }
-                    } catch (error) {
-                        console.error('Ошибка при сохранении предыдущих курсов:', error);
-                    }
-                }
+                // Получаем курсы за предыдущий день от ЦБ РФ
+                const previousDayRates = await fetchPreviousDayRates();
                 
-                // Обновляем курсы валют
-                updateCurrencyRates(allRates);
+                // Объединяем текущие курсы с курсами за предыдущий день
+                const ratesWithComparison = { ...allRates };
+                
+                // Добавляем курсы за предыдущий день для сравнения
+                Object.keys(previousDayRates).forEach(currency => {
+                    if (ratesWithComparison[currency]) {
+                        ratesWithComparison[`${currency}_previous`] = previousDayRates[currency];
+                    }
+                });
+                
+                // Обновляем курсы валют с сравнением
+                updateCurrencyRates(ratesWithComparison, true, previousDayRates);
                 
                 // Сохраняем новые курсы в localStorage
                 const now = new Date();
-                localStorage.setItem('currencyRates', JSON.stringify({
+                const dataToSave = {
                     rates: allRates,
+                    previousDayRates: previousDayRates,
                     timestamp: now.getTime()
-                }));
+                };
+                localStorage.setItem('currencyRates', JSON.stringify(dataToSave));
                 
-                console.log('Курсы валют успешно обновлены:', Object.keys(allRates));
+                console.log('Курсы валют успешно обновлены с сравнением:', Object.keys(allRates));
             }
         } catch (error) {
             console.error('Ошибка при получении курсов валют:', error);
@@ -5673,7 +6097,7 @@ bedtime
     }
 
     // Функция для обновления отображения курсов валют
-    function updateCurrencyRates(rates, showChangeIndicators = true) {
+    function updateCurrencyRates(rates, showChangeIndicators = true, previousDayRates = {}) {
         const selectedCurrencies = getSelectedCurrencies();
         const currencyContainer = document.getElementById('currencyRatesInline');
         
@@ -5688,11 +6112,23 @@ bedtime
         // Показываем контейнер, если он был скрыт
         currencyContainer.style.display = 'flex';
         
+
+        
         // Очищаем контейнер
         currencyContainer.innerHTML = '';
         
-        // Получаем предыдущие курсы ДО обновления отображения
-        const previousRates = JSON.parse(localStorage.getItem('previousCurrencyRates') || '{}');
+        // Получаем предыдущие курсы из localStorage если не переданы
+        if (Object.keys(previousDayRates).length === 0) {
+            const savedRates = localStorage.getItem('currencyRates');
+            if (savedRates) {
+                try {
+                    const data = JSON.parse(savedRates);
+                    previousDayRates = data.previousDayRates || {};
+                } catch (error) {
+                    console.error('Ошибка при чтении предыдущих курсов:', error);
+                }
+            }
+        }
         
         selectedCurrencies.forEach(currency => {
             if (rates[currency]) {
@@ -5705,18 +6141,19 @@ bedtime
                     // Для криптовалют курс уже в рублях
                     rate = rates[currency].toFixed(2);
                 } else {
-                    // Для фиатных валют инвертируем курс
-                    rate = (1 / rates[currency]).toFixed(2);
+                    // Для фиатных валют от ЦБ РФ курс уже в рублях за 1 единицу валюты
+                    rate = rates[currency].toFixed(2);
                 }
                 
-                // Получаем предыдущий курс для сравнения
-                const previousRate = previousRates[currency];
+                // Получаем предыдущий курс для сравнения (за предыдущий день)
+                const previousRate = previousDayRates[currency];
                 
                 // Определяем изменение курса
                 let changeIndicator = '';
                 let changeClass = '';
+                let rateValueClass = '';
                 
-                console.log(`Валюта: ${currency}, Текущий курс: ${rates[currency]}, Предыдущий: ${previousRate}, Крипто: ${isCrypto}`);
+                console.log(`Валюта: ${currency}, Текущий курс: ${rates[currency]}, Предыдущий день: ${previousRate}, Крипто: ${isCrypto}`);
                 
                 if (showChangeIndicators && previousRate && previousRate !== 0) {
                     let currentRateValue, previousRateValue;
@@ -5726,28 +6163,25 @@ bedtime
                         currentRateValue = rates[currency];
                         previousRateValue = previousRate;
                     } else {
-                        // Для фиатных валют инвертируем для сравнения
-                        currentRateValue = 1 / rates[currency];
-                        previousRateValue = 1 / previousRate;
+                        // Для фиатных валют от ЦБ РФ сравниваем прямые курсы в рублях
+                        currentRateValue = rates[currency];
+                        previousRateValue = previousRate;
                     }
                     
                     const change = currentRateValue - previousRateValue;
-                    
-                    console.log(`Изменение для ${currency}: ${change} (текущий: ${currentRateValue}, предыдущий: ${previousRateValue})`);
+                    const changePercent = ((change / previousRateValue) * 100).toFixed(2);
                     
                     if (change > 0) {
                         // Курс вырос (зеленый)
-                        changeIndicator = '↗';
+                        changeIndicator = `↗ +${changePercent}%`;
                         changeClass = 'rate-up';
-                        console.log(`${currency}: Курс вырос (зеленый)`);
+                        rateValueClass = 'rate-value-up';
                     } else if (change < 0) {
                         // Курс упал (красный)
-                        changeIndicator = '↘';
+                        changeIndicator = `↘ ${changePercent}%`;
                         changeClass = 'rate-down';
-                        console.log(`${currency}: Курс упал (красный)`);
+                        rateValueClass = 'rate-value-down';
                     }
-                } else {
-                    console.log(`${currency}: Индикатор не показан (showChangeIndicators: ${showChangeIndicators}, previousRate: ${previousRate})`);
                 }
                 
                 // Создаем элемент валюты
@@ -5759,41 +6193,17 @@ bedtime
                         <span class="currency-full-name-inline">${getCurrencyFullName(currency)}</span>
                     </div>
                     <div class="currency-rate-inline">
-                        <span class="rate-value-inline ${changeClass}">${rate} ₽</span>
-                        ${changeIndicator ? `<span class="change-indicator ${changeClass}">${changeIndicator}</span>` : ''}
+                        <span class="rate-value-inline ${rateValueClass}">${rate} ₽</span>
+                        ${changeIndicator ? `<div class="change-indicator ${changeClass}">${changeIndicator}</div>` : ''}
                     </div>
                 `;
                 
-                console.log(`HTML для ${currency}:`, currencyElement.innerHTML);
                 currencyContainer.appendChild(currencyElement);
             }
         });
-        
-        // Сохраняем текущие курсы как предыдущие для следующего сравнения
-        localStorage.setItem('previousCurrencyRates', JSON.stringify(rates));
-        
-        // Обновляем время последнего обновления
-        updateLastUpdateTime();
     }
 
-    // Функция для обновления времени последнего обновления курсов
-    function updateLastUpdateTime() {
-        const lastUpdateElement = document.getElementById('lastUpdateTime');
-        if (lastUpdateElement) {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('ru-RU', { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit' 
-            });
-            const dateString = now.toLocaleDateString('ru-RU', { 
-                day: '2-digit', 
-                month: '2-digit', 
-                year: 'numeric' 
-            });
-            lastUpdateElement.textContent = `${dateString} ${timeString}`;
-        }
-    }
+
 
     // Функция для получения полного названия валюты
     function getCurrencyFullName(currency) {
@@ -5993,7 +6403,7 @@ bedtime
                 const maxAge = hasCrypto ? fiveMinutes : fifteenMinutes;
                 
                 if (now - data.timestamp < maxAge) {
-                    updateCurrencyRates(data.rates, false);
+                    updateCurrencyRates(data.rates, true, data.previousDayRates || {});
                 } else {
                     // Если курсы устарели, загружаем новые
                     fetchCurrencyRates();
@@ -6043,26 +6453,9 @@ bedtime
                 const maxAge = hasCrypto ? fiveMinutes : fifteenMinutes;
                 
                 if (now - data.timestamp < maxAge) {
-                    // При загрузке сохраненных курсов не показываем индикаторы изменения
-                    // так как у нас нет предыдущих курсов для сравнения
-                    updateCurrencyRates(data.rates, false);
-                    // Обновляем время последнего обновления
-                    const lastUpdateElement = document.getElementById('lastUpdateTime');
-                    if (lastUpdateElement) {
-                        const updateDate = new Date(data.timestamp);
-                        const timeString = updateDate.toLocaleTimeString('ru-RU', { 
-                            hour: '2-digit', 
-                            minute: '2-digit', 
-                            second: '2-digit' 
-                        });
-                        const dateString = updateDate.toLocaleDateString('ru-RU', { 
-                            day: '2-digit', 
-                            month: '2-digit', 
-                            year: 'numeric' 
-                        });
-                        lastUpdateElement.textContent = `${dateString} ${timeString}`;
-                    }
-                    console.log('Загружены сохраненные курсы валют');
+                    // При загрузке сохраненных курсов показываем индикаторы изменения
+                    // используя сохраненные курсы за предыдущий день
+                    updateCurrencyRates(data.rates, true, data.previousDayRates || {});
                     return;
                 }
             } catch (error) {
@@ -6071,7 +6464,6 @@ bedtime
         }
         
         // Если нет сохраненных курсов или они устарели, загружаем новые
-        console.log('Загружаем новые курсы валют...');
         fetchCurrencyRates();
     }
 
@@ -6136,6 +6528,10 @@ bedtime
         
         // Запускаем автоматическое обновление курсов
         startAutoUpdate();
+        
+
+        
+
         
         // Загружаем категории в настройки
         loadCategoriesSettings();
@@ -6297,11 +6693,11 @@ bedtime
             accountItem.className = 'account-item';
             accountItem.dataset.id = account.id;
             
-            let icon = '💳';
-            if (account.type === 'cash') icon = '💰';
-            if (account.type === 'credit') icon = '💳';
-            if (account.type === 'savings') icon = '🏦';
-            if (account.type === 'investment') icon = '📈';
+            let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
+            if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>';
+            if (account.type === 'credit') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
+            if (account.type === 'savings') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
+            if (account.type === 'investment') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>';
             
             accountItem.innerHTML = `
                 <span>${icon}</span>
@@ -6332,6 +6728,17 @@ bedtime
         addAccountButton.addEventListener('click', openAccountModal);
         accountSelector.appendChild(addAccountButton);
         
+        // Запускаем анимацию для элементов счетов, если секция не свернута
+        const savedState = localStorage.getItem('accountsSectionCollapsed');
+        if (savedState !== 'true') {
+            setTimeout(() => {
+                const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
+                accountItems.forEach((item) => {
+                    item.classList.add('animate');
+                });
+            }, 300);
+        }
+        
         // Добавление счетов в настройки (компактный список)
         const accountsSettingsList = document.createElement('div');
         accountsSettingsList.className = 'accounts-settings-list';
@@ -6347,11 +6754,11 @@ bedtime
                 const accountItem = document.createElement('div');
                 accountItem.className = 'account-settings-item';
                 
-                let icon = '💳';
-                if (account.type === 'cash') icon = '💰';
-                if (account.type === 'credit') icon = '💳';
-                if (account.type === 'savings') icon = '🏦';
-                if (account.type === 'investment') icon = '📈';
+                let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
+                if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>';
+                if (account.type === 'credit') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
+                if (account.type === 'savings') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
+                if (account.type === 'investment') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>';
                 
                 const accountTypeName = account.type === 'cash' ? 'Наличные' : 
                     account.type === 'card' ? 'Банковская карта' : 
@@ -7465,11 +7872,15 @@ bedtime
         });
     }
 
-    // Обновление месячной статистики
+    // Обновление месячной статистики с расчетом изменений
     function updateMonthlyStats() {
         const currentDate = new Date();
         const currentMonth = currentDate.getMonth();
         const currentYear = currentDate.getFullYear();
+        
+        // Получаем данные предыдущего месяца
+        const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+        const previousYear = currentMonth === 0 ? currentYear - 1 : currentYear;
         
         // Фильтруем транзакции за текущий месяц
         const monthlyTransactions = transactions.filter(transaction => {
@@ -7478,7 +7889,14 @@ bedtime
                    transactionDate.getFullYear() === currentYear;
         });
         
-        // Считаем расходы и доходы за месяц
+        // Фильтруем транзакции за предыдущий месяц
+        const previousMonthTransactions = transactions.filter(transaction => {
+            const transactionDate = new Date(transaction.date);
+            return transactionDate.getMonth() === previousMonth && 
+                   transactionDate.getFullYear() === previousYear;
+        });
+        
+        // Считаем расходы и доходы за текущий месяц
         let monthlyExpenses = 0;
         let monthlyIncome = 0;
         
@@ -7490,7 +7908,25 @@ bedtime
             }
         });
         
-        // Обновляем отображение
+        // Считаем расходы и доходы за предыдущий месяц
+        let previousMonthExpenses = 0;
+        let previousMonthIncome = 0;
+        
+        previousMonthTransactions.forEach(transaction => {
+            if (transaction.type === 'expense') {
+                previousMonthExpenses += transaction.amount;
+            } else if (transaction.type === 'income') {
+                previousMonthIncome += transaction.amount;
+            }
+        });
+        
+        // Рассчитываем процентные изменения
+        const expenseChange = previousMonthExpenses > 0 ? 
+            ((monthlyExpenses - previousMonthExpenses) / previousMonthExpenses) * 100 : 0;
+        const incomeChange = previousMonthIncome > 0 ? 
+            ((monthlyIncome - previousMonthIncome) / previousMonthIncome) * 100 : 0;
+        
+        // Обновляем отображение сумм
         const monthlyExpensesElement = document.getElementById('monthlyExpenses');
         const monthlyIncomeElement = document.getElementById('monthlyIncome');
         
@@ -7500,6 +7936,52 @@ bedtime
         
         if (monthlyIncomeElement) {
             monthlyIncomeElement.textContent = `${monthlyIncome.toFixed(2)} ₽`;
+        }
+        
+        // Обновляем отображение изменений
+        const expenseChangeElement = document.getElementById('expenseChange');
+        const incomeChangeElement = document.getElementById('incomeChange');
+        
+        if (expenseChangeElement) {
+            const changeIcon = expenseChangeElement.querySelector('.stat-change-icon');
+            const changeText = expenseChangeElement.querySelector('span:last-child');
+            
+            if (changeIcon && changeText) {
+                if (expenseChange > 0) {
+                    changeIcon.textContent = '↗';
+                    changeText.textContent = `+${expenseChange.toFixed(1)}%`;
+                    expenseChangeElement.className = 'stat-change positive';
+                } else if (expenseChange < 0) {
+                    changeIcon.textContent = '↘';
+                    changeText.textContent = `${expenseChange.toFixed(1)}%`;
+                    expenseChangeElement.className = 'stat-change negative';
+                } else {
+                    changeIcon.textContent = '→';
+                    changeText.textContent = '0%';
+                    expenseChangeElement.className = 'stat-change';
+                }
+            }
+        }
+        
+        if (incomeChangeElement) {
+            const changeIcon = incomeChangeElement.querySelector('.stat-change-icon');
+            const changeText = incomeChangeElement.querySelector('span:last-child');
+            
+            if (changeIcon && changeText) {
+                if (incomeChange > 0) {
+                    changeIcon.textContent = '↗';
+                    changeText.textContent = `+${incomeChange.toFixed(1)}%`;
+                    incomeChangeElement.className = 'stat-change positive';
+                } else if (incomeChange < 0) {
+                    changeIcon.textContent = '↘';
+                    changeText.textContent = `${incomeChange.toFixed(1)}%`;
+                    incomeChangeElement.className = 'stat-change negative';
+                } else {
+                    changeIcon.textContent = '→';
+                    changeText.textContent = '0%';
+                    incomeChangeElement.className = 'stat-change';
+                }
+            }
         }
     }
 
@@ -7574,6 +8056,78 @@ bedtime
             if (localStorage.getItem('darkMode') === 'true') {
                 themeCheckbox.checked = true;
                 document.body.classList.add('dark-mode');
+            }
+        }
+
+        // Переключение видимости секции счетов с плавной анимацией
+        const toggleAccountsBtn = document.getElementById('toggleAccountsBtn');
+        
+        if (toggleAccountsBtn) {
+            toggleAccountsBtn.addEventListener('click', function() {
+                const accountSelector = document.getElementById('accountSelector');
+                const toggleIcon = this.querySelector('.toggle-icon');
+                
+                if (accountSelector) {
+                    const isCollapsed = accountSelector.classList.contains('accounts-section-collapsed');
+                    
+                    if (isCollapsed) {
+                        // Показываем селектор счетов
+                        accountSelector.classList.remove('accounts-section-collapsed');
+                        toggleIcon.classList.remove('collapsed');
+                        localStorage.setItem('accountsSectionCollapsed', 'false');
+                        
+                        // Запускаем анимацию для элементов счетов с задержкой
+                        setTimeout(() => {
+                            const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
+                            accountItems.forEach((item) => {
+                                item.classList.add('animate');
+                            });
+                        }, 400);
+                    } else {
+                        // Скрываем селектор счетов
+                        const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
+                        accountItems.forEach((item) => {
+                            item.classList.remove('animate');
+                        });
+                        
+                        // Небольшая задержка перед скрытием контейнера
+                        setTimeout(() => {
+                            accountSelector.classList.add('accounts-section-collapsed');
+                            toggleIcon.classList.add('collapsed');
+                            localStorage.setItem('accountsSectionCollapsed', 'true');
+                        }, 100);
+                    }
+                }
+            });
+
+            // Проверка сохраненного состояния
+            const savedState = localStorage.getItem('accountsSectionCollapsed');
+            
+            if (savedState === 'true') {
+                const accountSelector = document.getElementById('accountSelector');
+                const toggleIcon = toggleAccountsBtn.querySelector('.toggle-icon');
+                
+                if (accountSelector) {
+                    accountSelector.classList.add('accounts-section-collapsed');
+                    toggleIcon.classList.add('collapsed');
+                    
+                    // Сбрасываем анимацию элементов
+                    const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
+                    accountItems.forEach((item) => {
+                        item.classList.remove('animate');
+                    });
+                }
+            } else {
+                // Если секция не была свернута, показываем анимацию элементов
+                setTimeout(() => {
+                    const accountSelector = document.getElementById('accountSelector');
+                    if (accountSelector && !accountSelector.classList.contains('accounts-section-collapsed')) {
+                        const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
+                        accountItems.forEach((item) => {
+                            item.classList.add('animate');
+                        });
+                    }
+                }, 500);
             }
         }
 
@@ -9610,4 +10164,6 @@ bedtime
 </script>
 </body>
 </html>
+
+
 
