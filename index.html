@@ -339,6 +339,102 @@
             background: linear-gradient(135deg, var(--success), var(--primary));
         }
 
+        /* Стили для модального окна перевода */
+        .account-balance-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(67, 97, 238, 0.05);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .account-balance-info .balance-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .account-balance-info .balance-amount {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .amount-hints {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .amount-hint-btn {
+            padding: 6px 12px;
+            background: rgba(67, 97, 238, 0.1);
+            border: 1px solid rgba(67, 97, 238, 0.2);
+            border-radius: 6px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .amount-hint-btn:hover {
+            background: rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .transfer-summary {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(67, 97, 238, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .summary-item.total {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            border-top: 1px solid rgba(67, 97, 238, 0.1);
+            padding-top: 8px;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        /* Темная тема для модального окна перевода */
+        .dark-mode .account-balance-info {
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .dark-mode .amount-hint-btn {
+            background: rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
+        }
+
+        .dark-mode .amount-hint-btn:hover {
+            background: rgba(67, 97, 238, 0.25);
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+
+        .dark-mode .transfer-summary {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .dark-mode .summary-item.total {
+            border-top-color: rgba(67, 97, 238, 0.2);
+        }
+
         .dark-mode .btn-info {
             background-color: #138496;
         }
@@ -997,7 +1093,6 @@
 
         /* Анимация появления индикаторов */
         .change-indicator {
-            animation: fadeInScale 0.3s ease-out;
             font-size: 9px;
             font-weight: 500;
             padding: 1px 4px;
@@ -1009,6 +1104,11 @@
             min-width: 40px;
             text-align: center;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Анимация только для положительных значений */
+        .change-indicator.rate-up {
+            animation: fadeInScale 0.3s ease-out;
         }
 
         @keyframes fadeInScale {
@@ -1027,25 +1127,16 @@
             background: rgba(76, 175, 80, 0.08);
             color: #4caf50;
             border: 1px solid rgba(76, 175, 80, 0.2);
-            animation: fadeInScale 0.3s ease-out;
         }
 
         .change-indicator.rate-down {
             background: rgba(244, 67, 54, 0.08);
             color: #f44336;
             border: 1px solid rgba(244, 67, 54, 0.2);
-            animation: fadeInScale 0.3s ease-out;
         }
 
         .change-indicator.rate-down::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
+            display: none;
         }
 
 
@@ -1055,14 +1146,12 @@
             background: rgba(76, 175, 80, 0.12);
             color: #81c784;
             border-color: rgba(76, 175, 80, 0.25);
-            animation: fadeInScale 0.3s ease-out;
         }
 
         .dark-mode .change-indicator.rate-down {
             background: rgba(244, 67, 54, 0.12);
             color: #e57373;
             border-color: rgba(244, 67, 54, 0.25);
-            animation: fadeInScale 0.3s ease-out;
         }
 
 
@@ -1356,6 +1445,78 @@
             padding: 0;
         }
 
+        .accounts-header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-sm svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Стили для контейнера кнопки перевода */
+        .transfer-button-container {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(67, 97, 238, 0.1);
+            text-align: center;
+        }
+
+        .transfer-btn {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 2px solid rgba(67, 97, 238, 0.2);
+            background: rgba(67, 97, 238, 0.05);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .transfer-btn:hover {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: rgba(67, 97, 238, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.15);
+        }
+
+        .transfer-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Темная тема для кнопки перевода */
+        .dark-mode .transfer-button-container {
+            border-top-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .dark-mode .transfer-btn {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: rgba(67, 97, 238, 0.3);
+            color: var(--primary);
+        }
+
+        .dark-mode .transfer-btn:hover {
+            background: rgba(67, 97, 238, 0.2);
+            border-color: rgba(67, 97, 238, 0.4);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+        }
+
 
 
         .accounts-section-collapsed {
@@ -1424,7 +1585,7 @@
             padding: var(--spacing-md) var(--spacing-lg);
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             cursor: default;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
@@ -1455,9 +1616,7 @@
         }
 
         .account-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-color: rgba(255, 255, 255, 0.2);
+            /* Hover эффекты убраны */
         }
 
 
@@ -1473,15 +1632,86 @@
         }
 
         .account-item:hover svg {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.05);
+            /* Hover эффекты для иконок убраны */
+        }
+
+        /* Стили для заглушки счетов */
+        .accounts-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xl);
+            text-align: center;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(67, 97, 238, 0.02));
+            border: 2px dashed rgba(67, 97, 238, 0.2);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            transition: all 0.3s ease;
+        }
+
+        .accounts-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.3);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(67, 97, 238, 0.04));
+        }
+
+        .placeholder-icon {
+            margin-bottom: var(--spacing-md);
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .accounts-placeholder h3 {
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .accounts-placeholder p {
+            margin: 0 0 var(--spacing-lg) 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 280px;
+        }
+
+        .create-account-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .create-account-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Темная тема для заглушки */
+        .dark-mode .accounts-placeholder {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(67, 97, 238, 0.05));
+            border-color: rgba(67, 97, 238, 0.3);
+        }
+
+        .dark-mode .accounts-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.4);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.15), rgba(67, 97, 238, 0.08));
+        }
+
+        .dark-mode .placeholder-icon {
+            color: var(--primary);
         }
 
 
 
         /* Стили для кнопки добавления нового счета */
         .add-account-btn {
-            padding: var(--spacing-md);
+            padding: 0;
             background-color: var(--primary);
             color: white;
             border: none;
@@ -1496,9 +1726,8 @@
             font-weight: 500;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(67, 97, 238, 0.2);
-            min-width: 60px;
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
         }
 
         .add-account-btn:hover {
@@ -1510,12 +1739,12 @@
 
 
         .add-account-btn svg {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             fill: currentColor;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            padding: 4px;
+            padding: 6px;
             transition: all 0.3s ease;
         }
 
@@ -1523,6 +1752,8 @@
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
         }
+
+
 
         /* Стили для компактного списка счетов в настройках */
         .accounts-settings-list {
@@ -1700,13 +1931,13 @@
             }
 
             .add-account-btn {
-                padding: 10px 16px;
-                font-size: 13px;
+                width: 70px;
+                height: 70px;
             }
 
             .add-account-btn svg {
-                width: 18px;
-                height: 18px;
+                width: 28px;
+                height: 28px;
             }
 
             .account-settings-item {
@@ -2277,14 +2508,13 @@
             text-transform: uppercase;
             letter-spacing: 0.4px;
             opacity: 0.7;
-            margin-bottom: var(--spacing-xs);
         }
 
         .monthly-stat-card .stat-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--spacing-xs);
+            gap: 4px;
             text-align: center;
             flex: 1;
             justify-content: center;
@@ -2299,6 +2529,13 @@
             line-height: 1.2;
         }
 
+        .monthly-stat-card .stat-period {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
         .monthly-stat-card .stat-square {
             font-size: 11px;
             font-weight: 700;
@@ -2307,7 +2544,8 @@
             justify-content: center !important;
             border-radius: 6px !important;
             height: 28px !important;
-            width: 28px !important;
+            width: auto !important;
+            min-width: auto !important;
             flex-shrink: 0 !important;
             background: none !important;
             color: inherit !important;
@@ -2391,6 +2629,37 @@
             color: #66bb6a;
         }
 
+        /* Убираем обводку у квадратов статистики в темной теме */
+        .dark-mode .monthly-stat-card .stat-square {
+            border: none !important;
+        }
+
+        /* Специфичные стили для цветов процентов */
+        .monthly-stat-card .stat-square.expense-square {
+            background: rgba(255, 107, 107, 0.2) !important;
+            color: #ff6b6b !important;
+            padding: 4px 8px !important;
+        }
+
+        .monthly-stat-card .stat-square.income-square {
+            background: rgba(76, 175, 80, 0.2) !important;
+            color: #4caf50 !important;
+            padding: 4px 8px !important;
+        }
+
+        /* Темная тема для цветов процентов */
+        .dark-mode .monthly-stat-card .stat-square.expense-square {
+            background: rgba(255, 142, 142, 0.3) !important;
+            color: #ff8e8e !important;
+            padding: 4px 8px !important;
+        }
+
+        .dark-mode .monthly-stat-card .stat-square.income-square {
+            background: rgba(102, 187, 106, 0.3) !important;
+            color: #66bb6a !important;
+            padding: 4px 8px !important;
+        }
+
         /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             .balance-section {
@@ -2432,15 +2701,13 @@
             }
 
             .add-account-btn {
-                min-width: 50px;
-                width: 50px;
-                height: 50px;
-                padding: var(--spacing-sm);
+                width: 70px;
+                height: 70px;
             }
 
             .add-account-btn svg {
-                width: 24px;
-                height: 24px;
+                width: 28px;
+                height: 28px;
             }
 
             .account-selector {
@@ -2593,7 +2860,6 @@
         .filters-actions {
             display: flex;
             justify-content: flex-end;
-            border-top: 1px solid rgba(108, 117, 125, 0.1);
             padding-top: var(--spacing-md);
         }
 
@@ -2651,17 +2917,17 @@
             background-color: var(--gray);
             color: white;
             border: none;
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: 4px;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 6px;
             cursor: pointer;
             font-family: inherit;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 500;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: var(--spacing-xs);
-            height: 28px;
+            gap: var(--spacing-sm);
+            height: 36px;
         }
 
         .clear-filters-btn:hover {
@@ -2669,8 +2935,8 @@
         }
 
         .clear-filters-btn svg {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             fill: currentColor;
         }
 
@@ -2730,12 +2996,11 @@
         .dark-mode .account-item {
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .dark-mode .account-item:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
+            /* Hover эффекты для темной темы убраны */
         }
 
         .dark-mode .add-account-btn {
@@ -4991,9 +5256,9 @@
             }
 
             .clear-filters-btn {
-                padding: 4px 8px;
-                font-size: 10px;
-                height: 24px;
+                padding: 6px 10px;
+                font-size: 12px;
+                height: 32px;
             }
 
             /* Адаптация кнопок действий для мобильных */
@@ -5083,13 +5348,13 @@
             }
 
             .add-account-btn {
-                padding: 8px 12px;
-                font-size: 12px;
+                width: 60px;
+                height: 60px;
             }
 
             .add-account-btn svg {
-                width: 16px;
-                height: 16px;
+                width: 26px;
+                height: 26px;
             }
 
             .account-settings-item {
@@ -5211,37 +5476,6 @@ bedtime
                 </div>
             </div>
             
-            <!-- Современные плитки с расходами и доходами за месяц -->
-            <div class="monthly-stats-wrapper">
-                <div class="monthly-stats-container">
-                    <div class="monthly-stat-card expense-stat">
-                        <div class="stat-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                <path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/>
-                            </svg>
-                        </div>
-                                            <div class="stat-content">
-                        <div class="stat-label">Расходы</div>
-                        <div class="stat-amount" id="monthlyExpenses">0.00 ₽</div>
-                    </div>
-                    <div class="stat-square expense-square" id="expenseChange">0%</div>
-                    </div>
-                    
-                    <div class="monthly-stat-card income-stat">
-                        <div class="stat-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
-                            </svg>
-                        </div>
-                                            <div class="stat-content">
-                        <div class="stat-label">Доходы</div>
-                        <div class="stat-amount" id="monthlyIncome">0.00 ₽</div>
-                    </div>
-                    <div class="stat-square income-square" id="incomeChange">0%</div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- Объединенный блок счетов -->
             <div class="accounts-container">
                 <div class="accounts-section-header" data-accordion="main-accounts">
@@ -5257,6 +5491,47 @@ bedtime
                 <div class="accordion-content" id="mainAccountsAccordionContent">
                     <div class="account-selector" id="accountSelector">
                         <!-- Счета будут добавлены через JS -->
+                    </div>
+                    <div class="transfer-button-container" id="transferButtonContainer" style="display: none;">
+                        <button class="btn btn-outline transfer-btn" onclick="openTransferModal()" title="Перевести между счетами">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Перевести между счетами
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Современные плитки с расходами и доходами за месяц -->
+            <div class="monthly-stats-wrapper">
+                <div class="monthly-stats-container">
+                    <div class="monthly-stat-card expense-stat">
+                        <div class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/>
+                            </svg>
+                        </div>
+                                            <div class="stat-content">
+                        <div class="stat-label">Расходы</div>
+                        <div class="stat-period">за 30 дней</div>
+                        <div class="stat-amount" id="monthlyExpenses">0.00 ₽</div>
+                    </div>
+                    <div class="stat-square expense-square" id="expenseChange">0%</div>
+                    </div>
+                    
+                    <div class="monthly-stat-card income-stat">
+                        <div class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                            </svg>
+                        </div>
+                                            <div class="stat-content">
+                        <div class="stat-label">Доходы</div>
+                        <div class="stat-period">за 30 дней</div>
+                        <div class="stat-amount" id="monthlyIncome">0.00 ₽</div>
+                    </div>
+                    <div class="stat-square income-square" id="incomeChange">0%</div>
                     </div>
                 </div>
             </div>
@@ -5369,17 +5644,7 @@ bedtime
                                     <input type="date" class="filter-input" id="filterDateTo">
                                 </div>
                                 
-                                <!-- Фильтр по сумме -->
-                                <div class="filter-group">
-                                    <label class="filter-label">Сумма от</label>
-                                    <input type="number" class="filter-input" id="filterAmountFrom" placeholder="0.00" step="0.01" min="0">
-                                </div>
-                                
-                                <!-- Фильтр по сумме -->
-                                <div class="filter-group">
-                                    <label class="filter-label">Сумма до</label>
-                                    <input type="number" class="filter-input" id="filterAmountTo" placeholder="0.00" step="0.01" min="0">
-                                </div>
+
                             </div>
                             <div class="filters-actions">
                                 <button class="clear-filters-btn" id="clearFiltersBtn">
@@ -5408,21 +5673,6 @@ bedtime
                 <div class="tab-content" id="stats-tab">
                     <div class="card">
                         <div class="card-title">
-                            <span>Расходы по категориям (месяц)</span>
-                            <div class="chart-controls">
-                                <button class="chart-type-btn active" data-chart="category" data-type="doughnut">Кольцо</button>
-                                <button class="chart-type-btn" data-chart="category" data-type="pie">Круг</button>
-                                <button class="chart-type-btn" data-chart="category" data-type="bar">Столбцы</button>
-                            </div>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="categoryChart"></canvas>
-                        </div>
-                    </div>
-
-
-                    <div class="card">
-                        <div class="card-title">
                             <span>Статистика доходов и расходов</span>
                             <div class="chart-controls">
                                 <button class="chart-type-btn active" data-chart="incomeExpense" data-type="bar">Столбцы</button>
@@ -5432,6 +5682,20 @@ bedtime
                         </div>
                         <div class="chart-container">
                             <canvas id="incomeExpenseChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">
+                            <span>Расходы по категориям (месяц)</span>
+                            <div class="chart-controls">
+                                <button class="chart-type-btn active" data-chart="category" data-type="doughnut">Кольцо</button>
+                                <button class="chart-type-btn" data-chart="category" data-type="pie">Круг</button>
+                                <button class="chart-type-btn" data-chart="category" data-type="bar">Столбцы</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
                         </div>
                     </div>
 
@@ -6036,11 +6300,70 @@ bedtime
         </div>
     </div>
 
+    <!-- Модальное окно для перевода между счетами -->
+    <div class="modal" id="transferModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Перевод между счетами</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="transferForm">
+                <div class="form-group">
+                    <label class="form-label" for="transferFromAccount">Списать со счета</label>
+                    <select class="form-select" id="transferFromAccount" required>
+                        <option value="">Выберите счет</option>
+                    </select>
+                    <div class="account-balance-info" id="fromAccountBalance" style="display: none;">
+                        <span class="balance-label">Доступно:</span>
+                        <span class="balance-amount" id="fromAccountBalanceAmount">0.00 ₽</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="transferToAccount">Зачислить на счет</label>
+                    <select class="form-select" id="transferToAccount" required>
+                        <option value="">Выберите счет</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="transferAmount">Сумма перевода</label>
+                    <input type="number" class="form-input" id="transferAmount" placeholder="0.00" step="0.01" min="0.01" required>
+                    <div class="amount-hints">
+                        <button type="button" class="amount-hint-btn" data-amount="100">100 ₽</button>
+                        <button type="button" class="amount-hint-btn" data-amount="500">500 ₽</button>
+                        <button type="button" class="amount-hint-btn" data-amount="1000">1000 ₽</button>
+                        <button type="button" class="amount-hint-btn" data-amount="5000">5000 ₽</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="transferDescription">Описание (необязательно)</label>
+                    <input type="text" class="form-input" id="transferDescription" placeholder="Например: Перевод на накопления">
+                </div>
+                
+                <div class="transfer-summary" id="transferSummary" style="display: none;">
+                    <div class="summary-item">
+                        <span>Комиссия:</span>
+                        <span id="transferFee">0.00 ₽</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Итого к списанию:</span>
+                        <span id="transferTotal">0.00 ₽</span>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeAllModals()">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Перевести</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <script>
     // Основные переменные
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || [
-        { id: 1, name: 'Основной счет', type: 'card', balance: 0, currency: 'RUB' }
-    ];
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     let goals = JSON.parse(localStorage.getItem('goals')) || [];
     let categories = JSON.parse(localStorage.getItem('categories')) || {
@@ -6768,19 +7091,30 @@ bedtime
     function initApp() {
         // Подавление ошибок браузерных расширений
         window.addEventListener('error', (e) => {
-            if (e.message.includes('message port closed') || 
-                e.message.includes('message channel closed')) {
+            if (e.message && (
+                e.message.includes('message port closed') || 
+                e.message.includes('message channel closed') ||
+                e.message.includes('listener indicated an asynchronous response') ||
+                e.message.includes('Extension context invalidated') ||
+                e.message.includes('Could not establish connection')
+            )) {
                 e.preventDefault();
+                e.stopPropagation();
                 return false;
             }
         });
         
         // Подавление ошибок в Promise
         window.addEventListener('unhandledrejection', (e) => {
-            if (e.reason && e.reason.message && 
-                (e.reason.message.includes('message port closed') || 
-                 e.reason.message.includes('message channel closed'))) {
+            if (e.reason && e.reason.message && (
+                e.reason.message.includes('message port closed') || 
+                e.reason.message.includes('message channel closed') ||
+                e.reason.message.includes('listener indicated an asynchronous response') ||
+                e.reason.message.includes('Extension context invalidated') ||
+                e.reason.message.includes('Could not establish connection')
+            )) {
                 e.preventDefault();
+                e.stopPropagation();
                 return false;
             }
         });
@@ -6789,9 +7123,14 @@ bedtime
         if (isFirstRun) {
             // Очищаем все данные при первом запуске
             localStorage.clear();
-            accounts = [{ id: 1, name: 'Основной счет', type: 'card', balance: 0, currency: 'RUB' }];
+            accounts = [];
             transactions = [];
             goals = [];
+            
+            // Устанавливаем настройки по умолчанию для первого запуска
+            localStorage.setItem('darkMode', 'true'); // Темная тема по умолчанию
+            localStorage.setItem('accountsAccordionState', 'expanded'); // Открытая плашка счетов
+            localStorage.setItem('mainAccountsAccordionState', 'expanded'); // Открытая плашка "Мои счета"
             localStorage.setItem('appInitialized', 'true');
         }
         
@@ -6821,6 +7160,43 @@ bedtime
         } else if (accountsAccordionContent) {
             accountsAccordionContent.classList.add('collapsed');
             accountsAccordionContent.classList.remove('expanded');
+        }
+        
+        // Принудительно раскрываем аккордеон счетов при первом запуске
+        if (isFirstRun && accountsAccordionContent) {
+            // Добавляем небольшую задержку для гарантии готовности DOM
+            setTimeout(() => {
+                accountsAccordionContent.classList.add('expanded');
+                accountsAccordionContent.classList.remove('collapsed');
+                const toggle = document.querySelector('[data-accordion="accounts"] .accordion-toggle');
+                if (toggle) {
+                    toggle.classList.add('expanded');
+                }
+                // Принудительно показываем контент
+                accountsAccordionContent.style.display = 'block';
+                accountsAccordionContent.style.height = 'auto';
+                accountsAccordionContent.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Принудительно раскрываем контейнер "Мои счета" при первом запуске
+        if (isFirstRun) {
+            setTimeout(() => {
+                const mainAccountsAccordionContent = document.getElementById('mainAccountsAccordionContent');
+                if (mainAccountsAccordionContent) {
+                    mainAccountsAccordionContent.classList.add('expanded');
+                    mainAccountsAccordionContent.classList.remove('collapsed');
+                    mainAccountsAccordionContent.style.display = 'block';
+                    mainAccountsAccordionContent.style.height = 'auto';
+                    mainAccountsAccordionContent.style.opacity = '1';
+                    
+                    const mainToggle = document.querySelector('[data-accordion="main-accounts"] .accordion-toggle');
+                    if (mainToggle) {
+                        mainToggle.classList.add('expanded');
+                        mainToggle.querySelector('span').textContent = 'Скрыть';
+                    }
+                }
+            }, 100);
         }
         
         // Загружаем состояние аккордеона для управления категориями
@@ -6889,6 +7265,46 @@ bedtime
         
         // Обновляем месячную статистику при инициализации
         updateMonthlyStats();
+        
+        // Дополнительная проверка для первого запуска - раскрываем плашку счетов
+        if (isFirstRun) {
+            setTimeout(() => {
+                // Раскрываем основную плашку счетов (accountsAccordionContent)
+                const accountsAccordionContent = document.getElementById('accountsAccordionContent');
+                if (accountsAccordionContent) {
+                    accountsAccordionContent.classList.add('expanded');
+                    accountsAccordionContent.classList.remove('collapsed');
+                    accountsAccordionContent.style.display = 'block';
+                    accountsAccordionContent.style.height = 'auto';
+                    accountsAccordionContent.style.opacity = '1';
+                    
+                    const toggle = document.querySelector('[data-accordion="accounts"] .accordion-toggle');
+                    if (toggle) {
+                        toggle.classList.add('expanded');
+                    }
+                    
+                    console.log('Плашка счетов принудительно раскрыта при первом запуске');
+                }
+                
+                // Раскрываем контейнер "Мои счета" (mainAccountsAccordionContent)
+                const mainAccountsAccordionContent = document.getElementById('mainAccountsAccordionContent');
+                if (mainAccountsAccordionContent) {
+                    mainAccountsAccordionContent.classList.add('expanded');
+                    mainAccountsAccordionContent.classList.remove('collapsed');
+                    mainAccountsAccordionContent.style.display = 'block';
+                    mainAccountsAccordionContent.style.height = 'auto';
+                    mainAccountsAccordionContent.style.opacity = '1';
+                    
+                    const mainToggle = document.querySelector('[data-accordion="main-accounts"] .accordion-toggle');
+                    if (mainToggle) {
+                        mainToggle.classList.add('expanded');
+                        mainToggle.querySelector('span').textContent = 'Скрыть';
+                    }
+                    
+                    console.log('Контейнер "Мои счета" принудительно раскрыт при первом запуске');
+                }
+            }, 200);
+        }
     }
 
 
@@ -7039,20 +7455,43 @@ bedtime
             transactionAccountSelect.appendChild(option);
         });
 
-        // Добавление кнопки "+" для создания нового счета
-        const addAccountButton = document.createElement('button');
-        addAccountButton.className = 'add-account-btn';
-        addAccountButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-            </svg>
-        `;
-        addAccountButton.addEventListener('click', openAccountModal);
-        accountSelector.appendChild(addAccountButton);
+        // Добавление кнопки "+" для создания нового счета или заглушки
+        if (accounts.length === 0) {
+            // Показываем заглушку когда счетов нет
+            const placeholder = document.createElement('div');
+            placeholder.className = 'accounts-placeholder';
+            placeholder.innerHTML = `
+                <div class="placeholder-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="currentColor">
+                        <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/>
+                    </svg>
+                </div>
+                <h3>У вас пока нет счетов</h3>
+                <p>Создайте свой первый счет для начала управления финансами</p>
+                <button class="btn btn-primary create-account-btn" onclick="openAccountModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    Создать счет
+                </button>
+            `;
+            accountSelector.appendChild(placeholder);
+        } else {
+            // Показываем кнопку "+" когда есть счета
+            const addAccountButton = document.createElement('button');
+            addAccountButton.className = 'add-account-btn';
+            addAccountButton.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+            `;
+            addAccountButton.addEventListener('click', openAccountModal);
+            accountSelector.appendChild(addAccountButton);
+        }
         
         // Запускаем анимацию для элементов счетов
         setTimeout(() => {
-            const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
+            const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn, .accounts-placeholder');
             accountItems.forEach((item) => {
                 item.classList.add('animate');
             });
@@ -7109,8 +7548,24 @@ bedtime
         
         accountsList.appendChild(accountsSettingsList);
         
+        // Показываем/скрываем кнопку перевода в зависимости от количества счетов
+        updateTransferButtonVisibility();
+        
         // Обновление баланса
         updateBalance();
+    }
+
+    // Функция для обновления видимости кнопки перевода
+    function updateTransferButtonVisibility() {
+        const transferButtonContainer = document.getElementById('transferButtonContainer');
+        if (transferButtonContainer) {
+            // Показываем кнопку только если счетов больше одного
+            if (accounts.length > 1) {
+                transferButtonContainer.style.display = 'block';
+            } else {
+                transferButtonContainer.style.display = 'none';
+            }
+        }
     }
 
     // Обновление баланса
@@ -7194,8 +7649,7 @@ bedtime
         const filterCategory = document.getElementById('filterCategory')?.value || '';
         const filterDateFrom = document.getElementById('filterDateFrom')?.value || '';
         const filterDateTo = document.getElementById('filterDateTo')?.value || '';
-        const filterAmountFrom = parseFloat(document.getElementById('filterAmountFrom')?.value) || 0;
-        const filterAmountTo = parseFloat(document.getElementById('filterAmountTo')?.value) || Infinity;
+
 
         let filteredTransactions = transactions.filter(transaction => {
             // Фильтр по типу
@@ -7219,11 +7673,7 @@ bedtime
             // Фильтр по дате (до)
             if (filterDateTo && new Date(transaction.date) > new Date(filterDateTo)) return false;
             
-            // Фильтр по сумме (от)
-            if (filterAmountFrom > 0 && transaction.amount < filterAmountFrom) return false;
-            
-            // Фильтр по сумме (до)
-            if (filterAmountTo !== Infinity && transaction.amount > filterAmountTo) return false;
+
             
             return true;
         });
@@ -7270,7 +7720,7 @@ bedtime
     // Функция сброса фильтров
     function clearFilters() {
         // Сбрасываем все поля фильтров
-        const filterFields = ['filterType', 'filterAccount', 'filterCategory', 'filterDateFrom', 'filterDateTo', 'filterAmountFrom', 'filterAmountTo'];
+        const filterFields = ['filterType', 'filterAccount', 'filterCategory', 'filterDateFrom', 'filterDateTo'];
         filterFields.forEach(fieldId => {
             const field = document.getElementById(fieldId);
             if (field) {
@@ -7338,7 +7788,7 @@ bedtime
         }
         
         // Добавляем обработчики событий для фильтров
-        const filterInputs = ['filterType', 'filterAccount', 'filterCategory', 'filterDateFrom', 'filterDateTo', 'filterAmountFrom', 'filterAmountTo'];
+        const filterInputs = ['filterType', 'filterAccount', 'filterCategory', 'filterDateFrom', 'filterDateTo'];
         filterInputs.forEach(fieldId => {
             const field = document.getElementById(fieldId);
             if (field) {
@@ -8327,6 +8777,8 @@ bedtime
         const incomeChange = previousMonthIncome > 0 ? 
             ((monthlyIncome - previousMonthIncome) / previousMonthIncome) * 100 : 0;
         
+
+        
         // Обновляем отображение сумм
         const monthlyExpensesElement = document.getElementById('monthlyExpenses');
         const monthlyIncomeElement = document.getElementById('monthlyIncome');
@@ -8345,27 +8797,37 @@ bedtime
         
         if (expenseChangeElement) {
             if (expenseChange > 0) {
+                // Больше трат = красный
                 expenseChangeElement.textContent = `+${expenseChange.toFixed(1)}%`;
                 expenseChangeElement.className = 'stat-square expense-square';
+
             } else if (expenseChange < 0) {
+                // Меньше трат = зеленый
                 expenseChangeElement.textContent = `${expenseChange.toFixed(1)}%`;
-                expenseChangeElement.className = 'stat-square expense-square';
+                expenseChangeElement.className = 'stat-square income-square';
+
             } else {
                 expenseChangeElement.textContent = '0%';
                 expenseChangeElement.className = 'stat-square expense-square';
+
             }
         }
         
         if (incomeChangeElement) {
             if (incomeChange > 0) {
+                // Больше доходов = зеленый
                 incomeChangeElement.textContent = `+${incomeChange.toFixed(1)}%`;
                 incomeChangeElement.className = 'stat-square income-square';
+
             } else if (incomeChange < 0) {
+                // Меньше доходов = красный
                 incomeChangeElement.textContent = `${incomeChange.toFixed(1)}%`;
-                incomeChangeElement.className = 'stat-square income-square';
+                incomeChangeElement.className = 'stat-square expense-square';
+
             } else {
                 incomeChangeElement.textContent = '0%';
                 incomeChangeElement.className = 'stat-square income-square';
+
             }
         }
     }
@@ -8674,6 +9136,10 @@ bedtime
         const categoryForm = document.getElementById('categoryForm');
         if (categoryForm) categoryForm.addEventListener('submit', handleCategorySubmit);
 
+        // Форма перевода
+        const transferForm = document.getElementById('transferForm');
+        if (transferForm) transferForm.addEventListener('submit', handleTransferSubmit);
+
         // Кнопка удаления категории в модальном окне
         const deleteCategoryBtn = document.getElementById('deleteCategoryBtn');
         if (deleteCategoryBtn) {
@@ -8694,8 +9160,16 @@ bedtime
             deleteAccountBtn.addEventListener('click', function() {
                 const accountId = document.getElementById('accountId').value;
                 if (accountId) {
+                    // Вызываем функцию удаления
                     deleteAccount(parseInt(accountId));
-                    closeAllModals();
+                    
+                    // Принудительно обновляем интерфейс
+                    setTimeout(() => {
+                        renderAccounts();
+                        renderTransactions();
+                        updateDashboard();
+                        closeAllModals();
+                    }, 100);
                 }
             });
         }
@@ -9227,7 +9701,7 @@ bedtime
                 document.getElementById('accountBalance').value = account.balance;
                 document.getElementById('accountCurrency').value = account.currency;
                 
-                // Показываем кнопку удаления только для редактирования
+                // Показываем кнопку удаления для редактирования
                 deleteBtn.style.display = 'inline-flex';
             }
         } else {
@@ -9312,6 +9786,102 @@ bedtime
         
         // Восстанавливаем прокрутку страницы
         enablePageScroll();
+    }
+
+    // Открытие модального окна перевода
+    function openTransferModal() {
+        const modal = document.getElementById('transferModal');
+        const form = document.getElementById('transferForm');
+        
+        // Очищаем форму
+        form.reset();
+        
+        // Заполняем списки счетов
+        populateTransferAccounts();
+        
+        // Скрываем дополнительные элементы
+        document.getElementById('fromAccountBalance').style.display = 'none';
+        document.getElementById('transferSummary').style.display = 'none';
+        
+        // Показываем модальное окно
+        modal.style.display = 'block';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+    }
+
+    // Заполнение списков счетов в модальном окне перевода
+    function populateTransferAccounts() {
+        const fromSelect = document.getElementById('transferFromAccount');
+        const toSelect = document.getElementById('transferToAccount');
+        
+        // Очищаем списки
+        fromSelect.innerHTML = '<option value="">Выберите счет</option>';
+        toSelect.innerHTML = '<option value="">Выберите счет</option>';
+        
+        // Добавляем счета
+        accounts.forEach(account => {
+            const option1 = document.createElement('option');
+            option1.value = account.id;
+            option1.textContent = `${account.name} (${account.balance.toFixed(2)} ₽)`;
+            fromSelect.appendChild(option1);
+            
+            const option2 = document.createElement('option');
+            option2.value = account.id;
+            option2.textContent = `${account.name} (${account.balance.toFixed(2)} ₽)`;
+            toSelect.appendChild(option2);
+        });
+    }
+
+    // Обработка изменения счета списания
+    function handleFromAccountChange() {
+        const fromAccountId = document.getElementById('transferFromAccount').value;
+        const balanceInfo = document.getElementById('fromAccountBalance');
+        const balanceAmount = document.getElementById('fromAccountBalanceAmount');
+        
+        if (fromAccountId) {
+            const account = accounts.find(acc => acc.id == fromAccountId);
+            if (account) {
+                balanceAmount.textContent = `${account.balance.toFixed(2)} ₽`;
+                balanceInfo.style.display = 'flex';
+            }
+        } else {
+            balanceInfo.style.display = 'none';
+        }
+        
+        updateTransferSummary();
+    }
+
+    // Обновление сводки перевода
+    function updateTransferSummary() {
+        const fromAccountId = document.getElementById('transferFromAccount').value;
+        const toAccountId = document.getElementById('transferToAccount').value;
+        const amount = parseFloat(document.getElementById('transferAmount').value) || 0;
+        const summary = document.getElementById('transferSummary');
+        const feeElement = document.getElementById('transferFee');
+        const totalElement = document.getElementById('transferTotal');
+        
+        if (fromAccountId && toAccountId && amount > 0) {
+            // Комиссия 0% (можно изменить)
+            const fee = 0;
+            const total = amount + fee;
+            
+            feeElement.textContent = `${fee.toFixed(2)} ₽`;
+            totalElement.textContent = `${total.toFixed(2)} ₽`;
+            
+            summary.style.display = 'block';
+        } else {
+            summary.style.display = 'none';
+        }
+    }
+
+    // Обработка быстрого выбора суммы
+    function setTransferAmount(amount) {
+        document.getElementById('transferAmount').value = amount;
+        updateTransferSummary();
     }
 
     // Обработка отправки формы транзакции
@@ -9740,7 +10310,7 @@ bedtime
         
         // Если удаляемый счет был текущим, выбираем первый доступный
         if (currentAccountId === parseInt(accountId)) {
-            currentAccountId = accounts.length > 0 ? accounts[0].id : 1;
+            currentAccountId = accounts.length > 0 ? accounts[0].id : null;
         }
         
         // Обновление приложения
@@ -9752,6 +10322,7 @@ bedtime
         // Обновляем фильтры (убираем удаленный счет из фильтра)
         initFilters();
         
+        // Закрываем модальное окно
         closeAllModals();
         
         // Показываем уведомление об успехе
@@ -10305,11 +10876,6 @@ bedtime
 
     // Удаление счета
     function deleteAccount(id) {
-        if (accounts.length <= 1) {
-            alert('Нельзя удалить последний счет!');
-            return;
-        }
-        
         // Проверка, есть ли транзакции, связанные с этим счетом
         const accountTransactions = transactions.filter(t => t.accountId === id);
         if (accountTransactions.length > 0) {
@@ -10329,9 +10895,9 @@ bedtime
         // Удаление счета
         accounts.splice(accountIndex, 1);
         
-        // Если удален активный счет, сделать активным первый счет
+        // Если удален активный счет, сделать активным первый счет (если он есть)
         if (currentAccountId === id) {
-            currentAccountId = accounts[0].id;
+            currentAccountId = accounts.length > 0 ? accounts[0].id : null;
         }
         
         // Обновление приложения
@@ -10347,7 +10913,95 @@ bedtime
         closeAllModals();
     }
 
-            // Инициализация приложения после полной загрузки DOM
+    // Обработка отправки формы перевода
+    function handleTransferSubmit(e) {
+        e.preventDefault();
+        
+        const fromAccountId = parseInt(document.getElementById('transferFromAccount').value);
+        const toAccountId = parseInt(document.getElementById('transferToAccount').value);
+        const amount = parseFloat(document.getElementById('transferAmount').value);
+        const description = document.getElementById('transferDescription').value || 'Перевод между счетами';
+        
+        // Валидация
+        if (!fromAccountId || !toAccountId) {
+            alert('Пожалуйста, выберите счета для перевода');
+            return;
+        }
+        
+        if (fromAccountId === toAccountId) {
+            alert('Нельзя переводить деньги на тот же счет');
+            return;
+        }
+        
+        if (!amount || amount <= 0) {
+            alert('Пожалуйста, введите корректную сумму');
+            return;
+        }
+        
+        const fromAccount = accounts.find(acc => acc.id === fromAccountId);
+        const toAccount = accounts.find(acc => acc.id === toAccountId);
+        
+        if (!fromAccount || !toAccount) {
+            alert('Ошибка: счет не найден');
+            return;
+        }
+        
+        if (fromAccount.balance < amount) {
+            alert('Недостаточно средств на счете для перевода');
+            return;
+        }
+        
+        // Выполняем перевод (только изменяем балансы счетов)
+        fromAccount.balance -= amount;
+        toAccount.balance += amount;
+        
+        // Сохраняем только изменения в счетах (без создания транзакций)
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+        
+        // Обновляем интерфейс
+        updateDashboard();
+        renderAccounts();
+        renderTransactions();
+        
+        // Закрываем модальное окно
+        closeAllModals();
+        
+        // Показываем уведомление об успехе
+        alert(`Перевод на сумму ${amount.toFixed(2)} ₽ выполнен успешно!`);
+    }
+
+        // Глобальная обработка ошибок браузерных расширений
+        window.addEventListener('error', (e) => {
+            if (e.message && (
+                e.message.includes('message port closed') || 
+                e.message.includes('message channel closed') ||
+                e.message.includes('listener indicated an asynchronous response') ||
+                e.message.includes('Extension context invalidated') ||
+                e.message.includes('Could not establish connection') ||
+                e.message.includes('Receiving end does not exist')
+            )) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+        
+        window.addEventListener('unhandledrejection', (e) => {
+            if (e.reason && e.reason.message && (
+                e.reason.message.includes('message port closed') || 
+                e.reason.message.includes('message channel closed') ||
+                e.reason.message.includes('listener indicated an asynchronous response') ||
+                e.reason.message.includes('Extension context invalidated') ||
+                e.reason.message.includes('Could not establish connection') ||
+                e.reason.message.includes('Receiving end does not exist')
+            )) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+
+        // Инициализация приложения после полной загрузки DOM
         document.addEventListener('DOMContentLoaded', initApp);
         
         // Инициализация обработчиков для кнопок с подсказками
@@ -10356,8 +11010,39 @@ bedtime
             setTimeout(() => {
                 addPaymentHintHandlers();
                 addCategoryIconHintHandlers();
+                addTransferHandlers();
             }, 100);
         });
+
+        // Добавление обработчиков для формы перевода
+        function addTransferHandlers() {
+            // Обработчик изменения счета списания
+            const fromAccountSelect = document.getElementById('transferFromAccount');
+            if (fromAccountSelect) {
+                fromAccountSelect.addEventListener('change', handleFromAccountChange);
+            }
+
+            // Обработчик изменения счета зачисления
+            const toAccountSelect = document.getElementById('transferToAccount');
+            if (toAccountSelect) {
+                toAccountSelect.addEventListener('change', updateTransferSummary);
+            }
+
+            // Обработчик изменения суммы
+            const amountInput = document.getElementById('transferAmount');
+            if (amountInput) {
+                amountInput.addEventListener('input', updateTransferSummary);
+            }
+
+            // Обработчики для кнопок быстрого выбора суммы
+            const amountHintBtns = document.querySelectorAll('.amount-hint-btn');
+            amountHintBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const amount = parseFloat(this.dataset.amount);
+                    setTransferAmount(amount);
+                });
+            });
+        }
 
         // Обработчик изменения размера окна
         window.addEventListener('resize', () => {
