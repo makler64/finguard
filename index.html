@@ -332,11 +332,28 @@
         }
 
         .dark-mode .modal-actions .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--success));
+            background-color: var(--primary);
         }
 
         .dark-mode .modal-actions .btn-primary:hover {
-            background: linear-gradient(135deg, var(--success), var(--primary));
+            background-color: var(--secondary);
+        }
+
+        /* Темная тема для кнопки перевода */
+        .dark-mode .transfer-submit-btn {
+            background: var(--primary) !important;
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .dark-mode .transfer-submit-btn:hover {
+            background: var(--secondary) !important;
+            background-color: var(--secondary) !important;
+            border-color: var(--secondary) !important;
         }
 
         /* Стили для модального окна перевода */
@@ -351,7 +368,7 @@
         }
 
         .account-balance-info .balance-label {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-weight: 500;
         }
 
@@ -359,6 +376,8 @@
             color: var(--primary);
             font-weight: 600;
         }
+
+
 
         .amount-hints {
             display: flex;
@@ -1749,8 +1768,8 @@
             font-weight: 500;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(67, 97, 238, 0.2);
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
         }
 
         .add-account-btn:hover {
@@ -1762,12 +1781,12 @@
 
 
         .add-account-btn svg {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             fill: currentColor;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            padding: 6px;
+            padding: 8px;
             transition: all 0.3s ease;
         }
 
@@ -1954,13 +1973,13 @@
             }
 
             .add-account-btn {
-                width: 70px;
-                height: 70px;
+                width: 90px;
+                height: 90px;
             }
 
             .add-account-btn svg {
-                width: 28px;
-                height: 28px;
+                width: 36px;
+                height: 36px;
             }
 
             .account-settings-item {
@@ -2312,8 +2331,8 @@
             background: linear-gradient(135deg, 
                 #4361ee 0%, 
                 #3a0ca3 25%, 
-                #8b5cf6 50%, 
-                #ec4899 75%, 
+                #1e3a8a 50%, 
+                #1e40af 75%, 
                 #4361ee 100%);
             background-size: 400% 400%;
             z-index: -1;
@@ -2384,6 +2403,8 @@
             align-items: center;
             padding: var(--spacing-sm) var(--spacing-md);
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: var(--border-radius);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
@@ -2720,13 +2741,13 @@
             }
 
             .add-account-btn {
-                width: 70px;
-                height: 70px;
+                width: 90px;
+                height: 90px;
             }
 
             .add-account-btn svg {
-                width: 28px;
-                height: 28px;
+                width: 36px;
+                height: 36px;
             }
 
             .account-selector {
@@ -2981,6 +3002,237 @@
         .form-actions .btn-danger:hover {
             background-color: #d1144a;
             border-color: #d1144a;
+        }
+
+        /* Стили для пошаговой навигации */
+        .step-navigation {
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+        }
+
+        /* Небольшие отступы сверху для модальных окон доходов и расходов */
+        #incomeModal .step-indicator,
+        #expenseModal .step-indicator {
+            margin-top: 16px;
+        }
+
+        #incomeModal .form-step,
+        #expenseModal .form-step {
+            margin-top: 16px;
+        }
+
+        /* Стили для кнопок по бокам в модальных окнах */
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding: 0 8px;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-actions .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-actions .btn:active {
+            transform: translateY(0);
+        }
+
+        .modal-actions .btn-secondary {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .modal-actions .btn-secondary:hover {
+            background-color: var(--bg-tertiary);
+            border-color: var(--primary);
+        }
+
+        .modal-actions .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .modal-actions .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .modal-actions .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            background-color: var(--bg-secondary);
+            padding: 0 var(--spacing-sm);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: var(--spacing-xs);
+            transition: all 0.3s ease;
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: white;
+            animation: stepIndicatorPulse 0.6s ease-in-out;
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step.completed .step-number {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .step.completed .step-label {
+            color: var(--success);
+        }
+
+        .form-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+            animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.slide-out-right {
+            animation: slideOutToRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.slide-out-left {
+            animation: slideOutToLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-content h3 {
+            margin: 0 0 var(--spacing-md) 0;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInFromRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        @keyframes slideOutToRight {
+            from { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+            to { 
+                opacity: 0; 
+                transform: translateX(30px) scale(0.95); 
+            }
+        }
+
+        @keyframes slideOutToLeft {
+            from { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+            to { 
+                opacity: 0; 
+                transform: translateX(-30px) scale(0.95); 
+            }
+        }
+
+        @keyframes stepIndicatorPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
 
@@ -3316,6 +3568,25 @@
 
         .modal-actions .btn-danger:hover {
             background-color: #d1144a;
+        }
+
+        /* Стили для кнопки перевода */
+        .transfer-submit-btn {
+            width: 100% !important;
+            background: var(--primary) !important;
+            background-color: var(--primary) !important;
+            color: white !important;
+            border: 1px solid var(--primary) !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .transfer-submit-btn:hover {
+            background: var(--secondary) !important;
+            background-color: var(--secondary) !important;
+            border-color: var(--secondary) !important;
         }
 
         /* Анимация для кнопок с иконками */
@@ -4418,6 +4689,8 @@
         /* Темная тема для плашек счетов */
         .dark-mode .account-balance-item {
             background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -5378,13 +5651,13 @@
             }
 
             .add-account-btn {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
 
             .add-account-btn svg {
-                width: 26px;
-                height: 26px;
+                width: 32px;
+                height: 32px;
             }
 
             .account-settings-item {
@@ -5499,7 +5772,7 @@ bedtime
             <div class="card balance-card">
                 <div class="balance-header">
                     <div class="balance-label">Общий баланс</div>
-                    <div class="balance-amount" id="totalBalance">0.00 руб.</div>
+                    <div class="balance-amount" id="totalBalance">0.00 ₽</div>
                 </div>
                 <div class="accounts-balance-list" id="accountsBalanceList">
                     <!-- Плашки с балансом каждого счета будут добавлены через JS -->
@@ -5525,7 +5798,7 @@ bedtime
                     <div class="transfer-button-container" id="transferButtonContainer" style="display: none;">
                         <button class="btn btn-outline transfer-btn" onclick="openTransferModal()" title="Перевести между счетами">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
                             </svg>
                             Перевести между счетами
                         </button>
@@ -5746,11 +6019,11 @@ bedtime
 
                     <div class="stats-grid">
                         <div class="card stat-card">
-                            <div class="stat-value" id="monthExpenses">0.00 руб.</div>
+                            <div class="stat-value" id="monthExpenses">0.00 ₽</div>
                             <div class="stat-label">Расходы за месяц</div>
                         </div>
                         <div class="card stat-card">
-                            <div class="stat-value" id="monthIncome">0.00 руб.</div>
+                            <div class="stat-value" id="monthIncome">0.00 ₽</div>
                             <div class="stat-label">Доходы за месяц</div>
                         </div>
                         <div class="card stat-card clickable-stat" data-tab="goals" data-goal-tab="active">
@@ -5943,7 +6216,7 @@ bedtime
                             </div>
                             <div class="accordion-content" id="accountsAccordionContent">
                                 <div style="margin-top: 15px;">
-                                    <button class="btn btn-primary" id="addAccountBtn">
+                                    <button class="btn btn-primary" id="addAccountBtn" onclick="openAccountModal();">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                                         </svg>
@@ -6000,56 +6273,201 @@ bedtime
         </footer>
     </div>
 
-    <!-- Модальное окно для добавления/редактирования транзакции -->
-    <div class="modal" id="transactionModal">
+    <!-- Модальное окно для добавления дохода -->
+    <div class="modal" id="incomeModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="transactionModalTitle">Добавить транзакцию</h2>
+                <h2>Добавить доход</h2>
                 <button class="close-modal">&times;</button>
             </div>
-            <form id="transactionForm">
-                <input type="hidden" id="transactionId">
-                <div class="form-group">
-                    <label class="form-label" for="transactionType">Тип</label>
-                    <select class="form-select" id="transactionType" required>
-                        <option value="expense">Расход</option>
-                        <option value="income">Доход</option>
-                    </select>
+            
+            <!-- Индикатор прогресса -->
+            <div class="step-indicator">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Сумма</div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="transactionAmount">Сумма</label>
-                    <input type="number" class="form-input" id="transactionAmount" placeholder="0.00" step="0.01" min="0" required>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Категория</div>
                 </div>
-                                <div class="form-group">
-                    <label class="form-label" for="transactionCategory">Категория</label>
-                    <select class="form-select" id="transactionCategory" required>
-                        <!-- Категории будут добавлены через JS -->
-                    </select>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Детали</div>
                 </div>
-                <div class="form-group" id="goalSelectionGroup" style="display: none;">
-                    <label class="form-label" for="transactionGoal">Цель</label>
-                    <select class="form-select" id="transactionGoal">
-                        <option value="">Выберите цель</option>
-                        <!-- Цели будут добавлены через JS -->
-                    </select>
+            </div>
+
+            <form id="incomeForm">
+                <input type="hidden" id="incomeId">
+                
+                <!-- Шаг 1: Сумма -->
+                <div class="form-step active" id="incomeStep1">
+                    <div class="step-content">
+                        <h3>Введите сумму дохода</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="incomeAmount">Сумма</label>
+                            <input type="number" class="form-input" id="incomeAmount" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="transactionDate">Дата</label>
-                    <input type="date" class="form-input" id="transactionDate" required>
+
+                <!-- Шаг 2: Категория -->
+                <div class="form-step" id="incomeStep2">
+                    <div class="step-content">
+                        <h3>Выберите категорию</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="incomeCategory">Категория</label>
+                            <select class="form-select" id="incomeCategory" required>
+                                <!-- Категории будут добавлены через JS -->
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="transactionDescription">Описание</label>
-                    <input type="text" class="form-input" id="transactionDescription" placeholder="Краткое описание">
+
+                <!-- Шаг 3: Детали -->
+                <div class="form-step" id="incomeStep3">
+                    <div class="step-content">
+                        <h3>Дополнительные детали</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="incomeDate">Дата</label>
+                            <input type="date" class="form-input" id="incomeDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="incomeDescription">Описание</label>
+                            <input type="text" class="form-input" id="incomeDescription" placeholder="Краткое описание">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="incomeAccount">Счет</label>
+                            <select class="form-select" id="incomeAccount" required>
+                                <!-- Счета будут добавлены через JS -->
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="transactionAccount">Счет</label>
-                    <select class="form-select" id="transactionAccount" required>
-                        <!-- Счета будут добавлены через JS -->
-                    </select>
-                </div>
+
                 <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <button type="button" class="btn btn-danger" id="deleteTransactionBtn" style="display: none;">Удалить</button>
+                    <button type="button" class="btn btn-secondary" id="incomePrevBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                        Назад
+                    </button>
+                    <button type="button" class="btn btn-primary" id="incomeNextBtn">
+                        Далее
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 11v2h12.17l-5.59 5.59L12 20l8-8-8-8-1.41 1.41L16.17 11H4z"/>
+                        </svg>
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="incomeSubmitBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Сохранить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления расхода -->
+    <div class="modal" id="expenseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Добавить расход</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <!-- Индикатор прогресса -->
+            <div class="step-indicator">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Категория</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Счет</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Сумма</div>
+                </div>
+            </div>
+
+            <form id="expenseForm">
+                <input type="hidden" id="expenseId">
+                
+                <!-- Шаг 1: Категория -->
+                <div class="form-step active" id="expenseStep1">
+                    <div class="step-content">
+                        <h3>Выберите категорию</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="expenseCategory">Категория</label>
+                            <select class="form-select" id="expenseCategory" required>
+                                <!-- Категории будут добавлены через JS -->
+                            </select>
+                        </div>
+                        <div class="form-group" id="expenseGoalSelectionGroup" style="display: none;">
+                            <label class="form-label" for="expenseGoal">Цель</label>
+                            <select class="form-select" id="expenseGoal">
+                                <option value="">Выберите цель</option>
+                                <!-- Цели будут добавлены через JS -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Шаг 2: Счет -->
+                <div class="form-step" id="expenseStep2">
+                    <div class="step-content">
+                        <h3>Выберите счет</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="expenseAccount">Счет</label>
+                            <select class="form-select" id="expenseAccount" required>
+                                <!-- Счета будут добавлены через JS -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Шаг 3: Сумма и детали -->
+                <div class="form-step" id="expenseStep3">
+                    <div class="step-content">
+                        <h3>Введите сумму и детали</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="expenseAmount">Сумма</label>
+                            <input type="number" class="form-input" id="expenseAmount" placeholder="0.00" step="0.01" min="0" required>
+                            <div id="expenseAccountBalance" class="balance-info" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="expenseDate">Дата</label>
+                            <input type="date" class="form-input" id="expenseDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="expenseDescription">Описание</label>
+                            <input type="text" class="form-input" id="expenseDescription" placeholder="Краткое описание">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="expensePrevBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                        Назад
+                    </button>
+                    <button type="button" class="btn btn-primary" id="expenseNextBtn">
+                        Далее
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 11v2h12.17l-5.59 5.59L12 20l8-8-8-8-1.41 1.41L16.17 11H4z"/>
+                        </svg>
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="expenseSubmitBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Сохранить
+                    </button>
                 </div>
             </form>
         </div>
@@ -6106,15 +6524,15 @@ bedtime
                     <div class="goal-progress-info">
                         <div class="progress-item">
                             <span class="progress-label">Текущая сумма:</span>
-                            <span class="progress-value" id="payGoalCurrent">0.00 руб.</span>
+                            <span class="progress-value" id="payGoalCurrent">0.00 ₽</span>
                         </div>
                         <div class="progress-item">
                             <span class="progress-label">Целевая сумма:</span>
-                            <span class="progress-value" id="payGoalTarget">0.00 руб.</span>
+                            <span class="progress-value" id="payGoalTarget">0.00 ₽</span>
                         </div>
                         <div class="progress-item">
                             <span class="progress-label">Осталось:</span>
-                            <span class="progress-value" id="payGoalRemaining">0.00 руб.</span>
+                            <span class="progress-value" id="payGoalRemaining">0.00 ₽</span>
                         </div>
                     </div>
                     <div class="goal-progress-bar">
@@ -6143,7 +6561,7 @@ bedtime
                         </select>
                         <div class="account-balance">
                             <span>Баланс: </span>
-                            <span id="selectedAccountBalance">0.00 руб.</span>
+                            <span id="selectedAccountBalance">0.00 ₽</span>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -6173,15 +6591,15 @@ bedtime
                     <div class="goal-progress-info">
                         <div class="progress-item">
                             <span class="progress-label">Текущая сумма:</span>
-                            <span class="progress-value" id="payGoalCurrent">0.00 руб.</span>
+                            <span class="progress-value" id="payGoalCurrent">0.00 ₽</span>
                         </div>
                         <div class="progress-item">
                             <span class="progress-label">Целевая сумма:</span>
-                            <span class="progress-value" id="payGoalTarget">0.00 руб.</span>
+                            <span class="progress-value" id="payGoalTarget">0.00 ₽</span>
                         </div>
                         <div class="progress-item">
                             <span class="progress-label">Осталось:</span>
-                            <span class="progress-value" id="payGoalRemaining">0.00 руб.</span>
+                            <span class="progress-value" id="payGoalRemaining">0.00 ₽</span>
                         </div>
                     </div>
                     <div class="goal-progress-bar">
@@ -6210,7 +6628,7 @@ bedtime
                         </select>
                         <div class="account-balance">
                             <span>Баланс: </span>
-                            <span id="selectedAccountBalance">0.00 руб.</span>
+                            <span id="selectedAccountBalance">0.00 ₽</span>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -6236,55 +6654,113 @@ bedtime
             </div>
             <form id="accountForm">
                 <input type="hidden" id="accountId">
-                <div class="form-group">
-                    <label class="form-label" for="accountName">Название счета</label>
-                    <input type="text" class="form-input" id="accountName" placeholder="Название" required>
+                
+                <!-- Пошаговая навигация -->
+                <div class="step-navigation">
+                    <div class="step-indicator">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Тип</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Банк</div>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Детали</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="accountType">Тип счета</label>
-                    <select class="form-select" id="accountType" required>
-                        <option value="cash">Наличные</option>
-                        <option value="card">Банковская карта</option>
-                        <option value="credit">Кредитная карта</option>
-                        <option value="savings">Сберегательный счет</option>
-                        <option value="investment">Инвестиционный счет</option>
-                    </select>
+
+                <!-- Шаг 1: Тип счета -->
+                <div class="form-step active" id="step1">
+                    <div class="step-content">
+                        <h3>Выберите тип счета</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="accountType">Тип счета</label>
+                            <select class="form-select" id="accountType" required>
+                                <option value="">Выберите тип счета</option>
+                                <option value="cash">Наличные</option>
+                                <option value="card">Банковская карта</option>
+                                <option value="credit">Кредитная карта</option>
+                                <option value="savings">Сберегательный счет</option>
+                                <option value="investment">Инвестиционный счет</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="accountBalance">Начальный баланс</label>
-                    <input type="number" class="form-input" id="accountBalance" placeholder="0.00" step="0.01" required>
+
+                <!-- Шаг 2: Банк (только для не-наличных) -->
+                <div class="form-step" id="step2" style="display: none;">
+                    <div class="step-content">
+                        <h3>Выберите банк</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="accountBank">Банк</label>
+                            <select class="form-select" id="accountBank">
+                                <option value="">Выберите банк</option>
+                                <option value="alfabank">Альфа Банк</option>
+                                <option value="tbank">Т Банк</option>
+                                <option value="gazprombank">Газпром Банк</option>
+                                <option value="ozon">Озон</option>
+                                <option value="raiffeisen">Райффайзен Банк</option>
+                                <option value="rosbank">Рос Банк</option>
+                                <option value="sberbank">Сбер</option>
+                                <option value="tochka">Точка Банк</option>
+                                <option value="vtb">ВТБ</option>
+                                <option value="other">Другой</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="accountCurrency">Валюта</label>
-                    <select class="form-select" id="accountCurrency" required>
-                        <option value="RUB">Рубли (RUB)</option>
-                        <option value="USD">Доллары (USD)</option>
-                        <option value="EUR">Евро (EUR)</option>
-                    </select>
+
+                <!-- Шаг 3: Детали счета -->
+                <div class="form-step" id="step3" style="display: none;">
+                    <div class="step-content">
+                        <h3>Детали счета</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="accountName">Название счета</label>
+                            <input type="text" class="form-input" id="accountName" placeholder="Название" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="accountBalance">Начальный баланс</label>
+                            <input type="number" class="form-input" id="accountBalance" placeholder="0.00" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="accountCurrency">Валюта</label>
+                            <select class="form-select" id="accountCurrency" required>
+                                <option value="RUB">Рубли (RUB)</option>
+                                <option value="USD">Доллары (USD)</option>
+                                <option value="EUR">Евро (EUR)</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="accountBank">Банк</label>
-                    <select class="form-select" id="accountBank">
-                        <option value="">Выберите банк</option>
-                        <option value="alfabank">Альфа Банк</option>
-                        <option value="tbank">Т Банк</option>
-                        <option value="gazprombank">Газпром Банк</option>
-                        <option value="ozon">Озон</option>
-                        <option value="raiffeisen">Райффайзен Банк</option>
-                        <option value="rosbank">Рос Банк</option>
-                        <option value="sberbank">Сбер</option>
-                        <option value="tochka">Точка Банк</option>
-                        <option value="vtb">ВТБ</option>
-                        <option value="other">Другой</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="prevStepBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                        Назад
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextStepBtn" style="display: none;">
+                        Далее
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 11v2h12.17l-5.59 5.59L12 20l8-8-8-8-1.41 1.41L16.17 11H4z"/>
+                        </svg>
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveAccountBtn" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Сохранить
+                    </button>
                     <button type="button" class="btn btn-danger" id="deleteAccountBtn" style="display: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                         </svg>
-                        Удалить счет
+                        Удалить
                     </button>
                 </div>
             </form>
@@ -6383,10 +6859,7 @@ bedtime
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label" for="transferDescription">Описание (необязательно)</label>
-                    <input type="text" class="form-input" id="transferDescription" placeholder="Например: Перевод на накопления">
-                </div>
+
                 
                 <div class="transfer-summary" id="transferSummary" style="display: none;">
                     <div class="summary-item">
@@ -6400,8 +6873,7 @@ bedtime
                 </div>
                 
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-outline" onclick="closeAllModals()">Отмена</button>
-                    <button type="submit" class="btn btn-primary">Перевести</button>
+                    <button type="submit" class="btn btn-primary transfer-submit-btn">Перевести</button>
                 </div>
             </form>
         </div>
@@ -7171,6 +7643,8 @@ bedtime
         if (isFirstRun) {
             // Очищаем все данные при первом запуске
             localStorage.clear();
+            
+            // Инициализируем пустые массивы
             accounts = [];
             transactions = [];
             goals = [];
@@ -7180,14 +7654,43 @@ bedtime
             localStorage.setItem('accountsAccordionState', 'expanded'); // Открытая плашка счетов
             localStorage.setItem('mainAccountsAccordionState', 'expanded'); // Открытая плашка "Мои счета"
             localStorage.setItem('appInitialized', 'true');
+            
+            // Сохраняем пустые данные
+            updateLocalStorage();
+        }
+        
+        // Загружаем данные из localStorage
+        const savedAccounts = localStorage.getItem('accounts');
+        const savedTransactions = localStorage.getItem('transactions');
+        const savedGoals = localStorage.getItem('goals');
+        const savedCategories = localStorage.getItem('categories');
+        
+        if (savedAccounts) {
+            accounts = JSON.parse(savedAccounts);
+        }
+        
+        if (savedTransactions) {
+            transactions = JSON.parse(savedTransactions);
+        }
+        
+        if (savedGoals) {
+            goals = JSON.parse(savedGoals);
+        }
+        
+        if (savedCategories) {
+            categories = JSON.parse(savedCategories);
         }
         
         updateLocalStorage();
-        renderAccounts();
-        renderTransactions();
-        renderGoals();
-        showPlaceholdersIfNeeded(); // Показываем заглушки при необходимости
-        updateDashboard();
+        
+        // Добавляем задержку для полной загрузки DOM
+        setTimeout(() => {
+            renderAccounts();
+            renderTransactions();
+            renderGoals();
+            showPlaceholdersIfNeeded(); // Показываем заглушки при необходимости
+            updateDashboard();
+        }, 100);
         initCharts();
         setupEventListeners();
         initFilters();
@@ -7365,6 +7868,9 @@ bedtime
         localStorage.setItem('categories', JSON.stringify(categories));
     }
 
+    // Загрузка данных из localStorage
+
+
     // Генерация ID
     function generateId(items) {
         return items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
@@ -7467,12 +7973,16 @@ bedtime
         const accountsList = document.getElementById('accountsList');
         const transactionAccountSelect = document.getElementById('transactionAccount');
         
-        if (!accountSelector || !accountsList || !transactionAccountSelect) return;
+
+        
+        if (!accountSelector || !accountsList) return;
         
         // Очистка
         accountSelector.innerHTML = '';
         accountsList.innerHTML = '';
-        transactionAccountSelect.innerHTML = '';
+        if (transactionAccountSelect) {
+            transactionAccountSelect.innerHTML = '';
+        }
         
         // Добавление счетов в селектор
         accounts.forEach(account => {
@@ -7487,27 +7997,37 @@ bedtime
             } else {
                 // Стандартные иконки по типу счета
                 icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
-                if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>';
+                if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-8-2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0-6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>';
                 if (account.type === 'credit') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
                 if (account.type === 'savings') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
                 if (account.type === 'investment') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>';
             }
             
+            // Определяем название банка и тип счета
+            const bankName = account.bankName || '';
+            const accountTypeName = account.type === 'cash' ? 'Наличные' : 
+                account.type === 'card' ? 'Банковская карта' : 
+                account.type === 'credit' ? 'Кредитная карта' : 
+                account.type === 'savings' ? 'Сберегательный счет' : 'Инвестиционный счет';
+            
             accountItem.innerHTML = `
                 ${icon}
                 <div>
-                    <div>${account.name}</div>
-                    <div style="font-size: 14px; color: var(--text-secondary);">${account.balance.toFixed(2)} ${account.currency}</div>
+                    <div style="font-size: 13px; color: var(--text-primary); font-weight: 500;">${bankName}</div>
+                    <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">${accountTypeName}</div>
+                    <div style="font-size: 14px; color: var(--text-primary); margin-top: 4px; font-weight: 600;">${account.balance.toFixed(2)} ${account.currency}</div>
                 </div>
             `;
             
             accountSelector.appendChild(accountItem);
             
             // Добавление в выпадающий список
-            const option = document.createElement('option');
-            option.value = account.id;
-            option.textContent = `${account.name} (${account.balance.toFixed(2)} ${account.currency})`;
-            transactionAccountSelect.appendChild(option);
+            if (transactionAccountSelect) {
+                const option = document.createElement('option');
+                option.value = account.id;
+                option.textContent = `${account.name} (${account.balance.toFixed(2)} ${account.currency})`;
+                transactionAccountSelect.appendChild(option);
+            }
         });
 
         // Добавление кнопки "+" для создания нового счета или заглушки
@@ -7568,7 +8088,7 @@ bedtime
                 accountItem.className = 'account-settings-item';
                 
                 let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
-                if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>';
+                if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-8-2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0-6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>';
                 if (account.type === 'credit') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
                 if (account.type === 'savings') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
                 if (account.type === 'investment') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>';
@@ -7628,16 +8148,21 @@ bedtime
         const totalBalanceEl = document.getElementById('totalBalance');
         const accountsBalanceListEl = document.getElementById('accountsBalanceList');
         
-        if (!totalBalanceEl || !accountsBalanceListEl) return;
+
+        
+        if (!totalBalanceEl || !accountsBalanceListEl) {
+            return;
+        }
         
         // Общий баланс всех счетов
         const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
-        totalBalanceEl.textContent = `${totalBalance.toFixed(2)} руб.`;
+        totalBalanceEl.textContent = `${totalBalance.toFixed(2)} ₽`;
         
         // Очищаем список плашек счетов
         accountsBalanceListEl.innerHTML = '';
         
         // Создаем плашку для каждого счета
+
         accounts.forEach(account => {
             const accountBalanceItem = document.createElement('div');
             accountBalanceItem.className = 'account-balance-item';
@@ -7652,16 +8177,28 @@ bedtime
                 icon = `<div class="account-balance-icon">${firstLetter}</div>`;
             }
             
+            // Определяем название банка и тип счета
+            const bankName = account.bankName || '';
+            const accountTypeName = account.type === 'cash' ? 'Наличные' : 
+                account.type === 'card' ? 'Банковская карта' : 
+                account.type === 'credit' ? 'Кредитная карта' : 
+                account.type === 'savings' ? 'Сберегательный счет' : 'Инвестиционный счет';
+            
             accountBalanceItem.innerHTML = `
                 <div class="account-balance-info">
                     ${icon}
-                    <div class="account-balance-name">${account.name}</div>
+                    <div class="account-balance-details">
+                        <div style="font-size: 13px; color: #ffffff; font-weight: 500;">${bankName}</div>
+                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.8); margin-top: 2px;">${accountTypeName}</div>
+                    </div>
                 </div>
-                <div class="account-balance-amount">${account.balance.toFixed(2)} руб.</div>
+                <div class="account-balance-amount">${account.balance.toFixed(2)} ₽</div>
             `;
             
             accountsBalanceListEl.appendChild(accountBalanceItem);
         });
+        
+
     }
 
     // Рендер транзакций
@@ -7981,19 +8518,14 @@ bedtime
         const accountsContent = document.getElementById('mainAccountsAccordionContent');
         const accountsToggle = document.querySelector('[data-accordion="main-accounts"] .accordion-toggle');
         
-        console.log('initMainAccountsAccordion called');
-        console.log('accountsHeader:', accountsHeader);
-        console.log('accountsContent:', accountsContent);
-        console.log('accountsToggle:', accountsToggle);
+
         
         if (!accountsHeader || !accountsContent || !accountsToggle) {
-            console.log('Some elements not found, returning');
             return;
         }
         
         // Загружаем сохраненное состояние аккордеона
         const savedState = localStorage.getItem('mainAccountsAccordionState');
-        console.log('Saved state:', savedState);
         
         if (savedState === 'expanded') {
             accountsContent.classList.add('expanded');
@@ -8054,7 +8586,7 @@ bedtime
             }
         });
         
-        console.log('Main accounts accordion initialized successfully');
+
     }
 
     // Создание элемента транзакции
@@ -8155,9 +8687,11 @@ bedtime
         // Рендер завершенных целей
         const clearCompletedGoalsBtn = document.getElementById('clearCompletedGoalsBtn');
         
+        // Очищаем список завершенных целей
+        completedGoalsList.innerHTML = '';
+        
         if (completedGoals.length > 0) {
-            // Очищаем список и добавляем завершенные цели
-            completedGoalsList.innerHTML = '';
+            // Добавляем завершенные цели
             completedGoals.forEach(goal => {
                 const goalElement = createGoalElement(goal, true);
                 completedGoalsList.appendChild(goalElement);
@@ -8204,7 +8738,7 @@ bedtime
         });
         
         // Если нет целей вообще, показываем заглушку в активных целях
-        if (goals.length === 0) {
+        if (goals.length === 0 && activeGoalsList.children.length === 0) {
             activeGoalsList.innerHTML = `
                 <div class="completed-goals-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)); border-color: rgba(76, 175, 80, 0.2);">
                     <h3>У вас пока нет финансовых целей</h3>
@@ -8216,7 +8750,7 @@ bedtime
             `;
         }
         // Если нет активных целей, но есть завершенные, показываем заглушку в активных целях
-        else if (activeGoals.length === 0 && goals.length > 0) {
+        else if (activeGoals.length === 0 && goals.length > 0 && activeGoalsList.children.length === 0) {
             activeGoalsList.innerHTML = `
                 <div class="completed-goals-placeholder" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)); border-color: rgba(76, 175, 80, 0.2);">
                     <h3>Нет активных целей</h3>
@@ -8229,7 +8763,7 @@ bedtime
         }
         
         // Если нет завершенных целей, показываем заглушку в завершенных целях
-        if (completedGoals.length === 0) {
+        if (completedGoals.length === 0 && completedGoalsList.children.length === 0) {
             // Если есть активные цели, не показываем кнопку "Создать цель +"
             if (activeGoals.length > 0) {
                 completedGoalsList.innerHTML = `
@@ -8356,11 +8890,11 @@ bedtime
             <div class="goal-stats">
                 <div class="goal-stat-item">
                     <span class="goal-stat-value">${goal.current.toFixed(2)}</span>
-                    <span class="goal-stat-label">Накоплено (руб.)</span>
+                    <span class="goal-stat-label">Накоплено (₽)</span>
                 </div>
                 <div class="goal-stat-item">
                     <span class="goal-stat-value">${goal.target.toFixed(2)}</span>
-                    <span class="goal-stat-label">Цель (руб.)</span>
+                    <span class="goal-stat-label">Цель (₽)</span>
                 </div>
             </div>
             
@@ -8423,8 +8957,8 @@ bedtime
         const monthExpensesEl = document.getElementById('monthExpenses');
         const monthIncomeEl = document.getElementById('monthIncome');
         
-        if (monthExpensesEl) monthExpensesEl.textContent = `${monthExpenses.toFixed(2)} руб.`;
-        if (monthIncomeEl) monthIncomeEl.textContent = `${monthIncome.toFixed(2)} руб.`;
+        if (monthExpensesEl) monthExpensesEl.textContent = `${monthExpenses.toFixed(2)} ₽`;
+        if (monthIncomeEl) monthIncomeEl.textContent = `${monthIncome.toFixed(2)} ₽`;
         
         // Обновление счетчиков целей
         updateGoalsCounters();
@@ -8558,7 +9092,7 @@ bedtime
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return `${context.label}: ${context.raw.toFixed(2)} руб.`;
+                                return `${context.label}: ${context.raw.toFixed(2)} ₽`;
                             }
                         }
                     }
@@ -8657,7 +9191,7 @@ bedtime
                         ticks: {
                             color: getComputedStyle(document.body).getPropertyValue('--text-secondary'),
                             callback: function(value) {
-                                return value + ' руб.';
+                                return value + ' ₽';
                             }
                         }
                     }
@@ -8675,7 +9209,7 @@ bedtime
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return `${context.dataset.label}: ${context.raw.toFixed(2)} руб.`;
+                                return `${context.dataset.label}: ${context.raw.toFixed(2)} ₽`;
                             }
                         }
                     }
@@ -8754,7 +9288,7 @@ bedtime
                         ticks: {
                             color: getComputedStyle(document.body).getPropertyValue('--text-secondary'),
                             callback: function(value) {
-                                return value + ' руб.';
+                                return value + ' ₽';
                             }
                         }
                     }
@@ -8772,7 +9306,7 @@ bedtime
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return `${context.label}: ${context.raw.toFixed(2)} руб.`;
+                                return `${context.label}: ${context.raw.toFixed(2)} ₽`;
                             }
                         }
                     }
@@ -9166,8 +9700,8 @@ bedtime
         const addGoalBtn = document.getElementById('addGoalBtn');
         const addAccountBtn = document.getElementById('addAccountBtn');
         
-        if (addExpenseBtn) addExpenseBtn.addEventListener('click', () => openTransactionModal('expense'));
-        if (addIncomeBtn) addIncomeBtn.addEventListener('click', () => openTransactionModal('income'));
+        if (addExpenseBtn) addExpenseBtn.addEventListener('click', openExpenseModal);
+        if (addIncomeBtn) addIncomeBtn.addEventListener('click', openIncomeModal);
         if (addGoalBtn) addGoalBtn.addEventListener('click', openGoalModal);
         if (addAccountBtn) addAccountBtn.addEventListener('click', openAccountModal);
 
@@ -9189,10 +9723,14 @@ bedtime
         const transactionForm = document.getElementById('transactionForm');
         const goalForm = document.getElementById('goalForm');
         const accountForm = document.getElementById('accountForm');
+        const incomeForm = document.getElementById('incomeForm');
+        const expenseForm = document.getElementById('expenseForm');
         
         if (transactionForm) transactionForm.addEventListener('submit', handleTransactionSubmit);
         if (goalForm) goalForm.addEventListener('submit', handleGoalSubmit);
         if (accountForm) accountForm.addEventListener('submit', handleAccountSubmit);
+        if (incomeForm) incomeForm.addEventListener('submit', (e) => { e.preventDefault(); handleIncomeSubmit(); });
+        if (expenseForm) expenseForm.addEventListener('submit', (e) => { e.preventDefault(); handleExpenseSubmit(); });
 
         // Форма категорий
         const categoryForm = document.getElementById('categoryForm');
@@ -9326,6 +9864,52 @@ bedtime
             addCategoryBtn.addEventListener('click', () => openCategoryModal('expense'));
         }
 
+        // Обработчики для навигации в модальном окне дохода
+        const incomeNextBtn = document.getElementById('incomeNextBtn');
+        const incomePrevBtn = document.getElementById('incomePrevBtn');
+        const incomeSubmitBtn = document.getElementById('incomeSubmitBtn');
+
+        if (incomeNextBtn) {
+            incomeNextBtn.addEventListener('click', function() {
+                const currentStep = getCurrentIncomeStep();
+                if (validateIncomeStep(currentStep)) {
+                    showIncomeStep(currentStep + 1, 'forward');
+                }
+            });
+        }
+
+        if (incomePrevBtn) {
+            incomePrevBtn.addEventListener('click', function() {
+                const currentStep = getCurrentIncomeStep();
+                showIncomeStep(currentStep - 1, 'backward');
+            });
+        }
+
+        // Убрано дублирующееся событие - форма уже обрабатывается через incomeForm.addEventListener
+
+        // Обработчики для навигации в модальном окне расхода
+        const expenseNextBtn = document.getElementById('expenseNextBtn');
+        const expensePrevBtn = document.getElementById('expensePrevBtn');
+        const expenseSubmitBtn = document.getElementById('expenseSubmitBtn');
+
+        if (expenseNextBtn) {
+            expenseNextBtn.addEventListener('click', function() {
+                const currentStep = getCurrentExpenseStep();
+                if (validateExpenseStep(currentStep)) {
+                    showExpenseStep(currentStep + 1, 'forward');
+                }
+            });
+        }
+
+        if (expensePrevBtn) {
+            expensePrevBtn.addEventListener('click', function() {
+                const currentStep = getCurrentExpenseStep();
+                showExpenseStep(currentStep - 1, 'backward');
+            });
+        }
+
+        // Убрано дублирующееся событие - форма уже обрабатывается через expenseForm.addEventListener
+
         // Обработчик для закрытия модального окна категории
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('close-modal') && e.target.closest('#categoryModal')) {
@@ -9363,7 +9947,7 @@ bedtime
                     
                     if (amount > remainingAmount) {
                         confirmBtn.disabled = true;
-                        confirmBtn.title = `Сумма не может превышать ${remainingAmount.toFixed(2)} руб.`;
+                        confirmBtn.title = `Сумма не может превышать ${remainingAmount.toFixed(2)} ₽`;
                     } else if (amount <= 0) {
                         confirmBtn.disabled = true;
                         confirmBtn.title = 'Сумма должна быть больше 0';
@@ -9392,6 +9976,22 @@ bedtime
         if (transactionType) {
             transactionType.addEventListener('change', updateTransactionCategories);
         }
+
+        // Изменение типа счета (обработчик будет добавлен в openAccountModal)
+
+        // Обработчики для пошаговой навигации
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        const prevStepBtn = document.getElementById('prevStepBtn');
+        
+        if (nextStepBtn) {
+            nextStepBtn.addEventListener('click', nextStep);
+        }
+        
+        if (prevStepBtn) {
+            prevStepBtn.addEventListener('click', prevStep);
+        }
+
+        // Автоматическое заполнение названия при выборе банка (обработчик будет добавлен в openAccountModal)
 
         // Изменение категории транзакции
         const transactionCategory = document.getElementById('transactionCategory');
@@ -9587,43 +10187,695 @@ bedtime
                 }
             }
         });
+
+        // Обработчик изменения счета в модальном окне расходов
+        const expenseAccountSelect = document.getElementById('expenseAccount');
+        if (expenseAccountSelect) {
+            expenseAccountSelect.addEventListener('change', function() {
+                // Обновляем отображение баланса при смене счета
+                updateExpenseAccountBalance();
+            });
+        }
+
+        // Обработчик изменения категории в модальном окне расходов
+        const expenseCategorySelect = document.getElementById('expenseCategory');
+        if (expenseCategorySelect) {
+            expenseCategorySelect.addEventListener('change', function() {
+                const selectedCategoryId = this.value;
+                const goalSelectionGroup = document.getElementById('expenseGoalSelectionGroup');
+                
+                if (selectedCategoryId === 'goals') {
+                    // Показываем селектор целей
+                    goalSelectionGroup.style.display = 'block';
+                    populateExpenseGoals();
+                } else {
+                    // Скрываем селектор целей
+                    goalSelectionGroup.style.display = 'none';
+                }
+            });
+        }
     }
 
-    // Открытие модального окна транзакции
-    function openTransactionModal(type = 'expense') {
-        const modal = document.getElementById('transactionModal');
-        const form = document.getElementById('transactionForm');
-        const title = document.getElementById('transactionModalTitle');
-        const deleteBtn = document.getElementById('deleteTransactionBtn');
+
+
+    // Открытие модального окна дохода
+    function openIncomeModal() {
+        const modal = document.getElementById('incomeModal');
+        const form = document.getElementById('incomeForm');
         
-        if (!modal || !form || !title || !deleteBtn) return;
+        if (!modal || !form) return;
         
         // Сброс формы
         form.reset();
-        document.getElementById('transactionId').value = '';
-        
-        // Установка типа
-        document.getElementById('transactionType').value = type;
-        updateTransactionCategories();
+        document.getElementById('incomeId').value = '';
         
         // Установка текущей даты
-        document.getElementById('transactionDate').value = new Date().toISOString().split('T')[0];
+        document.getElementById('incomeDate').value = new Date().toISOString().split('T')[0];
         
-        // Обновление заголовка
-        title.textContent = type === 'expense' ? 'Добавить расход' : 'Добавить доход';
-        
-        // Скрыть кнопку удаления при добавлении новой транзакции
-        deleteBtn.style.display = 'none';
+        // Сброс к первому шагу
+        showIncomeStep(1);
         
         // Показать модальное окно с анимацией
-        modal.style.display = 'flex';
+        modal.style.display = 'block';
         
         // Блокируем прокрутку страницы
         disablePageScroll();
         
-        // Запускаем анимацию открытия
-        requestAnimationFrame(() => {
+        setTimeout(() => {
             modal.classList.add('show');
+        }, 10);
+        
+        // Заполнение категорий доходов
+        populateIncomeCategories();
+        
+        // Заполнение счетов
+        populateIncomeAccounts();
+        
+        // Обновляем отображение счетов
+        updateBalance();
+    }
+
+    // Открытие модального окна расхода
+    function openExpenseModal() {
+        const modal = document.getElementById('expenseModal');
+        const form = document.getElementById('expenseForm');
+        
+        if (!modal || !form) return;
+        
+        // Сброс формы
+        form.reset();
+        document.getElementById('expenseId').value = '';
+        
+        // Установка текущей даты
+        document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+        
+        // Сброс к первому шагу
+        showExpenseStep(1);
+        
+        // Показать модальное окно с анимацией
+        modal.style.display = 'block';
+        
+        // Блокируем прокрутку страницы
+        disablePageScroll();
+        
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+        
+        // Заполнение категорий расходов
+        populateExpenseCategories();
+        
+        // Заполнение счетов
+        populateExpenseAccounts();
+        
+        // Скрываем селектор целей при открытии
+        const goalSelectionGroup = document.getElementById('expenseGoalSelectionGroup');
+        if (goalSelectionGroup) {
+            goalSelectionGroup.style.display = 'none';
+        }
+        
+        // Обновляем отображение счетов
+        updateBalance();
+    }
+
+    // Показать определенный шаг для дохода
+    function showIncomeStep(stepNumber, direction = 'forward') {
+        const currentActiveStep = document.querySelector('#incomeModal .form-step.active');
+        const targetStep = document.getElementById(`incomeStep${stepNumber}`);
+        
+        if (!targetStep) return;
+
+        // Анимация перехода
+        if (currentActiveStep) {
+            currentActiveStep.classList.add(direction === 'forward' ? 'slide-out-left' : 'slide-out-right');
+            setTimeout(() => {
+                currentActiveStep.classList.remove('active', 'slide-out-left', 'slide-out-right');
+                targetStep.classList.add('active');
+            }, 300);
+        } else {
+            targetStep.classList.add('active');
+        }
+
+        // Обновление индикатора прогресса
+        updateIncomeStepIndicator(stepNumber);
+        
+        // Обновление кнопок навигации
+        updateIncomeNavigationButtons(stepNumber);
+    }
+
+    // Показать определенный шаг для расхода
+    function showExpenseStep(stepNumber, direction = 'forward') {
+        const currentActiveStep = document.querySelector('#expenseModal .form-step.active');
+        const targetStep = document.getElementById(`expenseStep${stepNumber}`);
+        
+        if (!targetStep) return;
+
+        // Анимация перехода
+        if (currentActiveStep) {
+            currentActiveStep.classList.add(direction === 'forward' ? 'slide-out-left' : 'slide-out-right');
+            setTimeout(() => {
+                currentActiveStep.classList.remove('active', 'slide-out-left', 'slide-out-right');
+                targetStep.classList.add('active');
+            }, 300);
+        } else {
+            targetStep.classList.add('active');
+        }
+
+        // Обновление индикатора прогресса
+        updateExpenseStepIndicator(stepNumber);
+        
+        // Обновление кнопок навигации
+        updateExpenseNavigationButtons(stepNumber);
+        
+        // Обновление отображения баланса для шага 3
+        if (stepNumber === 3) {
+            updateExpenseAccountBalance();
+        }
+    }
+
+    // Обновление индикатора прогресса для дохода
+    function updateIncomeStepIndicator(stepNumber) {
+        const steps = document.querySelectorAll('#incomeModal .step');
+        steps.forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index + 1 < stepNumber) {
+                step.classList.add('completed');
+            } else if (index + 1 === stepNumber) {
+                step.classList.add('active');
+            }
+        });
+    }
+
+    // Обновление индикатора прогресса для расхода
+    function updateExpenseStepIndicator(stepNumber) {
+        const steps = document.querySelectorAll('#expenseModal .step');
+        steps.forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index + 1 < stepNumber) {
+                step.classList.add('completed');
+            } else if (index + 1 === stepNumber) {
+                step.classList.add('active');
+            }
+        });
+    }
+
+    // Обновление кнопок навигации для дохода
+    function updateIncomeNavigationButtons(stepNumber) {
+        const prevBtn = document.getElementById('incomePrevBtn');
+        const nextBtn = document.getElementById('incomeNextBtn');
+        const submitBtn = document.getElementById('incomeSubmitBtn');
+        
+        if (stepNumber === 1) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'inline-flex';
+            submitBtn.style.display = 'none';
+        } else if (stepNumber === 3) {
+            prevBtn.style.display = 'inline-flex';
+            nextBtn.style.display = 'none';
+            submitBtn.style.display = 'inline-flex';
+        } else {
+            prevBtn.style.display = 'inline-flex';
+            nextBtn.style.display = 'inline-flex';
+            submitBtn.style.display = 'none';
+        }
+    }
+
+    // Обновление кнопок навигации для расхода
+    function updateExpenseNavigationButtons(stepNumber) {
+        const prevBtn = document.getElementById('expensePrevBtn');
+        const nextBtn = document.getElementById('expenseNextBtn');
+        const submitBtn = document.getElementById('expenseSubmitBtn');
+        
+        if (stepNumber === 1) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'inline-flex';
+            submitBtn.style.display = 'none';
+        } else if (stepNumber === 2) {
+            prevBtn.style.display = 'inline-flex';
+            nextBtn.style.display = 'inline-flex';
+            submitBtn.style.display = 'none';
+        } else if (stepNumber === 3) {
+            prevBtn.style.display = 'inline-flex';
+            nextBtn.style.display = 'none';
+            submitBtn.style.display = 'inline-flex';
+        } else {
+            prevBtn.style.display = 'inline-flex';
+            nextBtn.style.display = 'inline-flex';
+            submitBtn.style.display = 'none';
+        }
+    }
+
+    // Получить текущий шаг для дохода
+    function getCurrentIncomeStep() {
+        const activeStep = document.querySelector('#incomeModal .form-step.active');
+        if (activeStep) {
+            return parseInt(activeStep.id.replace('incomeStep', ''));
+        }
+        return 1;
+    }
+
+    // Обновление отображения баланса счета для расхода
+    function updateExpenseAccountBalance() {
+        const accountSelect = document.getElementById('expenseAccount');
+        const balanceInfo = document.getElementById('expenseAccountBalance');
+        
+        if (accountSelect && balanceInfo) {
+            const selectedAccountId = accountSelect.value;
+            if (selectedAccountId) {
+                const account = accounts.find(a => a.id === parseInt(selectedAccountId));
+                if (account) {
+                    balanceInfo.textContent = `Доступно: ${account.balance.toFixed(2)} ₽`;
+                    balanceInfo.style.color = account.balance > 0 ? 'var(--text-secondary)' : 'var(--danger)';
+                }
+            } else {
+                balanceInfo.textContent = '';
+            }
+        }
+    }
+
+    // Получить текущий шаг для расхода
+    function getCurrentExpenseStep() {
+        const activeStep = document.querySelector('#expenseModal .form-step.active');
+        if (activeStep) {
+            return parseInt(activeStep.id.replace('expenseStep', ''));
+        }
+        return 1;
+    }
+
+    // Валидация шага для дохода
+    function validateIncomeStep(stepNumber) {
+        switch (stepNumber) {
+            case 1:
+                const amount = document.getElementById('incomeAmount').value;
+                if (!amount || parseFloat(amount) <= 0) {
+                    alert('Пожалуйста, введите корректную сумму');
+                    return false;
+                }
+                return true;
+            case 2:
+                const category = document.getElementById('incomeCategory').value;
+                if (!category) {
+                    alert('Пожалуйста, выберите категорию');
+                    return false;
+                }
+                return true;
+            case 3:
+                const account = document.getElementById('incomeAccount').value;
+                if (!account) {
+                    alert('Пожалуйста, выберите счет');
+                    return false;
+                }
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    // Валидация шага для расхода
+    function validateExpenseStep(stepNumber) {
+        switch (stepNumber) {
+            case 1:
+                const category = document.getElementById('expenseCategory').value;
+                if (!category) {
+                    alert('Пожалуйста, выберите категорию');
+                    return false;
+                }
+                
+                // Если выбрана категория "Цели", проверяем, что выбрана цель
+                if (category === 'goals') {
+                    const goal = document.getElementById('expenseGoal').value;
+                    if (!goal) {
+                        alert('Пожалуйста, выберите цель');
+                        return false;
+                    }
+                }
+                return true;
+            case 2:
+                const account = document.getElementById('expenseAccount').value;
+                if (!account) {
+                    alert('Пожалуйста, выберите счет');
+                    return false;
+                }
+                return true;
+            case 3:
+                const amount = document.getElementById('expenseAmount').value;
+                if (!amount || parseFloat(amount) <= 0) {
+                    alert('Пожалуйста, введите корректную сумму');
+                    return false;
+                }
+                
+                // Проверка баланса счета
+                const accountId = document.getElementById('expenseAccount').value;
+                if (accountId) {
+                    const account = accounts.find(a => a.id === parseInt(accountId));
+                    if (account && account.balance < parseFloat(amount)) {
+                        alert(`Недостаточно средств на счете "${account.name}". Доступно: ${account.balance.toFixed(2)} ₽`);
+                        return false;
+                    }
+                }
+                
+                // Проверка превышения суммы при оплате цели убрана из валидации
+                // Эта проверка выполняется в handleExpenseSubmit для избежания дублирования алертов
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    // Флаг для предотвращения повторного вызова доходов
+    let isIncomeSubmitting = false;
+
+    // Обработка отправки формы дохода
+    function handleIncomeSubmit() {
+        console.log('handleIncomeSubmit вызвана');
+        // Предотвращаем повторный вызов
+        if (isIncomeSubmitting) {
+            console.log('handleIncomeSubmit уже выполняется, пропускаем');
+            return;
+        }
+        isIncomeSubmitting = true;
+        
+        // Проверяем валидацию всех шагов перед обработкой
+        if (!validateIncomeStep(1) || !validateIncomeStep(2) || !validateIncomeStep(3)) {
+            isIncomeSubmitting = false;
+            return;
+        }
+        
+        const formData = {
+            id: document.getElementById('incomeId').value || null,
+            type: 'income',
+            amount: parseFloat(document.getElementById('incomeAmount').value),
+            category: document.getElementById('incomeCategory').value,
+            date: document.getElementById('incomeDate').value,
+            description: document.getElementById('incomeDescription').value || '',
+            accountId: parseInt(document.getElementById('incomeAccount').value)
+        };
+
+        // Валидация
+        if (!formData.amount || !formData.category || !formData.date || !formData.accountId) {
+            alert('Пожалуйста, заполните все обязательные поля');
+            isIncomeSubmitting = false;
+            return;
+        }
+
+        // Добавляем транзакцию
+        if (formData.id) {
+            // Редактирование существующей транзакции
+            const index = transactions.findIndex(t => t.id === parseInt(formData.id));
+            if (index !== -1) {
+                transactions[index] = { ...transactions[index], ...formData };
+            }
+        } else {
+            // Добавление новой транзакции
+            const newTransaction = {
+                ...formData,
+                id: generateId(transactions)
+            };
+            
+            // Проверяем, нет ли уже транзакции с таким ID
+            const existingTransaction = transactions.find(t => t.id === newTransaction.id);
+            if (!existingTransaction) {
+                console.log(`Добавляем доход: ID=${newTransaction.id}, тип=${newTransaction.type}, сумма=${newTransaction.amount}`);
+                transactions.push(newTransaction);
+            } else {
+                console.log(`Доход с ID=${newTransaction.id} уже существует, пропускаем`);
+            }
+        }
+
+        // Обновляем баланс счета
+        const account = accounts.find(a => a.id === formData.accountId);
+        if (account) {
+            account.balance += formData.amount;
+        }
+
+        // Сохраняем данные
+        updateLocalStorage();
+        
+        // Обновляем интерфейс
+        renderTransactions();
+        renderAccounts();
+        updateDashboard();
+        
+        // Закрыть модальное окно
+        closeAllModals();
+        
+        // Уведомление об успехе убрано
+        
+        // Сбрасываем флаг после завершения обработки
+        isIncomeSubmitting = false;
+    }
+
+    // Флаг для предотвращения повторного вызова
+    let isExpenseSubmitting = false;
+
+    // Обработка отправки формы расхода
+    function handleExpenseSubmit() {
+        console.log('handleExpenseSubmit вызвана');
+        // Предотвращаем повторный вызов
+        if (isExpenseSubmitting) {
+            console.log('handleExpenseSubmit уже выполняется, пропускаем');
+            return;
+        }
+        isExpenseSubmitting = true;
+        
+        // Проверяем валидацию всех шагов перед обработкой
+        if (!validateExpenseStep(1) || !validateExpenseStep(2) || !validateExpenseStep(3)) {
+            isExpenseSubmitting = false;
+            return;
+        }
+        
+        const formData = {
+            id: document.getElementById('expenseId').value || null,
+            type: 'expense',
+            amount: parseFloat(document.getElementById('expenseAmount').value),
+            category: document.getElementById('expenseCategory').value,
+            date: document.getElementById('expenseDate').value,
+            description: document.getElementById('expenseDescription').value || '',
+            accountId: parseInt(document.getElementById('expenseAccount').value),
+            goalId: document.getElementById('expenseGoal').value || null
+        };
+
+        // Если выбрана категория "Цели", но не выбрана цель, очищаем goalId
+        if (formData.category === 'goals' && !formData.goalId) {
+            formData.goalId = null;
+        }
+
+        // Валидация
+        if (!formData.amount || !formData.category || !formData.date || !formData.accountId) {
+            alert('Пожалуйста, заполните все обязательные поля');
+            isExpenseSubmitting = false;
+            return;
+        }
+
+        // Проверка баланса счета
+        const account = accounts.find(a => a.id === formData.accountId);
+        if (account && account.balance < formData.amount) {
+            alert(`Недостаточно средств на счете "${account.name}". Доступно: ${account.balance.toFixed(2)} ₽`);
+            isExpenseSubmitting = false;
+            return;
+        }
+
+        // Проверка превышения суммы при оплате цели
+        if (formData.category === 'goals' && formData.goalId) {
+            const goal = goals.find(g => g.id === parseInt(formData.goalId));
+            if (goal) {
+                // Убеждаемся, что goal.current не превышает goal.target
+                if (goal.current > goal.target) {
+                    goal.current = goal.target;
+                }
+                
+                const remainingAmount = Math.max(0, goal.target - goal.current);
+                
+                if (formData.amount > remainingAmount) {
+                    alert(`Сумма оплаты (${formData.amount.toFixed(2)} ₽) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
+                    isExpenseSubmitting = false;
+                    return;
+                }
+            }
+        }
+
+        // Добавляем транзакцию
+        if (formData.id) {
+            // Редактирование существующей транзакции
+            const index = transactions.findIndex(t => t.id === parseInt(formData.id));
+            if (index !== -1) {
+                transactions[index] = { ...transactions[index], ...formData };
+            }
+        } else {
+            // Добавление новой транзакции
+            const newTransaction = {
+                ...formData,
+                id: generateId(transactions)
+            };
+            
+            // Проверяем, нет ли уже транзакции с таким ID
+            const existingTransaction = transactions.find(t => t.id === newTransaction.id);
+            if (!existingTransaction) {
+                console.log(`Добавляем расход: ID=${newTransaction.id}, тип=${newTransaction.type}, сумма=${newTransaction.amount}`);
+                transactions.push(newTransaction);
+            } else {
+                console.log(`Расход с ID=${newTransaction.id} уже существует, пропускаем`);
+            }
+        }
+
+        // Обновляем баланс счета
+        if (account) {
+            account.balance -= formData.amount;
+        }
+
+        // Обновляем цель, если указана
+        if (formData.goalId) {
+            const goal = goals.find(g => g.id === parseInt(formData.goalId));
+            if (goal) {
+                goal.current += formData.amount;
+                // Убеждаемся, что не превышаем целевую сумму
+                if (goal.current > goal.target) {
+                    goal.current = goal.target;
+                }
+            }
+        }
+
+        // Сохраняем данные
+        updateLocalStorage();
+        
+        // Обновляем интерфейс
+        renderTransactions();
+        renderAccounts();
+        renderGoals();
+        updateDashboard();
+        
+        // Закрыть модальное окно
+        closeAllModals();
+        
+        // Показать уведомление об успехе
+        if (formData.goalId) {
+            const goal = goals.find(g => g.id === parseInt(formData.goalId));
+            if (goal) {
+                if (goal.current >= goal.target) {
+                    alert(`🎉 Поздравляем! Цель "${goal.name}" успешно достигнута!`);
+                } else {
+                    const progress = ((goal.current / goal.target) * 100).toFixed(1);
+                    alert(`✅ Успешно оплачено ${formData.amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${progress}%`);
+                }
+            }
+        } else {
+            // Уведомление об успехе убрано
+        }
+        
+        // Сбрасываем флаг после завершения обработки
+        isExpenseSubmitting = false;
+    }
+
+    // Заполнение категорий доходов
+    function populateIncomeCategories() {
+        const categorySelect = document.getElementById('incomeCategory');
+        if (!categorySelect) {
+            console.log('incomeCategory select not found');
+            return;
+        }
+        
+        if (!categories || !categories.income) {
+            console.log('categories.income not found');
+            return;
+        }
+        
+        categorySelect.innerHTML = '';
+        categories.income.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = `${category.icon} ${category.name}`;
+            categorySelect.appendChild(option);
+        });
+    }
+
+    // Заполнение категорий расходов
+    function populateExpenseCategories() {
+        const categorySelect = document.getElementById('expenseCategory');
+        if (!categorySelect) {
+            console.log('expenseCategory select not found');
+            return;
+        }
+        
+        if (!categories || !categories.expense) {
+            console.log('categories.expense not found');
+            return;
+        }
+        
+        categorySelect.innerHTML = '';
+        categories.expense.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = `${category.icon} ${category.name}`;
+            categorySelect.appendChild(option);
+        });
+    }
+
+    // Заполнение целей для расходов
+    function populateExpenseGoals() {
+        const goalSelect = document.getElementById('expenseGoal');
+        if (!goalSelect) {
+            console.log('expenseGoal select not found');
+            return;
+        }
+        
+        if (!goals || goals.length === 0) {
+            console.log('No goals found');
+            return;
+        }
+        
+        goalSelect.innerHTML = '<option value="">Выберите цель</option>';
+        
+        // Показываем только активные цели (не завершенные)
+        const activeGoals = goals.filter(goal => goal.current < goal.target);
+        
+        activeGoals.forEach(goal => {
+            const option = document.createElement('option');
+            option.value = goal.id;
+            const name = goal.name || 'Без названия';
+            option.textContent = name;
+            goalSelect.appendChild(option);
+        });
+    }
+
+    // Заполнение счетов для дохода
+    function populateIncomeAccounts() {
+        const accountSelect = document.getElementById('incomeAccount');
+        if (!accountSelect) {
+            console.log('incomeAccount select not found');
+            return;
+        }
+        
+        if (!accounts || accounts.length === 0) {
+            return;
+        }
+        
+        accountSelect.innerHTML = '';
+        accounts.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.id;
+            option.textContent = `${account.name} (${account.balance.toFixed(2)} ₽)`;
+            accountSelect.appendChild(option);
+        });
+    }
+
+    // Заполнение счетов для расхода
+    function populateExpenseAccounts() {
+        const accountSelect = document.getElementById('expenseAccount');
+        if (!accountSelect) {
+            console.log('expenseAccount select not found');
+            return;
+        }
+        
+        if (!accounts || accounts.length === 0) {
+            return;
+        }
+        
+        accountSelect.innerHTML = '';
+        accounts.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.id;
+            option.textContent = `${account.name} (${account.balance.toFixed(2)} ₽)`;
+            accountSelect.appendChild(option);
         });
     }
 
@@ -9687,15 +10939,24 @@ bedtime
             goalSelectionGroup.classList.remove('hide');
             goalSelectionGroup.classList.add('show');
             
-            // Заполняем список целей
+            // Полностью очищаем список целей перед заполнением
             goalSelect.innerHTML = '<option value="">Выберите цель</option>';
-            goals.forEach(goal => {
-                if (goal.current < goal.target) { // Только активные цели
-                    const option = document.createElement('option');
-                    option.value = goal.id;
-                    option.textContent = `${goal.name} (${goal.current.toFixed(2)}/${goal.target.toFixed(2)} руб.)`;
-                    goalSelect.appendChild(option);
-                }
+            
+            // Получаем только активные цели (не завершенные)
+            const activeGoals = goals.filter(goal => {
+                const progress = (goal.current / goal.target) * 100;
+                const deadline = new Date(goal.deadline);
+                const now = new Date();
+                return progress < 100 && deadline >= now;
+            });
+            
+            // Заполняем список только активными целями
+            activeGoals.forEach(goal => {
+                const option = document.createElement('option');
+                option.value = goal.id;
+                option.textContent = `${goal.name} (${goal.current.toFixed(2)}/${goal.target.toFixed(2)} ₽)`;
+
+                goalSelect.appendChild(option);
             });
         } else {
             goalSelectionGroup.classList.remove('show');
@@ -9746,11 +11007,16 @@ bedtime
         const modalTitle = document.getElementById('accountModalTitle');
         const deleteBtn = document.getElementById('deleteAccountBtn');
         
-        if (!modal || !form || !modalTitle || !deleteBtn) return;
+        if (!modal || !form || !modalTitle || !deleteBtn) {
+            return;
+        }
         
         // Сброс формы
         form.reset();
         document.getElementById('accountId').value = '';
+        
+        // Сброс переменной для банка
+        selectedBankName = '';
         
         if (accountId) {
             // Режим редактирования
@@ -9764,8 +11030,15 @@ bedtime
                 document.getElementById('accountCurrency').value = account.currency;
                 document.getElementById('accountBank').value = account.bank || '';
                 
-                // Показываем кнопку удаления для редактирования
-                deleteBtn.style.display = 'inline-flex';
+                // Устанавливаем название банка для редактирования
+                if (account.bank) {
+                    const accountBank = document.getElementById('accountBank');
+                    const selectedOption = accountBank.options[accountBank.selectedIndex];
+                    selectedBankName = selectedOption ? selectedOption.text : '';
+                }
+                
+                // Обновляем видимость поля банка
+                updateBankFieldVisibility();
             }
         } else {
             // Режим добавления
@@ -9783,6 +11056,329 @@ bedtime
         requestAnimationFrame(() => {
             modal.classList.add('show');
         });
+        
+        // Инициализация пошаговой формы
+        initStepForm();
+        
+        // Добавляем обработчики событий для автоматического заполнения
+        setTimeout(() => {
+            setupAccountFormHandlers();
+        }, 100);
+    }
+
+    // Настройка обработчиков для формы счета
+    function setupAccountFormHandlers() {
+        // Изменение типа счета
+        const accountType = document.getElementById('accountType');
+        if (accountType) {
+            // Удаляем старые обработчики
+            accountType.removeEventListener('change', handleAccountTypeChange);
+            // Добавляем новый обработчик
+            accountType.addEventListener('change', handleAccountTypeChange);
+        }
+
+        // Изменение банка
+        const accountBank = document.getElementById('accountBank');
+        if (accountBank) {
+            // Удаляем старые обработчики
+            accountBank.removeEventListener('change', handleAccountBankChange);
+            // Добавляем новый обработчик
+            accountBank.addEventListener('change', handleAccountBankChange);
+            console.log('Обработчик для accountBank добавлен');
+        }
+    }
+
+    // Обработчик изменения типа счета
+    function handleAccountTypeChange() {
+        console.log('Тип счета изменен на:', this.value);
+        updateBankFieldVisibility();
+        // Не вызываем autoFillAccountName здесь, только при переходе к шагу 3
+    }
+
+    // Обработчик изменения банка
+    function handleAccountBankChange() {
+        console.log('Банк изменен на:', this.value);
+        
+        // Сохраняем название банка
+        if (this.value) {
+            const selectedOption = this.options[this.selectedIndex];
+            selectedBankName = selectedOption.text;
+            console.log('Сохранено название банка:', selectedBankName);
+        } else {
+            selectedBankName = '';
+        }
+        
+        // Не вызываем autoFillAccountName здесь, только при переходе к шагу 3
+    }
+
+    // Функция для управления видимостью поля банка
+    function updateBankFieldVisibility() {
+        const accountType = document.getElementById('accountType');
+        const bankSelectionGroup = document.getElementById('bankSelectionGroup');
+        
+        if (!accountType || !bankSelectionGroup) return;
+        
+        // Показываем поле банка только для не-наличных счетов
+        if (accountType.value === 'cash') {
+            bankSelectionGroup.style.display = 'none';
+        } else {
+            bankSelectionGroup.style.display = 'block';
+        }
+    }
+
+    // Инициализация пошаговой формы
+    function initStepForm() {
+        const accountId = document.getElementById('accountId').value;
+        const accountType = document.getElementById('accountType').value;
+        
+        // При редактировании показываем все данные сразу
+        if (accountId) {
+            showStep(3);
+            updateStepButtons(3);
+            updateStepIndicators(3);
+        } else {
+            // При добавлении начинаем с первого шага
+            showStep(1);
+            updateStepButtons(1);
+            updateStepIndicators(1);
+        }
+    }
+
+    // Показать определенный шаг
+    function showStep(stepNumber, direction = 'forward') {
+        const accountModal = document.getElementById('accountModal');
+        if (!accountModal) return;
+        
+        const currentActiveStep = accountModal.querySelector('.form-step.active');
+        const targetStep = document.getElementById(`step${stepNumber}`);
+        
+        if (!targetStep) return;
+
+        // Определяем направление анимации
+        const isForward = direction === 'forward';
+        const slideOutClass = isForward ? 'slide-out-left' : 'slide-out-right';
+        const slideInDirection = isForward ? 'slideInFromRight' : 'slideInFromLeft';
+
+        // Если есть активный шаг, анимируем его скрытие
+        if (currentActiveStep && currentActiveStep !== targetStep) {
+            currentActiveStep.classList.add(slideOutClass);
+            
+            setTimeout(() => {
+                currentActiveStep.classList.remove('active', slideOutClass);
+                currentActiveStep.style.display = 'none';
+                
+                // Показываем новый шаг
+                targetStep.style.display = 'block';
+                targetStep.classList.add('active');
+                
+                // Обновить индикаторы шагов
+                updateStepIndicators(stepNumber);
+                
+                // Если переходим к шагу 3, очищаем и заполняем название автоматически
+                if (stepNumber === 3) {
+                    setTimeout(() => {
+                        const accountName = document.getElementById('accountName');
+                        if (accountName) {
+                            accountName.value = ''; // Очищаем поле названия
+                        }
+                        autoFillAccountName(); // Заполняем заново
+                    }, 200);
+                }
+            }, 300);
+        } else {
+            // Если нет активного шага, просто показываем новый
+            targetStep.style.display = 'block';
+            targetStep.classList.add('active');
+            updateStepIndicators(stepNumber);
+            
+            // Если переходим к шагу 3, очищаем и заполняем название автоматически
+            if (stepNumber === 3) {
+                setTimeout(() => {
+                    const accountName = document.getElementById('accountName');
+                    if (accountName) {
+                        accountName.value = ''; // Очищаем поле названия
+                    }
+                    autoFillAccountName(); // Заполняем заново
+                }, 200);
+            }
+        }
+    }
+
+    // Обновить индикаторы шагов
+    function updateStepIndicators(currentStep) {
+        const accountModal = document.getElementById('accountModal');
+        if (!accountModal) return;
+        
+        const steps = accountModal.querySelectorAll('.step');
+        steps.forEach((step, index) => {
+            const stepNumber = index + 1;
+            step.classList.remove('active', 'completed');
+            
+            if (stepNumber === currentStep) {
+                step.classList.add('active');
+            } else if (stepNumber < currentStep) {
+                step.classList.add('completed');
+            }
+        });
+    }
+
+    // Обновить кнопки навигации
+    function updateStepButtons(currentStep) {
+        const prevBtn = document.getElementById('prevStepBtn');
+        const nextBtn = document.getElementById('nextStepBtn');
+        const saveBtn = document.getElementById('saveAccountBtn');
+        const deleteBtn = document.getElementById('deleteAccountBtn');
+        const accountType = document.getElementById('accountType');
+        const accountId = document.getElementById('accountId');
+
+        // Скрыть все кнопки
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (saveBtn) saveBtn.style.display = 'none';
+
+        // Показать кнопку удаления только при редактировании
+        if (deleteBtn) {
+            deleteBtn.style.display = accountId && accountId.value ? 'inline-flex' : 'none';
+        }
+
+        if (currentStep === 1) {
+            // Первый шаг - только "Далее"
+            if (nextBtn) {
+                nextBtn.style.display = 'inline-flex';
+                nextBtn.style.visibility = 'visible';
+                nextBtn.style.opacity = '1';
+                nextBtn.removeAttribute('style');
+                nextBtn.style.display = 'inline-flex';
+            }
+        } else if (currentStep === 2) {
+            // Второй шаг - "Назад" и "Далее" (если не наличные)
+            if (prevBtn) prevBtn.style.display = 'inline-flex';
+            if (accountType && accountType.value !== 'cash' && nextBtn) {
+                nextBtn.style.display = 'inline-flex';
+            } else if (saveBtn) {
+                saveBtn.style.display = 'inline-flex';
+            }
+        } else if (currentStep === 3) {
+            // Третий шаг - "Назад" и "Сохранить"
+            if (prevBtn) prevBtn.style.display = 'inline-flex';
+            if (saveBtn) saveBtn.style.display = 'inline-flex';
+        }
+    }
+
+    // Переход к следующему шагу
+    function nextStep() {
+        const currentStep = getCurrentStep();
+        const accountType = document.getElementById('accountType');
+
+        if (currentStep === 1) {
+            if (!accountType.value) {
+                alert('Пожалуйста, выберите тип счета');
+                return;
+            }
+            
+            if (accountType.value === 'cash') {
+                // Для наличных пропускаем шаг 2
+                showStep(3, 'forward');
+                updateStepButtons(3);
+            } else {
+                showStep(2, 'forward');
+                updateStepButtons(2);
+            }
+        } else if (currentStep === 2) {
+            const accountBank = document.getElementById('accountBank');
+            if (!accountBank.value) {
+                alert('Пожалуйста, выберите банк');
+                return;
+            }
+            showStep(3, 'forward');
+            updateStepButtons(3);
+        }
+    }
+
+    // Переход к предыдущему шагу
+    function prevStep() {
+        const currentStep = getCurrentStep();
+        const accountType = document.getElementById('accountType');
+
+        if (currentStep === 2) {
+            showStep(1, 'backward');
+            updateStepButtons(1);
+        } else if (currentStep === 3) {
+            if (accountType && accountType.value === 'cash') {
+                showStep(1, 'backward');
+                updateStepButtons(1);
+            } else {
+                showStep(2, 'backward');
+                updateStepButtons(2);
+            }
+        }
+    }
+
+    // Переменная для хранения выбранного банка
+    let selectedBankName = '';
+
+    // Автоматическое заполнение названия счета при выборе банка
+    window.autoFillAccountName = function() {
+        const accountType = document.getElementById('accountType');
+        const accountBank = document.getElementById('accountBank');
+        const accountName = document.getElementById('accountName');
+        
+        console.log('autoFillAccountName вызвана');
+        console.log('accountType:', accountType?.value);
+        console.log('accountBank value:', accountBank?.value);
+        console.log('accountName текущее значение:', accountName?.value);
+        
+        if (!accountType || !accountName) {
+            console.log('accountType или accountName не найден');
+            return;
+        }
+        
+        const typeNames = {
+            'cash': 'Наличные',
+            'card': 'Банковская карта',
+            'credit': 'Кредитная карта',
+            'savings': 'Сберегательный счет',
+            'investment': 'Инвестиционный счет'
+        };
+        
+        const typeName = typeNames[accountType.value] || 'Счет';
+        console.log('Тип счета:', typeName);
+        
+        // Получаем название банка напрямую из селектора
+        let bankName = '';
+        if (accountBank && accountBank.value && accountType.value !== 'cash') {
+            const selectedOption = accountBank.options[accountBank.selectedIndex];
+            if (selectedOption) {
+                bankName = selectedOption.text;
+                console.log('Получено название банка из селектора:', bankName);
+            }
+        }
+        
+        // Заполняем название только если поле пустое И есть выбранные значения
+        if (!accountName.value.trim() && accountType.value && (accountType.value === 'cash' || bankName)) {
+            if (bankName) {
+                const newName = `${bankName} - ${typeName}`;
+                accountName.value = newName;
+                console.log('Установлено новое название с банком:', newName);
+            } else if (accountType.value === 'cash') {
+                accountName.value = typeName;
+                console.log('Установлено название для наличных:', typeName);
+            }
+        } else {
+            console.log('Поле названия уже заполнено или нет выбранных значений, пропускаем');
+        }
+    };
+
+    // Получить текущий шаг
+    function getCurrentStep() {
+        const accountModal = document.getElementById('accountModal');
+        if (!accountModal) return 1;
+        
+        const activeStep = accountModal.querySelector('.form-step.active');
+        if (activeStep) {
+            return parseInt(activeStep.id.replace('step', ''));
+        }
+        return 1;
     }
 
     // Функции для управления прокруткой страницы
@@ -9947,9 +11543,20 @@ bedtime
         updateTransferSummary();
     }
 
+    // Флаг для предотвращения повторного вызова транзакций
+    let isTransactionSubmitting = false;
+
     // Обработка отправки формы транзакции
     function handleTransactionSubmit(e) {
         e.preventDefault();
+        console.log('handleTransactionSubmit вызвана');
+        
+        // Предотвращаем повторный вызов
+        if (isTransactionSubmitting) {
+            console.log('handleTransactionSubmit уже выполняется, пропускаем');
+            return;
+        }
+        isTransactionSubmitting = true;
         
         const transactionId = document.getElementById('transactionId');
         const transactionType = document.getElementById('transactionType');
@@ -9960,7 +11567,10 @@ bedtime
         const transactionAccount = document.getElementById('transactionAccount');
         
         if (!transactionId || !transactionType || !transactionAmount || !transactionCategory || 
-            !transactionDate || !transactionDescription || !transactionAccount) return;
+            !transactionDate || !transactionDescription || !transactionAccount) {
+            isTransactionSubmitting = false;
+            return;
+        }
         
 
         
@@ -10028,7 +11638,7 @@ bedtime
                 if (goal.current < 0) goal.current = 0;
                 
                 // Проверяем превышение цели для новой суммы
-                const remainingAmount = goal.target - goal.current;
+                const remainingAmount = Math.max(0, goal.target - goal.current);
                 if (formData.amount > remainingAmount) {
                     formData.amount = remainingAmount;
                 }
@@ -10107,6 +11717,7 @@ bedtime
                     // Проверяем баланс для расходов
                     if (newAccount.balance < formData.amount) {
                         alert(`Недостаточно средств на счете "${newAccount.name}". Доступно: ${newAccount.balance.toFixed(2)} ${newAccount.currency}, необходимо: ${formData.amount.toFixed(2)} ${newAccount.currency}`);
+                        isTransactionSubmitting = false;
                         return;
                     }
                     newAccount.balance -= formData.amount;
@@ -10120,11 +11731,13 @@ bedtime
                 const account = accounts.find(a => a.id === formData.accountId);
                 if (!account) {
                     alert('Счет не найден!');
+                    isTransactionSubmitting = false;
                     return;
                 }
                 
                 if (account.balance < formData.amount) {
                     alert(`Недостаточно средств на счете "${account.name}". Доступно: ${account.balance.toFixed(2)} ${account.currency}, необходимо: ${formData.amount.toFixed(2)} ${account.currency}`);
+                    isTransactionSubmitting = false;
                     return;
                 }
                 
@@ -10132,13 +11745,16 @@ bedtime
                 if (formData.goalId) {
                     const goal = goals.find(g => g.id === parseInt(formData.goalId));
                     if (goal) {
-                        const remainingAmount = goal.target - goal.current;
+                        // Убеждаемся, что goal.current не превышает goal.target
+                        if (goal.current > goal.target) {
+                            goal.current = goal.target;
+                        }
+                        
+                        const remainingAmount = Math.max(0, goal.target - goal.current);
                         if (formData.amount > remainingAmount) {
-                            if (!confirm(`Сумма расхода (${formData.amount.toFixed(2)} руб.) превышает оставшуюся часть цели "${goal.name}" (${remainingAmount.toFixed(2)} руб.). Продолжить с частичной оплатой цели?`)) {
-                                return;
-                            }
-                            // Ограничиваем сумму до оставшейся части цели
-                            formData.amount = remainingAmount;
+                            alert(`Сумма расхода (${formData.amount.toFixed(2)} ₽) превышает оставшуюся часть цели "${goal.name}" (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
+                            isTransactionSubmitting = false;
+                            return;
                         }
                         
                         // Обновляем цель
@@ -10158,7 +11774,14 @@ bedtime
             }
             
             // Добавление новой транзакции
-            transactions.push(formData);
+            // Проверяем, нет ли уже транзакции с таким ID
+            const existingTransaction = transactions.find(t => t.id === formData.id);
+            if (!existingTransaction) {
+                console.log(`Добавляем транзакцию: ID=${formData.id}, тип=${formData.type}, сумма=${formData.amount}`);
+                transactions.push(formData);
+            } else {
+                console.log(`Транзакция с ID=${formData.id} уже существует, пропускаем`);
+            }
             
             // Обновление баланса счета
             const account = accounts.find(a => a.id === formData.accountId);
@@ -10191,7 +11814,7 @@ bedtime
                     alert(`🎉 Поздравляем! Цель "${goal.name}" успешно достигнута!`);
                 } else {
                     const progress = ((goal.current / goal.target) * 100).toFixed(1);
-                    alert(`✅ Успешно оплачено ${formData.amount.toFixed(2)} руб. для цели "${goal.name}". Прогресс: ${progress}%`);
+                    alert(`✅ Успешно оплачено ${formData.amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${progress}%`);
                 }
             }
         }
@@ -10202,6 +11825,9 @@ bedtime
             button.classList.add('pulse');
             setTimeout(() => button.classList.remove('pulse'), 600);
         }
+        
+        // Сбрасываем флаг после завершения обработки
+        isTransactionSubmitting = false;
     }
 
     // Обработка отправки формы категории
@@ -10281,8 +11907,12 @@ bedtime
         const existingIndex = goals.findIndex(g => g.id === formData.id);
         
         if (existingIndex >= 0) {
-            // Обновление существующей цели
-            goals[existingIndex] = formData;
+            // Обновление существующей цели - сохраняем текущий прогресс
+            const existingGoal = goals[existingIndex];
+            goals[existingIndex] = {
+                ...formData,
+                current: existingGoal.current // Сохраняем текущий прогресс, достигнутый через транзакции
+            };
         } else {
             // Добавление новой цели
             goals.push(formData);
@@ -10319,13 +11949,21 @@ bedtime
         
         if (!accountId || !accountName || !accountType || !accountBalance || !accountCurrency) return;
         
+        // Автоматическое заполнение названия банка
+        let bankName = '';
+        if (accountBank && accountBank.value) {
+            const selectedOption = accountBank.options[accountBank.selectedIndex];
+            bankName = selectedOption.text;
+        }
+
         const formData = {
             id: accountId.value ? parseInt(accountId.value) : generateId(accounts),
             name: accountName.value,
             type: accountType.value,
             balance: parseFloat(accountBalance.value),
             currency: accountCurrency.value,
-            bank: accountBank ? accountBank.value : ''
+            bank: accountBank ? accountBank.value : '',
+            bankName: bankName
         };
         
         // Поиск существующего счета
@@ -10394,54 +12032,7 @@ bedtime
         alert('Счет успешно удален');
     }
 
-    // Редактирование транзакции
-    function editTransaction(id) {
-        const transaction = transactions.find(t => t.id === id);
-        if (!transaction) return;
-        
-        const modal = document.getElementById('transactionModal');
-        const form = document.getElementById('transactionForm');
-        const title = document.getElementById('transactionModalTitle');
-        const deleteBtn = document.getElementById('deleteTransactionBtn');
-        
-        if (!modal || !form || !title || !deleteBtn) return;
-        
-        // Заполнение формы
-        document.getElementById('transactionId').value = transaction.id;
-        document.getElementById('transactionType').value = transaction.type;
-        updateTransactionCategories();
-        document.getElementById('transactionCategory').value = transaction.category;
-        document.getElementById('transactionAmount').value = transaction.amount;
-        document.getElementById('transactionDate').value = transaction.date;
-        document.getElementById('transactionDescription').value = transaction.description;
-        document.getElementById('transactionAccount').value = transaction.accountId;
-        
-        // Заполнение поля цели, если транзакция связана с целью
-        const goalSelect = document.getElementById('transactionGoal');
-        if (goalSelect && transaction.goalId) {
-            goalSelect.value = transaction.goalId;
-        }
-        
-        // Обновляем отображение целей в зависимости от выбранной категории
-        updateGoalSelection();
-        
-        // Обновление заголовка
-        title.textContent = 'Редактировать транзакцию';
-        
-        // Показать кнопку удаления
-        deleteBtn.style.display = 'inline-flex';
-        
-        // Показать модальное окно с анимацией
-        modal.style.display = 'flex';
-        
-        // Блокируем прокрутку страницы
-        disablePageScroll();
-        
-        // Запускаем анимацию открытия
-        requestAnimationFrame(() => {
-            modal.classList.add('show');
-        });
-    }
+
 
     // Удаление транзакции
     function deleteTransaction(id) {
@@ -10670,11 +12261,11 @@ bedtime
         
         // Заполняем информацию о цели
         goalName.textContent = goal.name;
-        goalCurrent.textContent = `${goal.current.toFixed(2)} руб.`;
-        goalTarget.textContent = `${goal.target.toFixed(2)} руб.`;
+        goalCurrent.textContent = `${goal.current.toFixed(2)} ₽`;
+        goalTarget.textContent = `${goal.target.toFixed(2)} ₽`;
         
-        const remainingAmount = goal.target - goal.current;
-        goalRemaining.textContent = `${remainingAmount.toFixed(2)} руб.`;
+        const remainingAmount = Math.max(0, goal.target - goal.current);
+        goalRemaining.textContent = `${remainingAmount.toFixed(2)} ₽`;
         
         // Обновляем прогресс-бар
         const progress = (goal.current / goal.target) * 100;
@@ -10699,8 +12290,13 @@ bedtime
         // Добавляем обработчик изменения суммы для подсветки кнопки с остатком
         paymentAmount.addEventListener('input', function() {
             const amount = parseFloat(this.value) || 0;
-            const remainingAmount = goal.target - goal.current;
+            const remainingAmount = Math.max(0, goal.target - goal.current);
             const remainingAmountBtns = document.querySelectorAll('.payment-hint-remaining');
+            
+            // Ограничиваем ввод максимальной суммой
+            if (amount > remainingAmount) {
+                this.value = remainingAmount.toFixed(2);
+            }
             
             remainingAmountBtns.forEach(btn => {
                 if (Math.abs(amount - remainingAmount) < 0.01) {
@@ -10714,6 +12310,9 @@ bedtime
         // Устанавливаем максимальную сумму к оплате
         paymentAmount.max = remainingAmount;
         paymentAmount.placeholder = `0.00 - ${remainingAmount.toFixed(2)}`;
+        
+        // Обновляем состояние кнопок быстрого выбора
+        updatePaymentHintButtons(remainingAmount);
         
         // Заполняем кнопку с остатком
         const remainingAmountBtn = document.getElementById('remainingAmountBtn');
@@ -10755,16 +12354,47 @@ bedtime
         }
     }
     
+    // Обновление состояния кнопок быстрого выбора суммы
+    function updatePaymentHintButtons(maxAmount) {
+        const paymentHintBtns = document.querySelectorAll('.payment-hint-btn:not(.payment-hint-remaining)');
+        paymentHintBtns.forEach(btn => {
+            const amount = parseFloat(btn.dataset.amount);
+            if (amount > maxAmount) {
+                // Кнопка превышает максимальную сумму - делаем её неактивной
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+                btn.title = `Максимальная сумма: ${maxAmount.toFixed(2)} ₽`;
+            } else {
+                // Кнопка активна
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+                btn.title = '';
+            }
+        });
+    }
+
     // Добавление обработчиков для кнопок с подсказками
     function addPaymentHintHandlers() {
         // Обработчики для обычных кнопок с суммами
         const paymentHintBtns = document.querySelectorAll('.payment-hint-btn:not(.payment-hint-remaining)');
         paymentHintBtns.forEach(btn => {
             btn.onclick = function() {
+                // Проверяем, не заблокирована ли кнопка
+                if (this.style.opacity === '0.5') {
+                    return; // Кнопка заблокирована
+                }
+                
                 const amount = parseFloat(this.dataset.amount);
                 const paymentAmount = document.getElementById('paymentAmount');
                 if (paymentAmount) {
-                    paymentAmount.value = amount;
+                    // Проверяем максимальную сумму
+                    const maxAmount = parseFloat(paymentAmount.max);
+                    if (maxAmount && amount > maxAmount) {
+                        // Если сумма превышает максимальную, устанавливаем максимальную
+                        paymentAmount.value = maxAmount.toFixed(2);
+                    } else {
+                        paymentAmount.value = amount;
+                    }
                     // Добавляем визуальную обратную связь
                     paymentAmount.focus();
                     btn.classList.add('pulse');
@@ -10856,6 +12486,13 @@ bedtime
             return;
         }
         
+        // Проверяем максимальную сумму из атрибута max
+        const maxAmount = parseFloat(paymentAmount.max);
+        if (maxAmount && amount > maxAmount) {
+            alert(`Сумма оплаты (${amount.toFixed(2)} ₽) превышает максимально допустимую сумму (${maxAmount.toFixed(2)} ₽)`);
+            return;
+        }
+        
         const selectedAccount = accounts.find(a => a.id === accountId);
         if (!selectedAccount) {
             alert('Счет не найден');
@@ -10884,13 +12521,18 @@ bedtime
         }
         
         // Проверяем, не превышает ли сумма оставшуюся часть цели
+        // Убеждаемся, что goal.current не превышает goal.target
+        if (goal.current > goal.target) {
+            goal.current = goal.target;
+        }
+        
         const remainingAmount = Math.max(0, goal.target - goal.current);
         if (remainingAmount <= 0) {
             alert('Цель уже достигнута или превышена. Дополнительная оплата не требуется.');
             return;
         }
         if (amount > remainingAmount) {
-            alert(`Сумма оплаты (${amount.toFixed(2)} руб.) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} руб.)`);
+            alert(`Сумма оплаты (${amount.toFixed(2)} ₽) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
             return;
         }
         
@@ -10930,7 +12572,7 @@ bedtime
         if (goal.current >= goal.target) {
             alert(`Поздравляем! Цель "${goal.name}" успешно достигнута!`);
         } else {
-            alert(`Успешно оплачено ${amount.toFixed(2)} руб. для цели "${goal.name}". Прогресс: ${((goal.current / goal.target) * 100).toFixed(1)}%`);
+            alert(`Успешно оплачено ${amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${((goal.current / goal.target) * 100).toFixed(1)}%`);
         }
     }
 
@@ -10985,7 +12627,7 @@ bedtime
         const fromAccountId = parseInt(document.getElementById('transferFromAccount').value);
         const toAccountId = parseInt(document.getElementById('transferToAccount').value);
         const amount = parseFloat(document.getElementById('transferAmount').value);
-        const description = document.getElementById('transferDescription').value || 'Перевод между счетами';
+        const description = 'Перевод между счетами';
         
         // Валидация
         if (!fromAccountId || !toAccountId) {
@@ -11131,13 +12773,13 @@ bedtime
             floatingActionWidget.id = 'floatingActionWidget';
             floatingActionWidget.innerHTML = `
                 <div class="fab-menu" id="fabMenu">
-                    <div class="fab-item fab-expense" id="fabExpense" title="Добавить расход">
+                    <div class="fab-item fab-expense" id="fabExpense" title="Добавить расход" onclick="openExpenseModal()">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                             <path d="M19 13H5v-2h14v2z"/>
                         </svg>
                         <span>Расход</span>
                     </div>
-                    <div class="fab-item fab-income" id="fabIncome" title="Добавить доход">
+                    <div class="fab-item fab-income" id="fabIncome" title="Добавить доход" onclick="openIncomeModal()">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                         </svg>
@@ -11167,14 +12809,14 @@ bedtime
 
                 // Добавление расхода
                 fabExpense.addEventListener('click', function() {
-                    openTransactionModal('expense');
+                    openExpenseModal();
                     fabMenu.classList.remove('active');
                     fabMain.classList.remove('active');
                 });
 
                 // Добавление дохода
                 fabIncome.addEventListener('click', function() {
-                    openTransactionModal('income');
+                    openIncomeModal();
                     fabMenu.classList.remove('active');
                     fabMain.classList.remove('active');
                 });
@@ -11201,8 +12843,26 @@ bedtime
                 loadCurrencySettings();
                 console.log('Настройки валют инициализированы при загрузке DOM');
             }, 200);
-        });
-</script>
+                });
+        
+        // Дополнительная проверка кнопки добавления счета
+        setTimeout(() => {
+            const addAccountBtn = document.getElementById('addAccountBtn');
+
+            if (addAccountBtn) {
+                addAccountBtn.addEventListener('click', () => {
+                    openAccountModal();
+                });
+            }
+        }, 1000);
+        
+        // Временная кнопка для очистки localStorage (для тестирования)
+        // Раскомментируйте следующую строку для очистки данных:
+        // localStorage.clear();
+        
+        // Инициализация приложения
+        initApp();
+    </script>
 </body>
 </html>
 
