@@ -1631,6 +1631,29 @@
             transition: all 0.3s ease;
         }
 
+        /* Стили для логотипов банков */
+        .bank-logo {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        /* Логотипы банков из локальной папки - светлая тема */
+        .bank-logo.alfabank { background-image: url('logo bank/Light/alfabank.svg'); }
+        .bank-logo.tbank { background-image: url('logo bank/Light/tbank.svg'); }
+        .bank-logo.gazprombank { background-image: url('logo bank/Light/gazprombank.svg'); }
+        .bank-logo.ozon { background-image: url('logo bank/Light/ozon.svg'); }
+        .bank-logo.raiffeisen { background-image: url('logo bank/Light/raiffeisen.svg'); }
+        .bank-logo.rosbank { background-image: url('logo bank/Light/rosbank.svg'); }
+        .bank-logo.sberbank { background-image: url('logo bank/Light/sberbank.svg'); }
+        .bank-logo.tochka { background-image: url('logo bank/Light/tochka.svg'); }
+        .bank-logo.vtb { background-image: url('logo bank/Light/vtb.svg'); }
+        .bank-logo.other { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23666"><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="bold" fill="white">?</text></svg>'); }
+
         .account-item:hover svg {
             /* Hover эффекты для иконок убраны */
         }
@@ -2324,9 +2347,9 @@
             }
         }
 
-        /* Hover эффект - ускорение анимации */
+        /* Hover эффект убран */
         .balance-card:hover::before {
-            animation: flowingGradient 4s ease-in-out infinite;
+            /* Hover эффекты убраны */
         }
 
         .balance-header {
@@ -2364,12 +2387,11 @@
             border-radius: var(--border-radius);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
+            cursor: default;
         }
 
         .account-balance-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateX(5px);
+            /* Hover эффекты убраны */
         }
 
         .account-balance-info {
@@ -2430,13 +2452,11 @@
             overflow: hidden;
             flex: 1;
             min-height: auto;
-            cursor: pointer;
+            cursor: default;
         }
 
         .monthly-stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
-            border-color: rgba(255, 255, 255, 0.2);
+            /* Hover эффекты убраны */
         }
 
         /* Специальные стили для карточек */
@@ -2469,12 +2489,11 @@
         }
 
         .monthly-stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            /* Hover эффекты убраны */
         }
 
         .monthly-stat-card:hover::before {
-            opacity: 0.6;
+            /* Hover эффекты убраны */
         }
 
         .monthly-stat-card .stat-icon {
@@ -2608,7 +2627,7 @@
         }
 
         .dark-mode .monthly-stat-card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            /* Hover эффекты убраны */
         }
 
         .dark-mode .expense-stat .stat-icon {
@@ -2973,7 +2992,7 @@
         }
 
         .dark-mode .monthly-stat-card:hover {
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            /* Hover эффекты убраны */
         }
 
         .dark-mode .monthly-stat-card .stat-label {
@@ -3010,6 +3029,18 @@
         .dark-mode .add-account-btn:hover {
             box-shadow: 0 4px 12px rgba(67, 97, 238, 0.4);
         }
+
+        /* Логотипы банков для темной темы */
+        .dark-mode .bank-logo.alfabank { background-image: url('logo bank/Light/alfabank.svg'); }
+        .dark-mode .bank-logo.tbank { background-image: url('logo bank/Light/tbank.svg'); }
+        .dark-mode .bank-logo.gazprombank { background-image: url('logo bank/Light/gazprombank.svg'); }
+        .dark-mode .bank-logo.ozon { background-image: url('logo bank/Light/ozon.svg'); }
+        .dark-mode .bank-logo.raiffeisen { background-image: url('logo bank/Light/raiffeisen.svg'); }
+        .dark-mode .bank-logo.rosbank { background-image: url('logo bank/Light/rosbank.svg'); }
+        .dark-mode .bank-logo.sberbank { background-image: url('logo bank/Light/sberbank.svg'); }
+        .dark-mode .bank-logo.tochka { background-image: url('logo bank/Light/tochka.svg'); }
+        .dark-mode .bank-logo.vtb { background-image: url('logo bank/Light/vtb.svg'); }
+        .dark-mode .bank-logo.other { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ccc"><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="bold" fill="black">?</text></svg>'); }
 
 
 
@@ -4391,8 +4422,7 @@
         }
 
         .dark-mode .account-balance-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
+            /* Hover эффекты убраны */
         }
 
         .dark-mode .account-balance-icon {
@@ -6232,6 +6262,22 @@ bedtime
                         <option value="EUR">Евро (EUR)</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-label" for="accountBank">Банк</label>
+                    <select class="form-select" id="accountBank">
+                        <option value="">Выберите банк</option>
+                        <option value="alfabank">Альфа Банк</option>
+                        <option value="tbank">Т Банк</option>
+                        <option value="gazprombank">Газпром Банк</option>
+                        <option value="ozon">Озон</option>
+                        <option value="raiffeisen">Райффайзен Банк</option>
+                        <option value="rosbank">Рос Банк</option>
+                        <option value="sberbank">Сбер</option>
+                        <option value="tochka">Точка Банк</option>
+                        <option value="vtb">ВТБ</option>
+                        <option value="other">Другой</option>
+                    </select>
+                </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                     <button type="button" class="btn btn-danger" id="deleteAccountBtn" style="display: none;">
@@ -6792,6 +6838,8 @@ bedtime
         };
         return names[currency] || currency;
     }
+
+
 
     // Функция для получения выбранных валют
     function getSelectedCurrencies() {
@@ -7432,14 +7480,21 @@ bedtime
             accountItem.className = 'account-item';
             accountItem.dataset.id = account.id;
             
-            let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
-            if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>';
-            if (account.type === 'credit') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
-            if (account.type === 'savings') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
-            if (account.type === 'investment') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>';
+            // Определяем иконку - приоритет у логотипа банка
+            let icon = '';
+            if (account.bank && account.bank !== '') {
+                icon = `<div class="bank-logo ${account.bank}"></div>`;
+            } else {
+                // Стандартные иконки по типу счета
+                icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
+                if (account.type === 'cash') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>';
+                if (account.type === 'credit') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8h16v9c0 .55-.45 1-1 1z"/></svg>';
+                if (account.type === 'savings') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
+                if (account.type === 'investment') icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>';
+            }
             
             accountItem.innerHTML = `
-                <span>${icon}</span>
+                ${icon}
                 <div>
                     <div>${account.name}</div>
                     <div style="font-size: 14px; color: var(--text-secondary);">${account.balance.toFixed(2)} ${account.currency}</div>
@@ -7587,12 +7642,19 @@ bedtime
             const accountBalanceItem = document.createElement('div');
             accountBalanceItem.className = 'account-balance-item';
             
-            // Иконка для счета (первая буква названия)
-            const icon = account.name.charAt(0).toUpperCase();
+            // Определяем иконку - приоритет у логотипа банка
+            let icon = '';
+            if (account.bank && account.bank !== '') {
+                icon = `<div class="bank-logo ${account.bank}"></div>`;
+            } else {
+                // Иконка для счета (первая буква названия)
+                const firstLetter = account.name.charAt(0).toUpperCase();
+                icon = `<div class="account-balance-icon">${firstLetter}</div>`;
+            }
             
             accountBalanceItem.innerHTML = `
                 <div class="account-balance-info">
-                    <div class="account-balance-icon">${icon}</div>
+                    ${icon}
                     <div class="account-balance-name">${account.name}</div>
                 </div>
                 <div class="account-balance-amount">${account.balance.toFixed(2)} руб.</div>
@@ -9700,6 +9762,7 @@ bedtime
                 document.getElementById('accountType').value = account.type;
                 document.getElementById('accountBalance').value = account.balance;
                 document.getElementById('accountCurrency').value = account.currency;
+                document.getElementById('accountBank').value = account.bank || '';
                 
                 // Показываем кнопку удаления для редактирования
                 deleteBtn.style.display = 'inline-flex';
@@ -10252,6 +10315,7 @@ bedtime
         const accountType = document.getElementById('accountType');
         const accountBalance = document.getElementById('accountBalance');
         const accountCurrency = document.getElementById('accountCurrency');
+        const accountBank = document.getElementById('accountBank');
         
         if (!accountId || !accountName || !accountType || !accountBalance || !accountCurrency) return;
         
@@ -10260,7 +10324,8 @@ bedtime
             name: accountName.value,
             type: accountType.value,
             balance: parseFloat(accountBalance.value),
-            currency: accountCurrency.value
+            currency: accountCurrency.value,
+            bank: accountBank ? accountBank.value : ''
         };
         
         // Поиск существующего счета
