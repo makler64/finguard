@@ -1946,20 +1946,46 @@
         }
 
         .accordion-content {
-            max-height: 0;
+            display: none;
+            padding: 20px 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0;
         }
 
         .accordion-content.expanded {
-            max-height: 1000px;
-            padding: 20px 0;
+            display: block;
         }
 
         .accordion-content.collapsed {
-            max-height: 0;
-            padding: 0;
+            display: none;
+        }
+
+        /* Новая система аккордеонов */
+        .new-accordion-content {
+            display: none;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 10px;
+        }
+
+        .new-accordion-content.show {
+            display: block !important;
+        }
+
+        .new-accordion-content.hide {
+            display: none !important;
+        }
+
+        .new-accordion-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .new-accordion-toggle .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .new-accordion-toggle.expanded .arrow {
+            transform: rotate(180deg);
         }
 
         .dashboard {
@@ -2877,13 +2903,15 @@
         }
 
         .filters-content.expanded {
-            max-height: 1000px;
-            padding: 15px 0 0 0;
+            max-height: 1000px !important;
+            padding: 15px 0 0 0 !important;
+            overflow: visible !important;
         }
 
         .filters-content.collapsed {
-            max-height: 0;
-            padding: 0;
+            max-height: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
         }
 
         .filters-content {
@@ -5068,17 +5096,6 @@
             transition: max-height 0.3s ease, padding 0.3s ease;
         }
 
-        #categoriesAccordionContent.expanded {
-            max-height: 2000px !important;
-            padding: 20px 0 !important;
-            overflow: visible !important;
-        }
-
-        #categoriesAccordionContent.collapsed {
-            max-height: 0 !important;
-            padding: 0 !important;
-            overflow: hidden !important;
-        }
 
         .category-settings-item {
             display: flex;
@@ -7653,6 +7670,9 @@ bedtime
             localStorage.setItem('darkMode', 'true'); // Темная тема по умолчанию
             localStorage.setItem('accountsAccordionState', 'expanded'); // Открытая плашка счетов
             localStorage.setItem('mainAccountsAccordionState', 'expanded'); // Открытая плашка "Мои счета"
+            localStorage.setItem('currencyAccordionState', 'collapsed'); // Закрытая плашка валют
+            localStorage.setItem('categoriesAccordionState', 'collapsed'); // Закрытая плашка категорий
+            localStorage.setItem('filtersAccordionState', 'collapsed'); // Закрытая плашка фильтров
             localStorage.setItem('appInitialized', 'true');
             
             // Сохраняем пустые данные
@@ -7690,6 +7710,9 @@ bedtime
             renderGoals();
             showPlaceholdersIfNeeded(); // Показываем заглушки при необходимости
             updateDashboard();
+            
+            // Переинициализируем обработчики событий после рендеринга
+            setupEventListeners();
         }, 100);
         initCharts();
         setupEventListeners();
@@ -7698,57 +7721,8 @@ bedtime
         // Загружаем настройки валют
         loadCurrencySettings();
         
-        // Загружаем состояние аккордеона для управления счетами
-        const savedAccountsAccordionState = localStorage.getItem('accountsAccordionState');
-        const accountsAccordionContent = document.getElementById('accountsAccordionContent');
-        if (accountsAccordionContent && savedAccountsAccordionState === 'expanded') {
-            accountsAccordionContent.classList.add('expanded');
-            accountsAccordionContent.classList.remove('collapsed');
-            const toggle = document.querySelector('[data-accordion="accounts"] .accordion-toggle');
-            if (toggle) {
-                toggle.classList.add('expanded');
-            }
-        } else if (accountsAccordionContent) {
-            accountsAccordionContent.classList.add('collapsed');
-            accountsAccordionContent.classList.remove('expanded');
-        }
+
         
-        // Принудительно раскрываем аккордеон счетов при первом запуске
-        if (isFirstRun && accountsAccordionContent) {
-            // Добавляем небольшую задержку для гарантии готовности DOM
-            setTimeout(() => {
-                accountsAccordionContent.classList.add('expanded');
-                accountsAccordionContent.classList.remove('collapsed');
-                const toggle = document.querySelector('[data-accordion="accounts"] .accordion-toggle');
-                if (toggle) {
-                    toggle.classList.add('expanded');
-                }
-                // Принудительно показываем контент
-                accountsAccordionContent.style.display = 'block';
-                accountsAccordionContent.style.height = 'auto';
-                accountsAccordionContent.style.opacity = '1';
-            }, 100);
-        }
-        
-        // Принудительно раскрываем контейнер "Мои счета" при первом запуске
-        if (isFirstRun) {
-            setTimeout(() => {
-                const mainAccountsAccordionContent = document.getElementById('mainAccountsAccordionContent');
-                if (mainAccountsAccordionContent) {
-                    mainAccountsAccordionContent.classList.add('expanded');
-                    mainAccountsAccordionContent.classList.remove('collapsed');
-                    mainAccountsAccordionContent.style.display = 'block';
-                    mainAccountsAccordionContent.style.height = 'auto';
-                    mainAccountsAccordionContent.style.opacity = '1';
-                    
-                    const mainToggle = document.querySelector('[data-accordion="main-accounts"] .accordion-toggle');
-                    if (mainToggle) {
-                        mainToggle.classList.add('expanded');
-                        mainToggle.querySelector('span').textContent = 'Скрыть';
-                    }
-                }
-            }, 100);
-        }
         
         // Загружаем состояние аккордеона для управления категориями
         const savedCategoriesAccordionState = localStorage.getItem('categoriesAccordionState');
@@ -7784,10 +7758,20 @@ bedtime
         loadCategoriesSettings();
         
         // Инициализируем аккордеон категорий
+        console.log('Initializing categories accordion...');
         initCategoriesAccordion();
         
         // Инициализируем аккордеон счетов
+        console.log('Initializing main accounts accordion...');
         initMainAccountsAccordion();
+        
+        // Инициализируем аккордеон валют
+        console.log('Initializing currency accordion...');
+        initCurrencyAccordion();
+        
+        // Инициализируем аккордеон управления счетами
+        console.log('Initializing accounts accordion...');
+        initAccountsAccordion();
         
         // Инициализируем заглушки при загрузке страницы
         setTimeout(() => {
@@ -7817,45 +7801,7 @@ bedtime
         // Обновляем месячную статистику при инициализации
         updateMonthlyStats();
         
-        // Дополнительная проверка для первого запуска - раскрываем плашку счетов
-        if (isFirstRun) {
-            setTimeout(() => {
-                // Раскрываем основную плашку счетов (accountsAccordionContent)
-                const accountsAccordionContent = document.getElementById('accountsAccordionContent');
-                if (accountsAccordionContent) {
-                    accountsAccordionContent.classList.add('expanded');
-                    accountsAccordionContent.classList.remove('collapsed');
-                    accountsAccordionContent.style.display = 'block';
-                    accountsAccordionContent.style.height = 'auto';
-                    accountsAccordionContent.style.opacity = '1';
-                    
-                    const toggle = document.querySelector('[data-accordion="accounts"] .accordion-toggle');
-                    if (toggle) {
-                        toggle.classList.add('expanded');
-                    }
-                    
-                    console.log('Плашка счетов принудительно раскрыта при первом запуске');
-                }
-                
-                // Раскрываем контейнер "Мои счета" (mainAccountsAccordionContent)
-                const mainAccountsAccordionContent = document.getElementById('mainAccountsAccordionContent');
-                if (mainAccountsAccordionContent) {
-                    mainAccountsAccordionContent.classList.add('expanded');
-                    mainAccountsAccordionContent.classList.remove('collapsed');
-                    mainAccountsAccordionContent.style.display = 'block';
-                    mainAccountsAccordionContent.style.height = 'auto';
-                    mainAccountsAccordionContent.style.opacity = '1';
-                    
-                    const mainToggle = document.querySelector('[data-accordion="main-accounts"] .accordion-toggle');
-                    if (mainToggle) {
-                        mainToggle.classList.add('expanded');
-                        mainToggle.querySelector('span').textContent = 'Скрыть';
-                    }
-                    
-                    console.log('Контейнер "Мои счета" принудительно раскрыт при первом запуске');
-                }
-            }, 200);
-        }
+
     }
 
 
@@ -8237,6 +8183,9 @@ bedtime
         
         // Обновление статистики
         updateStats();
+        
+        // Переинициализируем обработчики событий после рендеринга транзакций
+        setupEventListeners();
     }
 
     // Функция фильтрации транзакций
@@ -8431,7 +8380,9 @@ bedtime
         }
         
         // Обработчик клика по заголовку
-        filtersHeader.addEventListener('click', () => {
+        filtersHeader.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
             const isExpanded = filtersContent.classList.contains('expanded');
             
             if (isExpanded) {
@@ -8452,25 +8403,67 @@ bedtime
         });
     }
 
+    // Функция инициализации аккордеона валют
+    function initCurrencyAccordion() {
+        const currencyHeader = document.querySelector('[data-accordion="currency"]');
+        const currencyContent = document.getElementById('currencyAccordionContent');
+        const currencyToggle = document.querySelector('[data-accordion="currency"] .accordion-toggle');
+        
+        if (!currencyHeader || !currencyContent || !currencyToggle) return;
+        
+        // Загружаем сохраненное состояние аккордеона
+        const savedState = localStorage.getItem('currencyAccordionState');
+        
+        if (savedState === 'expanded') {
+            currencyContent.classList.add('expanded');
+            currencyContent.classList.remove('collapsed');
+            currencyToggle.classList.add('expanded');
+            currencyToggle.querySelector('span').textContent = 'Скрыть';
+        } else {
+            currencyContent.classList.add('collapsed');
+            currencyContent.classList.remove('expanded');
+            currencyToggle.classList.remove('expanded');
+            currencyToggle.querySelector('span').textContent = 'Настроить';
+        }
+        
+        // Обработчик клика по заголовку
+        currencyHeader.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            const isExpanded = currencyContent.classList.contains('expanded');
+            
+            if (isExpanded) {
+                // Сворачиваем
+                currencyContent.classList.remove('expanded');
+                currencyContent.classList.add('collapsed');
+                currencyToggle.classList.remove('expanded');
+                currencyToggle.querySelector('span').textContent = 'Настроить';
+                localStorage.setItem('currencyAccordionState', 'collapsed');
+            } else {
+                // Разворачиваем
+                currencyContent.classList.remove('collapsed');
+                currencyContent.classList.add('expanded');
+                currencyToggle.classList.add('expanded');
+                currencyToggle.querySelector('span').textContent = 'Скрыть';
+                localStorage.setItem('currencyAccordionState', 'expanded');
+            }
+        });
+    }
+
     // Функция инициализации аккордеона категорий
     function initCategoriesAccordion() {
         const categoriesHeader = document.querySelector('[data-accordion="categories"]');
         const categoriesContent = document.getElementById('categoriesAccordionContent');
         const categoriesToggle = document.querySelector('[data-accordion="categories"] .accordion-toggle');
         
-        console.log('initCategoriesAccordion called');
-        console.log('categoriesHeader:', categoriesHeader);
-        console.log('categoriesContent:', categoriesContent);
-        console.log('categoriesToggle:', categoriesToggle);
         
         if (!categoriesHeader || !categoriesContent || !categoriesToggle) {
-            console.log('Some elements not found, returning');
+            console.log('initCategoriesAccordion - Some elements not found!');
             return;
         }
         
         // Загружаем сохраненное состояние аккордеона
         const savedState = localStorage.getItem('categoriesAccordionState');
-        console.log('Saved state:', savedState);
         
         if (savedState === 'expanded') {
             categoriesContent.classList.add('expanded');
@@ -8486,11 +8479,9 @@ bedtime
         
         // Обработчик клика по заголовку
         categoriesHeader.addEventListener('click', (e) => {
-            console.log('Categories header clicked');
-            e.stopPropagation(); // Предотвращаем всплытие события
+            e.stopPropagation();
             
             const isExpanded = categoriesContent.classList.contains('expanded');
-            console.log('Is expanded:', isExpanded);
             
             if (isExpanded) {
                 // Сворачиваем
@@ -8507,9 +8498,60 @@ bedtime
                 categoriesToggle.querySelector('span').textContent = 'Скрыть';
                 localStorage.setItem('categoriesAccordionState', 'expanded');
             }
+            
         });
         
-        console.log('Categories accordion initialized successfully');
+
+    }
+
+
+    // Функция инициализации аккордеона управления счетами
+    function initAccountsAccordion() {
+        const accountsHeader = document.querySelector('[data-accordion="accounts"]');
+        const accountsContent = document.getElementById('accountsAccordionContent');
+        const accountsToggle = document.querySelector('[data-accordion="accounts"] .accordion-toggle');
+        
+        if (!accountsHeader || !accountsContent || !accountsToggle) {
+            return;
+        }
+        
+        // Загружаем сохраненное состояние аккордеона
+        const savedState = localStorage.getItem('accountsAccordionState');
+        
+        if (savedState === 'expanded') {
+            accountsContent.classList.add('expanded');
+            accountsContent.classList.remove('collapsed');
+            accountsToggle.classList.add('expanded');
+            accountsToggle.querySelector('span').textContent = 'Скрыть';
+        } else {
+            accountsContent.classList.add('collapsed');
+            accountsContent.classList.remove('expanded');
+            accountsToggle.classList.remove('expanded');
+            accountsToggle.querySelector('span').textContent = 'Управлять';
+        }
+        
+        // Обработчик клика по заголовку
+        accountsHeader.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            const isExpanded = accountsContent.classList.contains('expanded');
+            
+            if (isExpanded) {
+                // Сворачиваем
+                accountsContent.classList.remove('expanded');
+                accountsContent.classList.add('collapsed');
+                accountsToggle.classList.remove('expanded');
+                accountsToggle.querySelector('span').textContent = 'Управлять';
+                localStorage.setItem('accountsAccordionState', 'collapsed');
+            } else {
+                // Разворачиваем
+                accountsContent.classList.remove('collapsed');
+                accountsContent.classList.add('expanded');
+                accountsToggle.classList.add('expanded');
+                accountsToggle.querySelector('span').textContent = 'Скрыть';
+                localStorage.setItem('accountsAccordionState', 'expanded');
+            }
+        });
     }
 
     // Функция инициализации аккордеона счетов
@@ -8517,8 +8559,6 @@ bedtime
         const accountsHeader = document.querySelector('[data-accordion="main-accounts"]');
         const accountsContent = document.getElementById('mainAccountsAccordionContent');
         const accountsToggle = document.querySelector('[data-accordion="main-accounts"] .accordion-toggle');
-        
-
         
         if (!accountsHeader || !accountsContent || !accountsToggle) {
             return;
@@ -8533,16 +8573,6 @@ bedtime
             accountsToggle.classList.add('expanded');
             accountsToggle.querySelector('span').textContent = 'Скрыть';
             
-            // Запускаем анимацию элементов счетов, если аккордеон развернут
-            setTimeout(() => {
-                const accountSelector = document.getElementById('accountSelector');
-                if (accountSelector) {
-                    const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
-                    accountItems.forEach((item) => {
-                        item.classList.add('animate');
-                    });
-                }
-            }, 100);
         } else {
             accountsContent.classList.add('collapsed');
             accountsContent.classList.remove('expanded');
@@ -8552,11 +8582,9 @@ bedtime
         
         // Обработчик клика по заголовку
         accountsHeader.addEventListener('click', (e) => {
-            console.log('Accounts header clicked');
-            e.stopPropagation(); // Предотвращаем всплытие события
+            e.stopPropagation();
             
             const isExpanded = accountsContent.classList.contains('expanded');
-            console.log('Is expanded:', isExpanded);
             
             if (isExpanded) {
                 // Сворачиваем
@@ -8573,16 +8601,6 @@ bedtime
                 accountsToggle.querySelector('span').textContent = 'Скрыть';
                 localStorage.setItem('mainAccountsAccordionState', 'expanded');
                 
-                // Запускаем анимацию элементов счетов при разворачивании
-                setTimeout(() => {
-                    const accountSelector = document.getElementById('accountSelector');
-                    if (accountSelector) {
-                        const accountItems = accountSelector.querySelectorAll('.account-item, .add-account-btn');
-                        accountItems.forEach((item) => {
-                            item.classList.add('animate');
-                        });
-                    }
-                }, 100);
             }
         });
         
@@ -8633,6 +8651,16 @@ bedtime
                 </svg>
             </button>
         `;
+        
+        // Добавляем обработчик кликов прямо к кнопке редактирования
+        const editButton = li.querySelector('.transaction-edit-icon');
+        if (editButton) {
+            editButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const transactionId = parseInt(this.dataset.id);
+                editTransaction(transactionId);
+            });
+        }
         
         return li;
     }
@@ -9506,13 +9534,14 @@ bedtime
 
 
 
-        // Функциональность аккордеона для настроек (исключая категории и основные счета)
+        // Функциональность аккордеона для настроек (исключая категории, основные счета и фильтры)
+        // Функциональность аккордеона для настроек (исключая категории, основные счета и фильтры)
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', function() {
                 const accordionId = this.dataset.accordion;
                 
-                // Пропускаем аккордеон категорий и основных счетов, так как у них своя логика
-                if (accordionId === 'categories' || accordionId === 'main-accounts') return;
+                // Пропускаем аккордеоны, у которых есть отдельная логика
+                if (accordionId === 'categories' || accordionId === 'main-accounts' || accordionId === 'filters' || accordionId === 'accounts') return;
                 
                 const content = document.getElementById(accordionId + 'AccordionContent');
                 const toggle = this.querySelector('.accordion-toggle');
@@ -9520,16 +9549,16 @@ bedtime
                 if (content && toggle) {
                     const isExpanded = content.classList.contains('expanded');
                     
-                    // Закрываем все аккордеоны (кроме категорий и основных счетов)
+                    // Закрываем все аккордеоны (кроме категорий, основных счетов, фильтров и управления счетами)
                     document.querySelectorAll('.accordion-content').forEach(accContent => {
-                        if (accContent.id !== 'categoriesAccordionContent' && accContent.id !== 'mainAccountsAccordionContent') {
+                        if (accContent.id !== 'categoriesAccordionContent' && accContent.id !== 'mainAccountsAccordionContent' && accContent.id !== 'filtersAccordionContent' && accContent.id !== 'accountsAccordionContent') {
                             accContent.classList.remove('expanded');
                             accContent.classList.add('collapsed');
                         }
                     });
                     
                     document.querySelectorAll('.accordion-toggle').forEach(accToggle => {
-                        if (!accToggle.closest('[data-accordion="categories"]') && !accToggle.closest('[data-accordion="main-accounts"]')) {
+                        if (!accToggle.closest('[data-accordion="categories"]') && !accToggle.closest('[data-accordion="main-accounts"]') && !accToggle.closest('[data-accordion="filters"]') && !accToggle.closest('[data-accordion="accounts"]')) {
                             accToggle.classList.remove('expanded');
                         }
                     });
@@ -9726,19 +9755,51 @@ bedtime
         const incomeForm = document.getElementById('incomeForm');
         const expenseForm = document.getElementById('expenseForm');
         
-        if (transactionForm) transactionForm.addEventListener('submit', handleTransactionSubmit);
-        if (goalForm) goalForm.addEventListener('submit', handleGoalSubmit);
-        if (accountForm) accountForm.addEventListener('submit', handleAccountSubmit);
-        if (incomeForm) incomeForm.addEventListener('submit', (e) => { e.preventDefault(); handleIncomeSubmit(); });
-        if (expenseForm) expenseForm.addEventListener('submit', (e) => { e.preventDefault(); handleExpenseSubmit(); });
+        // Удаляем старые обработчики перед добавлением новых
+        if (transactionForm) {
+            transactionForm.removeEventListener('submit', handleTransactionSubmit);
+            transactionForm.addEventListener('submit', handleTransactionSubmit);
+        }
+        if (goalForm) {
+            goalForm.removeEventListener('submit', handleGoalSubmit);
+            goalForm.addEventListener('submit', handleGoalSubmit);
+        }
+        if (accountForm) {
+            accountForm.removeEventListener('submit', handleAccountSubmit);
+            accountForm.addEventListener('submit', handleAccountSubmit);
+        }
+        if (incomeForm) {
+            // Удаляем старый обработчик, если он существует
+            if (incomeSubmitHandler) {
+                incomeForm.removeEventListener('submit', incomeSubmitHandler);
+            }
+            // Создаем новый обработчик и сохраняем ссылку
+            incomeSubmitHandler = (e) => { e.preventDefault(); handleIncomeSubmit(); };
+            incomeForm.addEventListener('submit', incomeSubmitHandler);
+        }
+        if (expenseForm) {
+            // Удаляем старый обработчик, если он существует
+            if (expenseSubmitHandler) {
+                expenseForm.removeEventListener('submit', expenseSubmitHandler);
+            }
+            // Создаем новый обработчик и сохраняем ссылку
+            expenseSubmitHandler = (e) => { e.preventDefault(); handleExpenseSubmit(); };
+            expenseForm.addEventListener('submit', expenseSubmitHandler);
+        }
 
         // Форма категорий
         const categoryForm = document.getElementById('categoryForm');
-        if (categoryForm) categoryForm.addEventListener('submit', handleCategorySubmit);
+        if (categoryForm) {
+            categoryForm.removeEventListener('submit', handleCategorySubmit);
+            categoryForm.addEventListener('submit', handleCategorySubmit);
+        }
 
         // Форма перевода
         const transferForm = document.getElementById('transferForm');
-        if (transferForm) transferForm.addEventListener('submit', handleTransferSubmit);
+        if (transferForm) {
+            transferForm.removeEventListener('submit', handleTransferSubmit);
+            transferForm.addEventListener('submit', handleTransferSubmit);
+        }
 
         // Кнопка удаления категории в модальном окне
         const deleteCategoryBtn = document.getElementById('deleteCategoryBtn');
@@ -10303,7 +10364,9 @@ bedtime
         const currentActiveStep = document.querySelector('#incomeModal .form-step.active');
         const targetStep = document.getElementById(`incomeStep${stepNumber}`);
         
-        if (!targetStep) return;
+        if (!targetStep) {
+            return;
+        }
 
         // Анимация перехода
         if (currentActiveStep) {
@@ -10544,6 +10607,13 @@ bedtime
 
     // Флаг для предотвращения повторного вызова доходов
     let isIncomeSubmitting = false;
+    
+    // Массив для отслеживания последних добавленных доходов
+    let lastIncomeIds = [];
+    
+    // Глобальные ссылки на обработчики для правильного удаления
+    let incomeSubmitHandler = null;
+    let expenseSubmitHandler = null;
 
     // Обработка отправки формы дохода
     function handleIncomeSubmit() {
@@ -10554,6 +10624,15 @@ bedtime
             return;
         }
         isIncomeSubmitting = true;
+        
+        // Дополнительная защита - проверяем, не была ли функция вызвана недавно
+        const now = Date.now();
+        if (handleIncomeSubmit.lastCall && (now - handleIncomeSubmit.lastCall) < 1000) {
+            console.log('handleIncomeSubmit вызвана слишком быстро, пропускаем');
+            isIncomeSubmitting = false;
+            return;
+        }
+        handleIncomeSubmit.lastCall = now;
         
         // Проверяем валидацию всех шагов перед обработкой
         if (!validateIncomeStep(1) || !validateIncomeStep(2) || !validateIncomeStep(3)) {
@@ -10583,6 +10662,15 @@ bedtime
             // Редактирование существующей транзакции
             const index = transactions.findIndex(t => t.id === parseInt(formData.id));
             if (index !== -1) {
+                const oldTransaction = transactions[index];
+                
+                // Возвращаем старую сумму к балансу счета
+                const oldAccount = accounts.find(a => a.id === oldTransaction.accountId);
+                if (oldAccount) {
+                    oldAccount.balance -= oldTransaction.amount;
+                }
+                
+                // Обновляем транзакцию
                 transactions[index] = { ...transactions[index], ...formData };
             }
         } else {
@@ -10594,11 +10682,19 @@ bedtime
             
             // Проверяем, нет ли уже транзакции с таким ID
             const existingTransaction = transactions.find(t => t.id === newTransaction.id);
-            if (!existingTransaction) {
+            if (!existingTransaction && !lastIncomeIds.includes(newTransaction.id)) {
                 console.log(`Добавляем доход: ID=${newTransaction.id}, тип=${newTransaction.type}, сумма=${newTransaction.amount}`);
                 transactions.push(newTransaction);
+                
+                // Добавляем ID в массив отслеживания
+                lastIncomeIds.push(newTransaction.id);
+                
+                // Ограничиваем массив последними 10 доходами
+                if (lastIncomeIds.length > 10) {
+                    lastIncomeIds = lastIncomeIds.slice(-10);
+                }
             } else {
-                console.log(`Доход с ID=${newTransaction.id} уже существует, пропускаем`);
+                console.log(`Доход с ID=${newTransaction.id} уже существует или дублируется, пропускаем`);
             }
         }
 
@@ -10627,6 +10723,9 @@ bedtime
 
     // Флаг для предотвращения повторного вызова
     let isExpenseSubmitting = false;
+    
+    // Массив для отслеживания последних добавленных расходов
+    let lastExpenseIds = [];
 
     // Обработка отправки формы расхода
     function handleExpenseSubmit() {
@@ -10637,6 +10736,15 @@ bedtime
             return;
         }
         isExpenseSubmitting = true;
+        
+        // Дополнительная защита - проверяем, не была ли функция вызвана недавно
+        const now = Date.now();
+        if (handleExpenseSubmit.lastCall && (now - handleExpenseSubmit.lastCall) < 1000) {
+            console.log('handleExpenseSubmit вызвана слишком быстро, пропускаем');
+            isExpenseSubmitting = false;
+            return;
+        }
+        handleExpenseSubmit.lastCall = now;
         
         // Проверяем валидацию всех шагов перед обработкой
         if (!validateExpenseStep(1) || !validateExpenseStep(2) || !validateExpenseStep(3)) {
@@ -10699,6 +10807,15 @@ bedtime
             // Редактирование существующей транзакции
             const index = transactions.findIndex(t => t.id === parseInt(formData.id));
             if (index !== -1) {
+                const oldTransaction = transactions[index];
+                
+                // Возвращаем старую сумму к балансу счета
+                const oldAccount = accounts.find(a => a.id === oldTransaction.accountId);
+                if (oldAccount) {
+                    oldAccount.balance += oldTransaction.amount; // Возвращаем расход
+                }
+                
+                // Обновляем транзакцию
                 transactions[index] = { ...transactions[index], ...formData };
             }
         } else {
@@ -10710,11 +10827,19 @@ bedtime
             
             // Проверяем, нет ли уже транзакции с таким ID
             const existingTransaction = transactions.find(t => t.id === newTransaction.id);
-            if (!existingTransaction) {
+            if (!existingTransaction && !lastExpenseIds.includes(newTransaction.id)) {
                 console.log(`Добавляем расход: ID=${newTransaction.id}, тип=${newTransaction.type}, сумма=${newTransaction.amount}`);
                 transactions.push(newTransaction);
+                
+                // Добавляем ID в массив отслеживания
+                lastExpenseIds.push(newTransaction.id);
+                
+                // Ограничиваем массив последними 10 расходами
+                if (lastExpenseIds.length > 10) {
+                    lastExpenseIds = lastExpenseIds.slice(-10);
+                }
             } else {
-                console.log(`Расход с ID=${newTransaction.id} уже существует, пропускаем`);
+                console.log(`Расход с ID=${newTransaction.id} уже существует или дублируется, пропускаем`);
             }
         }
 
@@ -11545,6 +11670,9 @@ bedtime
 
     // Флаг для предотвращения повторного вызова транзакций
     let isTransactionSubmitting = false;
+    
+    // Массив для отслеживания последних добавленных транзакций
+    let lastTransactionIds = [];
 
     // Обработка отправки формы транзакции
     function handleTransactionSubmit(e) {
@@ -11586,6 +11714,13 @@ bedtime
             accountId: parseInt(transactionAccount.value),
             goalId: transactionGoal ? transactionGoal.value : null
         };
+        
+        // Проверяем, не добавляли ли мы уже эту транзакцию недавно
+        if (lastTransactionIds.includes(formData.id)) {
+            console.log('Дублирование транзакции предотвращено:', formData.id);
+            isTransactionSubmitting = false;
+            return;
+        }
         
         // Поиск существующей транзакции
         const existingIndex = transactions.findIndex(t => t.id === formData.id);
@@ -11826,6 +11961,14 @@ bedtime
             setTimeout(() => button.classList.remove('pulse'), 600);
         }
         
+        // Добавляем ID транзакции в массив отслеживания
+        lastTransactionIds.push(formData.id);
+        
+        // Ограничиваем массив последними 10 транзакциями
+        if (lastTransactionIds.length > 10) {
+            lastTransactionIds = lastTransactionIds.slice(-10);
+        }
+        
         // Сбрасываем флаг после завершения обработки
         isTransactionSubmitting = false;
     }
@@ -12033,6 +12176,109 @@ bedtime
     }
 
 
+
+    // Редактирование транзакции
+    function editTransaction(id) {
+        let transaction = transactions.find(t => t.id === id);
+        if (!transaction) {
+            // Попробуем найти по строковому ID
+            transaction = transactions.find(t => t.id === id.toString());
+        }
+        if (!transaction) {
+            // Попробуем найти по числовому ID
+            transaction = transactions.find(t => parseInt(t.id) === id);
+        }
+        if (!transaction) {
+            console.log('Transaction not found with id:', id);
+            return;
+        }
+        
+        // Определяем, какая форма нужна (доход или расход)
+        if (transaction.type === 'income') {
+            // Заполняем категории доходов
+            populateIncomeCategories();
+            populateIncomeAccounts();
+            
+            // Заполняем форму дохода с небольшой задержкой
+            setTimeout(() => {
+                const incomeId = document.getElementById('incomeId');
+                const incomeAmount = document.getElementById('incomeAmount');
+                const incomeCategory = document.getElementById('incomeCategory');
+                const incomeDate = document.getElementById('incomeDate');
+                const incomeDescription = document.getElementById('incomeDescription');
+                const incomeAccount = document.getElementById('incomeAccount');
+                
+                if (incomeId) incomeId.value = transaction.id;
+                if (incomeAmount) incomeAmount.value = transaction.amount;
+                if (incomeCategory) incomeCategory.value = transaction.category;
+                if (incomeDate) incomeDate.value = transaction.date;
+                if (incomeDescription) incomeDescription.value = transaction.description;
+                if (incomeAccount) incomeAccount.value = transaction.accountId;
+            }, 50);
+            
+            // Открываем модальное окно дохода
+            const incomeModal = document.getElementById('incomeModal');
+            if (incomeModal) {
+                incomeModal.style.display = 'flex';
+                incomeModal.style.zIndex = '9999';
+                incomeModal.style.visibility = 'visible';
+                incomeModal.style.opacity = '1';
+                incomeModal.classList.add('show');
+                // Сбрасываем к первому шагу с небольшой задержкой
+                setTimeout(() => {
+                    showIncomeStep(1);
+                    
+                    // Проверяем, что модальное окно действительно видно
+                    const modalContent = incomeModal.querySelector('.modal-content');
+                    if (modalContent) {
+                        modalContent.style.visibility = 'visible';
+                        modalContent.style.opacity = '1';
+                        modalContent.classList.add('show');
+                    }
+                }, 100);
+            }
+        } else {
+            // Заполняем категории расходов
+            populateExpenseCategories();
+            populateExpenseAccounts();
+            populateExpenseGoals();
+            
+            // Заполняем форму расхода с небольшой задержкой
+            setTimeout(() => {
+                const expenseId = document.getElementById('expenseId');
+                const expenseAmount = document.getElementById('expenseAmount');
+                const expenseCategory = document.getElementById('expenseCategory');
+                const expenseDate = document.getElementById('expenseDate');
+                const expenseDescription = document.getElementById('expenseDescription');
+                const expenseAccount = document.getElementById('expenseAccount');
+                const expenseGoal = document.getElementById('expenseGoal');
+                
+                if (expenseId) expenseId.value = transaction.id;
+                if (expenseAmount) expenseAmount.value = transaction.amount;
+                if (expenseCategory) expenseCategory.value = transaction.category;
+                if (expenseDate) expenseDate.value = transaction.date;
+                if (expenseDescription) expenseDescription.value = transaction.description;
+                if (expenseAccount) expenseAccount.value = transaction.accountId;
+                if (transaction.goalId && expenseGoal) {
+                    expenseGoal.value = transaction.goalId;
+                }
+            }, 50);
+            
+            // Открываем модальное окно расхода
+            const expenseModal = document.getElementById('expenseModal');
+            if (expenseModal) {
+                expenseModal.style.display = 'flex';
+                expenseModal.style.zIndex = '9999';
+                expenseModal.style.visibility = 'visible';
+                expenseModal.style.opacity = '1';
+                expenseModal.classList.add('show');
+                // Сбрасываем к первому шагу с небольшой задержкой
+                setTimeout(() => {
+                    showExpenseStep(1);
+                }, 100);
+            }
+        }
+    }
 
     // Удаление транзакции
     function deleteTransaction(id) {
@@ -12865,6 +13111,7 @@ bedtime
     </script>
 </body>
 </html>
+
 
 
 
