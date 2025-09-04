@@ -853,7 +853,7 @@
         // Обновляем время последнего обновления при инициализации
         setTimeout(() => {
             updateLastUpdateTime();
-        }, 500);
+        }, 300);
         
 
         
@@ -865,7 +865,7 @@
         // Инициализируем новую систему аккордеонов
         setTimeout(() => {
             initAccordions();
-        }, 500);
+        }, 300);
         
         // Инициализируем заглушки при загрузке страницы
         setTimeout(() => {
@@ -1861,7 +1861,7 @@
     }
 
     // Функция для очистки всех завершенных целей
-    function clearCompletedGoals() {
+    async function clearCompletedGoals() {
         if (confirm('Вы уверены, что хотите удалить все завершенные цели? Это действие нельзя отменить.')) {
             // Фильтруем цели, оставляя только активные
             goals = goals.filter(goal => {
@@ -2550,6 +2550,224 @@
     let eventListenersSetup = false;
     let currencySettingsLoaded = false;
     let categoriesSettingsLoaded = false;
+    
+    // Простая глобальная функция для тестирования
+    window.testConnection = function() {
+        console.log('JavaScript подключен и работает!');
+        return 'JavaScript работает';
+    };
+    
+    // Добавляем функции уведомлений в глобальную область сразу
+    window.testNotifications = function() {
+        console.log('Тестируем уведомления...');
+        showSuccess('Тест успеха', 'Это тестовое уведомление об успехе');
+        setTimeout(() => showError('Тест ошибки', 'Это тестовое уведомление об ошибке'), 1000);
+        setTimeout(() => showWarning('Тест предупреждения', 'Это тестовое уведомление-предупреждение'), 2000);
+        setTimeout(() => showInfo('Тест информации', 'Это тестовое информационное уведомление'), 3000);
+        return 'Тест уведомлений запущен! Проверьте правый верхний угол экрана.';
+    };
+    
+    window.testModal = function() {
+        console.log('Тестируем модальное окно...');
+        const modal = document.getElementById('confirmationModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            modal.style.zIndex = '10000';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            console.log('Модальное окно показано напрямую');
+            return 'Модальное окно показано';
+        } else {
+            console.error('Модальное окно не найдено!');
+            return 'Модальное окно не найдено';
+        }
+    };
+
+    // Система уведомлений
+    function showNotification(type, title, message, duration = 5000) {
+        const container = document.getElementById('notifications-container');
+        if (!container) {
+            console.error('Контейнер уведомлений не найден!');
+            return;
+        }
+        console.log('Создаем уведомление:', { type, title, message });
+
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        
+        // Принудительно применяем стили для отладки
+        notification.style.cssText = `
+            position: relative;
+            background: var(--card-bg, #ffffff);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 16px 20px;
+            min-width: 320px;
+            max-width: 400px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            margin-bottom: 12px;
+        `;
+        
+        const icons = {
+            success: '✓',
+            error: '✕',
+            warning: '⚠',
+            info: 'ℹ'
+        };
+
+        notification.innerHTML = `
+            <div class="notification-icon">${icons[type] || icons.info}</div>
+            <div class="notification-content">
+                <div class="notification-title">${title}</div>
+                <div class="notification-message">${message}</div>
+            </div>
+            <button class="notification-close" onclick="hideNotification(this)">×</button>
+        `;
+
+        container.appendChild(notification);
+
+        // Анимация появления
+        setTimeout(() => {
+            notification.classList.add('show');
+            // Принудительно применяем стили для показа
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+            console.log('Добавляем класс show к уведомлению и принудительно показываем');
+        }, 10);
+
+        // Автоматическое скрытие
+        if (duration > 0) {
+            setTimeout(() => {
+                hideNotificationAuto(notification);
+            }, duration);
+        }
+
+        return notification;
+    }
+
+    function hideNotification(closeBtn) {
+        const notification = closeBtn.closest('.notification');
+        if (!notification) return;
+
+        // Убираем класс show и добавляем hide для анимации исчезновения
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+        
+        // Принудительно применяем стили для исчезновения
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }
+
+    function hideNotificationAuto(notification) {
+        if (!notification) return;
+
+        // Убираем класс show и добавляем hide для анимации исчезновения
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+        
+        // Принудительно применяем стили для исчезновения
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }
+
+    // Функции-обертки для удобства
+    function showSuccess(title, message, duration = 5000) {
+        return showNotification('success', title, message, duration);
+    }
+
+    function showError(title, message, duration = 7000) {
+        return showNotification('error', title, message, duration);
+    }
+
+    function showWarning(title, message, duration = 6000) {
+        return showNotification('warning', title, message, duration);
+    }
+
+    function showInfo(title, message, duration = 5000) {
+        return showNotification('info', title, message, duration);
+    }
+
+    // Тестовая функция для проверки уведомлений
+    function testNotifications() {
+        console.log('Тестируем уведомления...');
+        showSuccess('Тест успеха', 'Это тестовое уведомление об успехе');
+        setTimeout(() => showError('Тест ошибки', 'Это тестовое уведомление об ошибке'), 1000);
+        setTimeout(() => showWarning('Тест предупреждения', 'Это тестовое уведомление-предупреждение'), 2000);
+        setTimeout(() => showInfo('Тест информации', 'Это тестовое информационное уведомление'), 3000);
+        return 'Тест уведомлений запущен! Проверьте правый верхний угол экрана.';
+    }
+
+    // Делаем функции доступными глобально
+    window.testNotifications = testNotifications;
+    window.showSuccess = showSuccess;
+    window.showError = showError;
+    window.showWarning = showWarning;
+    window.showInfo = showInfo;
+    // window.showConfirmation удален - используем стандартные confirm()
+    
+    console.log('Функции добавлены в глобальную область');
+    
+    // Тестовая функция для подтверждения удалена - используем стандартные confirm()
+    
+    // Простая тестовая функция для проверки модального окна
+    window.testModal = function() {
+        console.log('Тестируем модальное окно...');
+        const modal = document.getElementById('confirmationModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            modal.style.zIndex = '10000';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            console.log('Модальное окно показано напрямую');
+            return 'Модальное окно показано';
+        } else {
+            console.error('Модальное окно не найдено!');
+            return 'Модальное окно не найдено';
+        }
+    };
+
+    // Система подтверждений - используем обычные alert()
+    // Функция showConfirmation удалена, используем стандартные confirm()
+
+    // Обработчик удаления счета
+    async function deleteAccountHandler() {
+        const accountId = document.getElementById('accountId').value;
+        if (accountId) {
+            // Вызываем функцию удаления
+            await deleteAccount(parseInt(accountId));
+        }
+    }
 
     // Настройка обработчиков событий
     function setupEventListeners() {
@@ -2821,21 +3039,9 @@
         // Кнопка удаления счета в модальном окне
         const deleteAccountBtn = document.getElementById('deleteAccountBtn');
         if (deleteAccountBtn) {
-            deleteAccountBtn.addEventListener('click', function() {
-                const accountId = document.getElementById('accountId').value;
-                if (accountId) {
-                    // Вызываем функцию удаления
-                    deleteAccount(parseInt(accountId));
-                    
-                    // Принудительно обновляем интерфейс
-                    setTimeout(() => {
-                        renderAccounts();
-                        renderTransactions();
-                        updateDashboard();
-                        closeAllModals();
-                    }, 100);
-                }
-            });
+            // Удаляем старый обработчик перед добавлением нового
+            deleteAccountBtn.removeEventListener('click', deleteAccountHandler);
+            deleteAccountBtn.addEventListener('click', deleteAccountHandler);
         }
 
         // Кнопка удаления цели в модальном окне
@@ -3586,21 +3792,21 @@
             case 1:
                 const amount = document.getElementById('incomeAmount').value;
                 if (!amount || parseFloat(amount) <= 0) {
-                    alert('Пожалуйста, введите корректную сумму');
+                    showError('Ошибка', 'Пожалуйста, введите корректную сумму');
                     return false;
                 }
                 return true;
             case 2:
                 const category = document.getElementById('incomeCategory').value;
                 if (!category) {
-                    alert('Пожалуйста, выберите категорию');
+                    showError('Ошибка', 'Пожалуйста, выберите категорию');
                     return false;
                 }
                 return true;
             case 3:
                 const account = document.getElementById('incomeAccount').value;
                 if (!account) {
-                    alert('Пожалуйста, выберите счет');
+                    showError('Ошибка', 'Пожалуйста, выберите счет');
                     return false;
                 }
                 return true;
@@ -3615,7 +3821,7 @@
             case 1:
                 const category = document.getElementById('expenseCategory').value;
                 if (!category) {
-                    alert('Пожалуйста, выберите категорию');
+                    showError('Ошибка', 'Пожалуйста, выберите категорию');
                     return false;
                 }
                 
@@ -3623,7 +3829,7 @@
                 if (category === 'goals') {
                     const goal = document.getElementById('expenseGoal').value;
                     if (!goal) {
-                        alert('Пожалуйста, выберите цель');
+                        showError('Ошибка', 'Пожалуйста, выберите цель');
                         return false;
                     }
                 }
@@ -3631,14 +3837,14 @@
             case 2:
                 const account = document.getElementById('expenseAccount').value;
                 if (!account) {
-                    alert('Пожалуйста, выберите счет');
+                    showError('Ошибка', 'Пожалуйста, выберите счет');
                     return false;
                 }
                 return true;
             case 3:
                 const amount = document.getElementById('expenseAmount').value;
                 if (!amount || parseFloat(amount) <= 0) {
-                    alert('Пожалуйста, введите корректную сумму');
+                    showError('Ошибка', 'Пожалуйста, введите корректную сумму');
                     return false;
                 }
                 
@@ -3647,7 +3853,7 @@
                 if (accountId) {
                     const account = accounts.find(a => a.id === parseInt(accountId));
                     if (account && account.balance < parseFloat(amount)) {
-                        alert(`Недостаточно средств на счете "${account.name}". Доступно: ${account.balance.toFixed(2)} ₽`);
+                        showWarning('Недостаточно средств', `На счете "${account.name}" недостаточно средств. Доступно: ${account.balance.toFixed(2)} ₽`);
                         return false;
                     }
                 }
@@ -3701,19 +3907,19 @@
 
         // Валидация - проверяем только один раз
         if (!formData.amount || formData.amount <= 0) {
-            alert('Пожалуйста, введите корректную сумму');
+            showError('Ошибка', 'Пожалуйста, введите корректную сумму');
             isIncomeSubmitting = false;
             return;
         }
         
         if (!formData.category) {
-            alert('Пожалуйста, выберите категорию');
+            showError('Ошибка', 'Пожалуйста, выберите категорию');
             isIncomeSubmitting = false;
             return;
         }
         
         if (!formData.accountId) {
-            alert('Пожалуйста, выберите счет');
+            showError('Ошибка', 'Пожалуйста, выберите счет');
             isIncomeSubmitting = false;
             return;
         }
@@ -3825,26 +4031,26 @@
 
         // Валидация - проверяем только один раз
         if (!formData.category) {
-            alert('Пожалуйста, выберите категорию');
+            showError('Ошибка', 'Пожалуйста, выберите категорию');
             isExpenseSubmitting = false;
             return;
         }
         
         if (!formData.accountId) {
-            alert('Пожалуйста, выберите счет');
+            showError('Ошибка', 'Пожалуйста, выберите счет');
             isExpenseSubmitting = false;
             return;
         }
         
         if (!formData.amount || formData.amount <= 0) {
-            alert('Пожалуйста, введите корректную сумму');
+            showError('Ошибка', 'Пожалуйста, введите корректную сумму');
             isExpenseSubmitting = false;
             return;
         }
         
         // Если выбрана категория "Цели", проверяем, что выбрана цель
         if (formData.category === 'goals' && !formData.goalId) {
-            alert('Пожалуйста, выберите цель');
+            showError('Ошибка', 'Пожалуйста, выберите цель');
             isExpenseSubmitting = false;
             return;
         }
@@ -3852,7 +4058,7 @@
         // Проверка баланса счета
         const account = accounts.find(a => a.id === formData.accountId);
         if (account && account.balance < formData.amount) {
-            alert(`Недостаточно средств на счете "${account.name}". Доступно: ${account.balance.toFixed(2)} ₽`);
+            showWarning('Недостаточно средств', `На счете "${account.name}" недостаточно средств. Доступно: ${account.balance.toFixed(2)} ₽`);
             isExpenseSubmitting = false;
             return;
         }
@@ -3869,7 +4075,7 @@
                 const remainingAmount = Math.max(0, goal.target - goal.current);
                 
                 if (formData.amount > remainingAmount) {
-                    alert(`Сумма оплаты (${formData.amount.toFixed(2)} ₽) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
+                    showWarning('Превышение суммы', `Сумма оплаты (${formData.amount.toFixed(2)} ₽) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
                     isExpenseSubmitting = false;
                     return;
                 }
@@ -3968,10 +4174,10 @@
             const goal = goals.find(g => g.id === parseInt(formData.goalId));
             if (goal) {
                 if (goal.current >= goal.target) {
-                    alert(`🎉 Поздравляем! Цель "${goal.name}" успешно достигнута!`);
+                    showSuccess('🎉 Цель достигнута!', `Поздравляем! Цель "${goal.name}" успешно достигнута!`);
                 } else {
                     const progress = ((goal.current / goal.target) * 100).toFixed(1);
-                    alert(`✅ Успешно оплачено ${formData.amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${progress}%`);
+                    showSuccess('✅ Оплата прошла', `Успешно оплачено ${formData.amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${progress}%`);
                 }
             }
         } else {
@@ -4488,7 +4694,7 @@
 
         if (currentStep === 1) {
             if (!accountType.value) {
-                alert('Пожалуйста, выберите тип счета');
+                showError('Ошибка', 'Пожалуйста, выберите тип счета');
                 return;
             }
             
@@ -4503,7 +4709,7 @@
         } else if (currentStep === 2) {
             const accountBank = document.getElementById('accountBank');
             if (!accountBank.value) {
-                alert('Пожалуйста, выберите банк');
+                showError('Ошибка', 'Пожалуйста, выберите банк');
                 return;
             }
             showStep(3, 'forward');
@@ -4942,7 +5148,7 @@
                 } else {
                     // Проверяем баланс для расходов
                     if (newAccount.balance < formData.amount) {
-                        alert(`Недостаточно средств на счете "${newAccount.name}". Доступно: ${newAccount.balance.toFixed(2)} ${newAccount.currency}, необходимо: ${formData.amount.toFixed(2)} ${newAccount.currency}`);
+                        showWarning('Недостаточно средств', `На счете "${newAccount.name}" недостаточно средств. Доступно: ${newAccount.balance.toFixed(2)} ${newAccount.currency}, необходимо: ${formData.amount.toFixed(2)} ${newAccount.currency}`);
                         isTransactionSubmitting = false;
                         return;
                     }
@@ -4956,7 +5162,7 @@
             if (formData.type === 'expense') {
                 const account = accounts.find(a => a.id === formData.accountId);
                 if (!account) {
-                    alert('Счет не найден!');
+                    showError('Ошибка', 'Счет не найден!');
                     isTransactionSubmitting = false;
                     return;
                 }
@@ -4978,7 +5184,7 @@
                         
                         const remainingAmount = Math.max(0, goal.target - goal.current);
                         if (formData.amount > remainingAmount) {
-                            alert(`Сумма расхода (${formData.amount.toFixed(2)} ₽) превышает оставшуюся часть цели "${goal.name}" (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
+                            showWarning('Превышение суммы', `Сумма расхода (${formData.amount.toFixed(2)} ₽) превышает оставшуюся часть цели "${goal.name}" (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
                             isTransactionSubmitting = false;
                             return;
                         }
@@ -5037,10 +5243,10 @@
             const goal = goals.find(g => g.id === parseInt(formData.goalId));
             if (goal) {
                 if (goal.current >= goal.target) {
-                    alert(`🎉 Поздравляем! Цель "${goal.name}" успешно достигнута!`);
+                    showSuccess('🎉 Цель достигнута!', `Поздравляем! Цель "${goal.name}" успешно достигнута!`);
                 } else {
                     const progress = ((goal.current / goal.target) * 100).toFixed(1);
-                    alert(`✅ Успешно оплачено ${formData.amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${progress}%`);
+                    showSuccess('✅ Оплата прошла', `Успешно оплачено ${formData.amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${progress}%`);
                 }
             }
         }
@@ -5132,7 +5338,7 @@
         
         // Валидация
         if (formData.current > formData.target) {
-            alert('Текущая сумма не может превышать целевую!');
+            showError('Ошибка', 'Текущая сумма не может превышать целевую!');
             goalCurrent.classList.add('shake');
             setTimeout(() => goalCurrent.classList.remove('shake'), 600);
             return;
@@ -5227,16 +5433,22 @@
     }
 
     // Удаление счета
-    function deleteAccount(accountId) {
-        if (!confirm('Вы уверены, что хотите удалить этот счет? Все связанные транзакции также будут удалены.')) return;
+    async function deleteAccount(accountId) {
+        console.log('Начинаем удаление счета:', accountId);
         
         // Проверяем, есть ли связанные транзакции
         const relatedTransactions = transactions.filter(t => t.accountId === parseInt(accountId));
         
+        let confirmTitle = 'Удалить счет?';
+        let confirmMessage = 'Вы уверены, что хотите удалить этот счет?';
         if (relatedTransactions.length > 0) {
-            if (!confirm(`Найдено ${relatedTransactions.length} связанных транзакций. Они также будут удалены. Продолжить?`)) return;
-            
-            // Удаляем связанные транзакции
+            confirmMessage = `У этого счета есть ${relatedTransactions.length} связанных транзакций. При удалении счета все связанные транзакции также будут удалены. Продолжить?`;
+        }
+        
+        if (!confirm(confirmMessage)) return;
+        
+        // Удаляем связанные транзакции
+        if (relatedTransactions.length > 0) {
             transactions = transactions.filter(t => t.accountId !== parseInt(accountId));
         }
         
@@ -5263,8 +5475,12 @@
         // Закрываем модальное окно
         closeAllModals();
         
-        // Показываем уведомление об успехе
-        alert('Счет успешно удален');
+        // Показываем уведомление об успехе с небольшой задержкой
+        console.log('Счет удален, показываем уведомление через 300мс');
+        setTimeout(() => {
+            console.log('Показываем уведомление об удалении счета');
+            showSuccess('Счет удален', 'Счет и все связанные транзакции успешно удалены');
+        }, 300);
     }
 
 
@@ -5397,7 +5613,7 @@
     }
 
     // Удаление транзакции
-    function deleteTransaction(id) {
+    async function deleteTransaction(id) {
         if (!confirm('Вы уверены, что хотите удалить эту транзакцию?')) return;
         
         const transactionIndex = transactions.findIndex(t => t.id === id);
@@ -5473,7 +5689,7 @@
     }
 
     // Удаление цели
-    function deleteGoal(id) {
+    async function deleteGoal(id) {
         if (!confirm('Вы уверены, что хотите удалить эту цель?')) return;
         
         const goalIndex = goals.findIndex(g => g.id === id);
@@ -5537,7 +5753,7 @@
     }
 
     // Удаление категории
-    function deleteCategory(categoryId, type) {
+    async function deleteCategory(categoryId, type) {
         if (!confirm('Вы уверены, что хотите удалить эту категорию?')) return;
         
         const categoryIndex = categories[type].findIndex(c => c.id === categoryId);
@@ -5845,25 +6061,25 @@
         const accountId = parseInt(paymentAccount.value);
         
         if (!amount || amount <= 0) {
-            alert('Пожалуйста, введите корректную сумму для оплаты');
+            showError('Ошибка', 'Пожалуйста, введите корректную сумму для оплаты');
             return;
         }
         
         // Проверяем максимальную сумму из атрибута max
         const maxAmount = parseFloat(paymentAmount.max);
         if (maxAmount && amount > maxAmount) {
-            alert(`Сумма оплаты (${amount.toFixed(2)} ₽) превышает максимально допустимую сумму (${maxAmount.toFixed(2)} ₽)`);
+            showWarning('Превышение суммы', `Сумма оплаты (${amount.toFixed(2)} ₽) превышает максимально допустимую сумму (${maxAmount.toFixed(2)} ₽)`);
             return;
         }
         
         const selectedAccount = accounts.find(a => a.id === accountId);
         if (!selectedAccount) {
-            alert('Счет не найден');
+            showError('Ошибка', 'Счет не найден');
             return;
         }
         
         if (selectedAccount.balance < amount) {
-            alert(`Недостаточно средств на счете "${selectedAccount.name}". Доступно: ${selectedAccount.balance.toFixed(2)} ${selectedAccount.currency}`);
+            showWarning('Недостаточно средств', `На счете "${selectedAccount.name}" недостаточно средств. Доступно: ${selectedAccount.balance.toFixed(2)} ${selectedAccount.currency}`);
             return;
         }
         
@@ -5873,13 +6089,13 @@
         
         const goal = goals.find(g => g.name === goalName.textContent);
         if (!goal) {
-            alert('Цель не найдена');
+            showError('Ошибка', 'Цель не найдена');
             return;
         }
         
         // Проверяем, не достигнута ли уже цель
         if (goal.current >= goal.target) {
-            alert('Цель уже достигнута. Дополнительная оплата не требуется.');
+            showInfo('Цель достигнута', 'Цель уже достигнута. Дополнительная оплата не требуется.');
             return;
         }
         
@@ -5891,11 +6107,11 @@
         
         const remainingAmount = Math.max(0, goal.target - goal.current);
         if (remainingAmount <= 0) {
-            alert('Цель уже достигнута или превышена. Дополнительная оплата не требуется.');
+            showInfo('Цель достигнута', 'Цель уже достигнута или превышена. Дополнительная оплата не требуется.');
             return;
         }
         if (amount > remainingAmount) {
-            alert(`Сумма оплаты (${amount.toFixed(2)} ₽) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
+            showWarning('Превышение суммы', `Сумма оплаты (${amount.toFixed(2)} ₽) превышает оставшуюся часть цели (${remainingAmount.toFixed(2)} ₽). Максимальная сумма к оплате: ${remainingAmount.toFixed(2)} ₽`);
             return;
         }
         
@@ -5933,9 +6149,9 @@
         
         // Показываем сообщение об успехе
         if (goal.current >= goal.target) {
-            alert(`Поздравляем! Цель "${goal.name}" успешно достигнута!`);
+            showSuccess('🎉 Цель достигнута!', `Поздравляем! Цель "${goal.name}" успешно достигнута!`);
         } else {
-            alert(`Успешно оплачено ${amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${((goal.current / goal.target) * 100).toFixed(1)}%`);
+            showSuccess('✅ Оплата прошла', `Успешно оплачено ${amount.toFixed(2)} ₽ для цели "${goal.name}". Прогресс: ${((goal.current / goal.target) * 100).toFixed(1)}%`);
         }
     }
 
@@ -5944,44 +6160,6 @@
         openAccountModal(id);
     }
 
-    // Удаление счета
-    function deleteAccount(id) {
-        // Проверка, есть ли транзакции, связанные с этим счетом
-        const accountTransactions = transactions.filter(t => t.accountId === id);
-        if (accountTransactions.length > 0) {
-            if (!confirm(`У этого счета есть ${accountTransactions.length} транзакций. При удалении счета все связанные транзакции также будут удалены. Продолжить?`)) {
-                return;
-            }
-            
-            // Удаление связанных транзакций
-            transactions = transactions.filter(t => t.accountId !== id);
-        }
-        
-        if (!confirm('Вы уверены, что хотите удалить этот счет?')) return;
-        
-        const accountIndex = accounts.findIndex(a => a.id === id);
-        if (accountIndex === -1) return;
-        
-        // Удаление счета
-        accounts.splice(accountIndex, 1);
-        
-        // Если удален активный счет, сделать активным первый счет (если он есть)
-        if (currentAccountId === id) {
-            currentAccountId = accounts.length > 0 ? accounts[0].id : null;
-        }
-        
-        // Обновление приложения
-        updateLocalStorage();
-        renderAccounts();
-        renderTransactions(); // Обновляем транзакции (с фильтрацией несуществующих счетов)
-        updateDashboard();
-        
-        // Обновляем фильтры (убираем удаленный счет из фильтра)
-        initFilters();
-        
-        // Закрываем модальное окно
-        closeAllModals();
-    }
 
     // Обработка отправки формы перевода
     function handleTransferSubmit(e) {
@@ -5994,17 +6172,17 @@
         
         // Валидация
         if (!fromAccountId || !toAccountId) {
-            alert('Пожалуйста, выберите счета для перевода');
+            showError('Ошибка', 'Пожалуйста, выберите счета для перевода');
             return;
         }
         
         if (fromAccountId === toAccountId) {
-            alert('Нельзя переводить деньги на тот же счет');
+            showError('Ошибка', 'Нельзя переводить деньги на тот же счет');
             return;
         }
         
         if (!amount || amount <= 0) {
-            alert('Пожалуйста, введите корректную сумму');
+            showError('Ошибка', 'Пожалуйста, введите корректную сумму');
             return;
         }
         
@@ -6012,12 +6190,12 @@
         const toAccount = accounts.find(acc => acc.id === toAccountId);
         
         if (!fromAccount || !toAccount) {
-            alert('Ошибка: счет не найден');
+            showError('Ошибка', 'Счет не найден');
             return;
         }
         
         if (fromAccount.balance < amount) {
-            alert('Недостаточно средств на счете для перевода');
+            showWarning('Недостаточно средств', 'Недостаточно средств на счете для перевода');
             return;
         }
         
@@ -6037,7 +6215,7 @@
         closeAllModals();
         
         // Показываем уведомление об успехе
-        alert(`Перевод на сумму ${amount.toFixed(2)} ₽ выполнен успешно!`);
+        showSuccess('Перевод выполнен', `Перевод на сумму ${amount.toFixed(2)} ₽ выполнен успешно!`);
     }
 
         // Глобальная обработка ошибок браузерных расширений
@@ -6219,6 +6397,142 @@
         // Временная кнопка для очистки localStorage (для тестирования)
         // Раскомментируйте следующую строку для очистки данных:
         // localStorage.clear();
+
+    // Простая функция подтверждения без Promise
+    window.simpleConfirm = function(title, message, callback) {
+        console.log('Простое подтверждение:', title, message);
+        const modal = document.getElementById('confirmationModal');
+        console.log('Модальное окно найдено:', !!modal);
+        if (!modal) {
+            console.error('Модальное окно не найдено!');
+            if (callback) callback(false);
+            return;
+        }
+        
+        // Настраиваем содержимое
+        const titleEl = document.getElementById('confirmationTitle');
+        const messageEl = document.getElementById('confirmationMessage');
+        const icon = document.getElementById('confirmationIcon');
+        const cancelBtn = document.getElementById('confirmationCancel');
+        const confirmBtn = document.getElementById('confirmationConfirm');
+        
+        console.log('Элементы найдены:', {
+            titleEl: !!titleEl,
+            messageEl: !!messageEl,
+            icon: !!icon,
+            cancelBtn: !!cancelBtn,
+            confirmBtn: !!confirmBtn
+        });
+        
+        if (titleEl) titleEl.textContent = title;
+        if (messageEl) messageEl.textContent = message;
+        if (icon) {
+            icon.className = 'confirmation-icon danger';
+            icon.textContent = '⚠';
+        }
+        
+        // Настраиваем кнопки
+        if (confirmBtn) {
+            confirmBtn.className = 'btn btn-danger';
+            confirmBtn.textContent = 'Удалить';
+        }
+        
+        // Обработчики событий
+        const handleConfirm = () => {
+            console.log('Подтверждено: ДА');
+            modal.style.display = 'none';
+            if (callback) callback(true);
+            // Удаляем обработчики
+            if (confirmBtn) confirmBtn.removeEventListener('click', handleConfirm);
+            if (cancelBtn) cancelBtn.removeEventListener('click', handleCancel);
+        };
+        
+        const handleCancel = () => {
+            console.log('Подтверждено: НЕТ');
+            modal.style.display = 'none';
+            if (callback) callback(false);
+            // Удаляем обработчики
+            if (confirmBtn) confirmBtn.removeEventListener('click', handleConfirm);
+            if (cancelBtn) cancelBtn.removeEventListener('click', handleCancel);
+        };
+        
+        // Добавляем обработчики
+        if (confirmBtn) confirmBtn.addEventListener('click', handleConfirm);
+        if (cancelBtn) cancelBtn.addEventListener('click', handleCancel);
+        
+        // Показываем модальное окно
+        console.log('Применяем стили к модальному окну...');
+        modal.style.display = 'flex';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        modal.style.zIndex = '10000';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        
+        console.log('Модальное окно показано, стили применены');
+    };
+    
+    // Простая функция для показа уведомлений
+    window.simpleAlert = function(message, type = 'info') {
+        console.log('Простое уведомление:', message, type);
+        const container = document.getElementById('notifications-container');
+        if (!container) {
+            console.error('Контейнер уведомлений не найден!');
+            return;
+        }
+        
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.style.cssText = `
+            position: relative;
+            background: var(--card-bg, #ffffff);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 16px 20px;
+            min-width: 320px;
+            max-width: 400px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            margin-bottom: 12px;
+        `;
+        
+        const icons = {
+            success: '✓',
+            error: '✕',
+            warning: '⚠',
+            info: 'ℹ'
+        };
+        
+        notification.innerHTML = `
+            <div class="notification-icon">${icons[type] || icons.info}</div>
+            <div class="notification-content">
+                <div class="notification-title">${type === 'success' ? 'Успех' : type === 'error' ? 'Ошибка' : type === 'warning' ? 'Предупреждение' : 'Информация'}</div>
+                <div class="notification-message">${message}</div>
+            </div>
+            <button class="notification-close" onclick="this.parentElement.remove()">×</button>
+        `;
+        
+        container.appendChild(notification);
+        
+        // Автоматическое скрытие через 5 секунд
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 5000);
+        
+        console.log('Уведомление показано');
+    };
         
         // Инициализация приложения
         initApp();
