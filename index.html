@@ -10,6 +10,26 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
+    <!-- Контейнер для уведомлений -->
+    <div id="notifications-container" class="notifications-container"></div>
+
+    <!-- Модальное окно подтверждения -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content confirmation-modal">
+            <div class="confirmation-header">
+                <div class="confirmation-icon" id="confirmationIcon">⚠</div>
+                <h3 class="confirmation-title" id="confirmationTitle">Подтверждение</h3>
+            </div>
+            <div class="confirmation-body">
+                <p class="confirmation-message" id="confirmationMessage">Вы уверены в этом действии?</p>
+            </div>
+            <div class="confirmation-actions">
+                <button class="btn btn-secondary" id="confirmationCancel">Отмена</button>
+                <button class="btn btn-danger" id="confirmationConfirm">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <div class="logo">
