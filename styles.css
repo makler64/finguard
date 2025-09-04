@@ -1,0 +1,5657 @@
+﻿        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #fca311;
+            --info: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --background: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            
+            /* Стандартизированные отступы */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-xxl: 48px;
+        }
+
+        .dark-mode {
+            --background: #121212;
+            --card-bg: #1e1e1e;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .tabs-container {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+
+        .dark-mode .tabs-nav {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .tabs-nav-btn {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Стили для кнопок действий в счетах убраны, так как они больше не отображаются в плашках */
+
+
+
+        .dark-mode .transaction-content {
+            background-color: var(--card-bg);
+        }
+
+        .dark-mode .transaction-edit-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .transaction-edit-icon svg {
+            fill: var(--text-secondary);
+        }
+
+        .dark-mode .transaction-date {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .dark-mode .btn-danger {
+            background-color: var(--danger);
+        }
+
+        .dark-mode .btn-danger:hover {
+            background-color: #d1144a;
+        }
+
+        /* Плавающий виджет для добавления транзакций */
+        .floating-action-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-end;
+            transition: bottom 0.3s ease;
+        }
+
+        .fab-main {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: var(--background);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.15);
+            transition: transform 0.3s ease;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            order: 2;
+            margin-bottom: 15px;
+        }
+
+
+
+
+
+        .fab-main.active {
+            transform: rotate(45deg);
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+
+
+
+        .fab-menu {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            align-items: center;
+            width: 300px;
+            justify-content: flex-end;
+            margin-right: 0;
+            order: 1;
+        }
+
+        .fab-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            margin-bottom: 15px;
+        }
+
+        .fab-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 25px;
+            background: var(--background);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            border-radius: 16px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            min-width: 135px;
+            width: 135px;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+        }
+
+
+
+        .fab-expense {
+            border-left: 3px solid #f44336;
+        }
+
+        .fab-expense {
+            border-left: 3px solid #f44336;
+        }
+
+        .fab-income {
+            border-left: 3px solid #4CAF50;
+        }
+
+        .fab-item svg {
+            flex-shrink: 0;
+        }
+
+        .fab-item span {
+            white-space: nowrap;
+        }
+
+        /* Темная тема для плавающего виджета */
+        .dark-mode .fab-item {
+            background: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .floating-action-widget {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .fab-main {
+                width: 52px;
+                height: 52px;
+                order: 2;
+            }
+
+            .fab-menu {
+                gap: 20px;
+                width: 240px;
+                justify-content: flex-end;
+                order: 1;
+            }
+
+            .fab-item {
+                min-width: 110px;
+                width: 110px;
+                padding: 16px 20px;
+                font-size: 14px;
+                gap: 10px;
+            }
+
+            .fab-item svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* Стили для модальных окон в темной теме */
+        .dark-mode .modal {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .dark-mode .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .dark-mode .modal-header {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .modal-actions {
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .close-modal {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .dark-mode .close-modal:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .dark-mode .form-input,
+        .dark-mode .form-select {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+        }
+
+        .dark-mode .form-input:focus,
+        .dark-mode .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+        }
+
+        .dark-mode .form-input:hover,
+        .dark-mode .form-select:hover {
+            border-color: rgba(67, 97, 238, 0.5);
+        }
+
+        .dark-mode .category-item {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .category-item:hover {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .dark-mode .modal .btn::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .dark-mode .modal-actions .btn:hover {
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Убрана градиентная полоска под заголовком для темной темы */
+
+        .dark-mode .category-item::before {
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.2), transparent);
+        }
+
+        .dark-mode .category-item.selected::after {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--success);
+        }
+
+        .dark-mode .modal-header h2 {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .form-label::before {
+            background: var(--success);
+        }
+
+        .dark-mode .close-modal::before {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .modal-actions .btn-primary {
+            background-color: var(--primary);
+        }
+
+        .dark-mode .modal-actions .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Темная тема для кнопки перевода */
+        .dark-mode .transfer-submit-btn {
+            background: var(--primary) !important;
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .dark-mode .transfer-submit-btn:hover {
+            background: var(--secondary) !important;
+            background-color: var(--secondary) !important;
+            border-color: var(--secondary) !important;
+        }
+
+        /* Стили для модального окна перевода */
+        .account-balance-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(67, 97, 238, 0.05);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .account-balance-info .balance-label {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .account-balance-info .balance-amount {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+
+
+        .amount-hints {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .amount-hint-btn {
+            padding: 6px 12px;
+            background: rgba(67, 97, 238, 0.1);
+            border: 1px solid rgba(67, 97, 238, 0.2);
+            border-radius: 6px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .amount-hint-btn:hover {
+            background: rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .transfer-summary {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(67, 97, 238, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .summary-item.total {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            border-top: 1px solid rgba(67, 97, 238, 0.1);
+            padding-top: 8px;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        /* Темная тема для модального окна перевода */
+        .dark-mode .account-balance-info {
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .dark-mode .amount-hint-btn {
+            background: rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
+        }
+
+        .dark-mode .amount-hint-btn:hover {
+            background: rgba(67, 97, 238, 0.25);
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+
+        .dark-mode .transfer-summary {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .dark-mode .summary-item.total {
+            border-top-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .dark-mode .btn-info {
+            background-color: #138496;
+        }
+
+        .dark-mode .btn-info:hover {
+            background-color: #117a8b;
+        }
+
+        .dark-mode .btn-warning {
+            background-color: #e0a800;
+            color: #000;
+        }
+
+        .dark-mode .btn-warning:hover {
+            background-color: #d39e00;
+        }
+
+        /* Стили для заголовка завершенных целей */
+        .completed-goals-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .completed-goals-header h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Темная тема для заголовка */
+        .dark-mode .completed-goals-header {
+            border-bottom-color: var(--border-color-dark);
+        }
+
+        /* Анимация сетки категорий в темной теме убрана */
+
+        .dark-mode .category-item::before {
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.3), transparent);
+        }
+
+        /* Анимации для темной темы убраны */
+
+        /* Анимации для сетки категорий в темной теме убраны */
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        /* Анимация сетки категорий в темной теме убрана */
+
+        .dark-mode .category-item.selected {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .category-item.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item:hover {
+            border-color: var(--success);
+            background-color: rgba(76, 201, 240, 0.1);
+        }
+
+        .dark-mode .category-item.selected {
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            border-color: var(--success);
+            color: white;
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item svg {
+            filter: brightness(1.2);
+        }
+
+        .dark-mode .category-item.selected svg {
+            filter: brightness(1.5);
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item::before {
+            background: linear-gradient(90deg, transparent, rgba(76, 201, 240, 0.3), transparent);
+        }
+
+        .dark-mode .category-item:hover::before {
+            background: linear-gradient(90deg, transparent, rgba(76, 201, 240, 0.5), transparent);
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected:hover {
+            background: linear-gradient(135deg, var(--success), var(--primary));
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected:hover svg {
+            filter: brightness(1.8);
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected:hover::after {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--primary);
+        }
+
+        /* Стили для кликабельных статистических карточек в темной теме */
+        .dark-mode .clickable-stat:hover {
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+            border-color: var(--primary);
+        }
+
+        .dark-mode .clickable-stat::before {
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.2), transparent);
+        }
+
+        .dark-mode .clickable-stat:hover .stat-hint {
+            color: var(--success);
+        }
+
+        .dark-mode .clickable-stat:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .dark-mode .clickable-stat {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected:hover::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(76, 201, 240, 0.4);
+        }
+
+        /* Стили для улучшения отображения сетки категорий в темной теме */
+        .dark-mode .category-item.selected:hover svg {
+            filter: brightness(1.8);
+        }
+
+
+
+        .dark-mode .currency-item-inline {
+            background-color: var(--background);
+            border-color: rgba(255, 255, 255, 0.1);
+            transition: none;
+        }
+
+        .dark-mode .currency-item-inline:hover {
+            background-color: var(--background);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Стили для пустого состояния */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xxl) var(--spacing-md);
+            color: var(--text-secondary);
+        }
+
+        .empty-state svg {
+            fill: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            opacity: 0.6;
+        }
+
+        .empty-state h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .empty-state p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
+        }
+
+        /* Стили для заглушки завершенных целей */
+        .completed-goals-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.05));
+            border-radius: var(--border-radius);
+            border: 2px dashed rgba(67, 97, 238, 0.2);
+            margin: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        /* Стили для заглушки актуальных целей */
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(76, 175, 80, 0.05)) !important;
+            border-color: rgba(76, 175, 80, 0.2) !important;
+        }
+
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.08)) !important;
+            border-color: rgba(76, 175, 80, 0.4) !important;
+        }
+
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] svg {
+            fill: rgba(76, 175, 80, 0.7);
+        }
+
+        .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover svg {
+            fill: rgba(76, 175, 80, 1);
+        }
+
+        .completed-goals-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.4);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(76, 201, 240, 0.08));
+            transform: translateY(-2px);
+        }
+
+        .completed-goals-placeholder svg {
+            fill: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .completed-goals-placeholder:hover svg {
+            fill: var(--primary);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .completed-goals-placeholder h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .completed-goals-placeholder p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Стили для кнопки в заглушке */
+        .completed-goals-placeholder .btn {
+            margin-top: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .completed-goals-placeholder .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Специальные стили для кнопки "Создать цель +" */
+        .create-goal-btn {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .create-goal-btn:hover {
+            background: linear-gradient(135deg, #059669, #10b981);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .create-goal-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .create-goal-btn {
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Темная тема для заглушки */
+        .dark-mode .completed-goals-placeholder {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(76, 201, 240, 0.1));
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .completed-goals-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.5);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.15), rgba(76, 201, 240, 0.15));
+        }
+
+        .dark-mode .completed-goals-placeholder svg {
+            fill: var(--text-secondary);
+        }
+
+        .dark-mode .completed-goals-placeholder:hover svg {
+            fill: var(--success);
+        }
+
+        /* Темная тема для кнопки в заглушке */
+        .dark-mode .completed-goals-placeholder .btn:hover {
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Темная тема для кнопки "Создать цель +" */
+        .dark-mode .create-goal-btn {
+            background: linear-gradient(135deg, #34d399, #10b981);
+            box-shadow: 0 4px 15px rgba(52, 211, 153, 0.4);
+        }
+
+        .dark-mode .create-goal-btn:hover {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            box-shadow: 0 8px 25px rgba(52, 211, 153, 0.5);
+        }
+
+        /* Темная тема для заглушки актуальных целей */
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.1)) !important;
+            border-color: rgba(76, 175, 80, 0.3) !important;
+        }
+
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.15)) !important;
+            border-color: rgba(76, 175, 80, 0.5) !important;
+        }
+
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"] svg {
+            fill: rgba(76, 175, 80, 0.8);
+        }
+
+        .dark-mode .completed-goals-placeholder[style*="rgba(76, 175, 80, 0.05)"]:hover svg {
+            fill: rgba(76, 175, 80, 1);
+        }
+
+        /* Анимация появления заглушки */
+        @keyframes placeholderFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .completed-goals-placeholder {
+            animation: placeholderFadeIn 0.6s ease-out;
+        }
+
+        /* Анимация для иконки */
+        .completed-goals-placeholder svg {
+            animation: placeholderFadeIn 0.8s ease-out 0.2s both;
+        }
+
+        /* Анимация для текста */
+        .completed-goals-placeholder h3,
+        .completed-goals-placeholder p {
+            animation: placeholderFadeIn 0.6s ease-out 0.4s both;
+        }
+
+        /* Анимация для кнопки */
+        .completed-goals-placeholder .btn {
+            animation: placeholderFadeIn 0.6s ease-out 0.6s both;
+        }
+
+        /* Анимация для кнопки "Создать цель +" */
+        .create-goal-btn {
+            animation: placeholderFadeIn 0.6s ease-out 0.6s both;
+        }
+
+        /* Заглушки показываются/скрываются через JavaScript */
+        .completed-goals-placeholder {
+            display: block;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            transition: var(--transition);
+            min-height: 100vh;
+            padding: var(--spacing-md);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--primary);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .logo-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .theme-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: var(--spacing-xs);
+            bottom: var(--spacing-xs);
+            background-color: rgba(255, 255, 255, 0.767);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .theme-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .theme-slider:before {
+            transform: translateX(30px);
+        }
+
+        .theme-icons {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .theme-icons span {
+            font-size: 14px;
+        }
+
+        /* Стили для inline курсов валют */
+        .currency-rates-inline {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        .currency-rates-inline::-webkit-scrollbar {
+            display: none;
+        }
+
+        .currency-item-inline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: var(--background);
+            border-radius: 8px;
+            transition: none;
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .currency-item-inline {
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .currency-item-inline:hover {
+            background-color: var(--background);
+            border-color: rgba(108, 117, 125, 0.1);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .currency-info-inline {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 60px;
+        }
+
+        .currency-name-inline {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .currency-full-name-inline {
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .currency-rate-inline {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+            position: relative;
+        }
+
+        .rate-value-inline {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+            font-family: 'Inter', monospace;
+            transition: color 0.3s ease;
+        }
+
+        .rate-value-up {
+            color: #4caf50 !important;
+        }
+
+        .rate-value-down {
+            color: #f44336 !important;
+        }
+
+        .dark-mode .rate-value-up {
+            color: #81c784 !important;
+        }
+
+        .dark-mode .rate-value-down {
+            color: #e57373 !important;
+        }
+
+        /* Индикаторы изменения курса */
+        .change-indicator {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 4px;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .rate-up {
+            color: #4caf50;
+        }
+
+        .rate-down {
+            color: #f44336;
+        }
+
+        .change-indicator.rate-up {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .change-indicator.rate-down {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+        }
+
+        /* Темная тема для индикаторов */
+        .dark-mode .change-indicator.rate-up {
+            background-color: rgba(76, 175, 80, 0.12);
+            color: #81c784;
+            border-color: rgba(76, 175, 80, 0.25);
+        }
+
+        .dark-mode .change-indicator.rate-down {
+            background-color: rgba(244, 67, 54, 0.12);
+            color: #e57373;
+            border-color: rgba(244, 67, 54, 0.25);
+        }
+
+        /* Анимация появления индикаторов */
+        .change-indicator {
+            font-size: 9px;
+            font-weight: 500;
+            padding: 1px 4px;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            min-width: 40px;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Анимация только для положительных значений */
+        .change-indicator.rate-up {
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Улучшенные стили для индикаторов изменения курса */
+        .change-indicator.rate-up {
+            background: rgba(76, 175, 80, 0.08);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .change-indicator.rate-down {
+            background: rgba(244, 67, 54, 0.08);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.2);
+        }
+
+        .change-indicator.rate-down::before {
+            display: none;
+        }
+
+
+
+        /* Темная тема для индикаторов */
+        .dark-mode .change-indicator.rate-up {
+            background: rgba(76, 175, 80, 0.12);
+            color: #81c784;
+            border-color: rgba(76, 175, 80, 0.25);
+        }
+
+        .dark-mode .change-indicator.rate-down {
+            background: rgba(244, 67, 54, 0.12);
+            color: #e57373;
+            border-color: rgba(244, 67, 54, 0.25);
+        }
+
+
+
+        /* Hover эффекты для индикаторов */
+        .change-indicator.rate-up:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 6px rgba(76, 175, 80, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .change-indicator.rate-down:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 6px rgba(244, 67, 54, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .dark-mode .change-indicator.rate-up:hover {
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .dark-mode .change-indicator.rate-down:hover {
+            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+        }
+
+        /* Стили для настроек */
+        .settings-section {
+            margin-bottom: 25px;
+            padding: 0;
+        }
+
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .settings-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Стили для свича курсов валют */
+        .currency-toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .currency-toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray);
+            transition: var(--transition);
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .currency-toggle-switch input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        .currency-toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Анимация для выпадающего контента */
+        .currency-settings-content {
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .currency-settings-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .currency-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .currency-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .currency-checkbox:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .currency-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .currency-checkbox span {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        /* Стили для разделителя валют */
+        .currency-section-divider {
+            margin: 20px 0 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .currency-section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--text-secondary), transparent);
+        }
+
+        .currency-section-divider span {
+            background: var(--background);
+            padding: 0 15px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Стили для криптовалют */
+        .crypto-currencies {
+            margin-top: 15px;
+        }
+
+        .crypto-currencies .currency-checkbox {
+            border-left: 3px solid transparent;
+            padding-left: 12px;
+        }
+
+        .crypto-currencies .currency-checkbox:hover {
+            border-left-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.08);
+        }
+
+        /* Анимация вращения для иконки обновления */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+
+
+
+
+        .btn-secondary {
+            background-color: var(--gray);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .balance-section {
+            margin-bottom: 25px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .accounts-container {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-top: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+            box-shadow: var(--shadow);
+            overflow: visible;
+        }
+
+
+        .accounts-header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-sm svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Стили для контейнера кнопки перевода */
+        .transfer-button-container {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(67, 97, 238, 0.1);
+            text-align: center;
+        }
+
+        .transfer-btn {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 2px solid rgba(67, 97, 238, 0.2);
+            background: rgba(67, 97, 238, 0.05);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .transfer-btn:hover {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: rgba(67, 97, 238, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.15);
+        }
+
+        .transfer-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Темная тема для кнопки перевода */
+        .dark-mode .transfer-button-container {
+            border-top-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .dark-mode .transfer-btn {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: rgba(67, 97, 238, 0.3);
+            color: var(--primary);
+        }
+
+        .dark-mode .transfer-btn:hover {
+            background: rgba(67, 97, 238, 0.2);
+            border-color: rgba(67, 97, 238, 0.4);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+        }
+
+
+
+        .accounts-section-collapsed {
+            display: none !important;
+        }
+
+        .account-selector {
+            height: auto;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: translateY(0);
+            transform-origin: top;
+        }
+
+        .account-selector.accounts-section-collapsed {
+            height: 0;
+            margin-bottom: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(-20px) scaleY(0.8);
+        }
+
+        /* Анимация для элементов счетов */
+        .account-item,
+        .add-account-btn {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .account-item.animate,
+        .add-account-btn.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Задержка для каждого элемента */
+        .account-item:nth-child(1) { transition-delay: 0.05s; }
+        .account-item:nth-child(2) { transition-delay: 0.1s; }
+        .account-item:nth-child(3) { transition-delay: 0.15s; }
+        .account-item:nth-child(4) { transition-delay: 0.2s; }
+        .account-item:nth-child(5) { transition-delay: 0.25s; }
+        .add-account-btn { transition-delay: 0.3s; }
+
+        .accounts-section-collapsed.animate {
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .account-selector {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            overflow-y: visible;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            padding: 8px 4px 0 4px;
+            position: relative;
+        }
+
+        .account-selector::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .account-item {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            cursor: default;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            position: relative;
+            flex-shrink: 0;
+            min-width: 200px;
+        }
+
+        .account-item > div {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .account-item > div:first-child {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .account-item > div:last-child {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+
+
+
+        .account-item svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            padding: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* Стили для логотипов банков */
+        .bank-logo {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        /* Логотипы банков из локальной папки - светлая тема */
+        .bank-logo.alfabank { background-image: url('logo bank/Light/alfabank.svg'); }
+        .bank-logo.tbank { background-image: url('logo bank/Light/tbank.svg'); }
+        .bank-logo.gazprombank { background-image: url('logo bank/Light/gazprombank.svg'); }
+        .bank-logo.ozon { background-image: url('logo bank/Light/ozon.svg'); }
+        .bank-logo.raiffeisen { background-image: url('logo bank/Light/raiffeisen.svg'); }
+        .bank-logo.rosbank { background-image: url('logo bank/Light/rosbank.svg'); }
+        .bank-logo.sberbank { background-image: url('logo bank/Light/sberbank.svg'); }
+        .bank-logo.tochka { background-image: url('logo bank/Light/tochka.svg'); }
+        .bank-logo.vtb { background-image: url('logo bank/Light/vtb.svg'); }
+        .bank-logo.other { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23666"><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="bold" fill="white">?</text></svg>'); }
+
+
+        /* Стили для заглушки счетов */
+        .accounts-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xl);
+            text-align: center;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(67, 97, 238, 0.02));
+            border: 2px dashed rgba(67, 97, 238, 0.2);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            transition: all 0.3s ease;
+        }
+
+        .accounts-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.3);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(67, 97, 238, 0.04));
+        }
+
+        .placeholder-icon {
+            margin-bottom: var(--spacing-md);
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .accounts-placeholder h3 {
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .accounts-placeholder p {
+            margin: 0 0 var(--spacing-lg) 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 280px;
+        }
+
+        .create-account-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .create-account-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Темная тема для заглушки */
+        .dark-mode .accounts-placeholder {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(67, 97, 238, 0.05));
+            border-color: rgba(67, 97, 238, 0.3);
+        }
+
+        .dark-mode .accounts-placeholder:hover {
+            border-color: rgba(67, 97, 238, 0.4);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.15), rgba(67, 97, 238, 0.08));
+        }
+
+        .dark-mode .placeholder-icon {
+            color: var(--primary);
+        }
+
+
+
+        /* Стили для кнопки добавления нового счета */
+        .add-account-btn {
+            padding: 0;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.2);
+            width: 100px;
+            height: 100px;
+        }
+
+        .add-account-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+
+
+        .add-account-btn svg {
+            width: 40px;
+            height: 40px;
+            fill: currentColor;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .add-account-btn:hover svg {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+
+
+        /* Стили для компактного списка счетов в настройках */
+        .accounts-settings-list {
+            margin-top: var(--spacing-md);
+        }
+
+        .account-settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--background);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-sm);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            transition: var(--transition);
+        }
+
+        .account-settings-item:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+            border-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .account-settings-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex: 1;
+        }
+
+        .account-settings-icon {
+            font-size: 20px;
+        }
+
+        .account-settings-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .account-settings-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .account-settings-type {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .account-settings-balance {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-right: 15px;
+        }
+
+        .account-settings-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .account-settings-btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .account-settings-btn.edit {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .account-settings-btn.edit:hover {
+            background-color: var(--secondary);
+        }
+
+        .account-settings-btn.delete {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .account-settings-btn.delete:hover {
+            background-color: #d1144a;
+        }
+
+        .account-settings-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Стили для аккордеона в настройках */
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .accordion-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+
+        .accordion-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .accordion-toggle.expanded svg {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            padding: 0 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+
+        .accordion-content.expanded {
+            max-height: 1000px;
+            padding: 20px 0;
+        }
+
+        .accordion-content.collapsed {
+            max-height: 0;
+            padding: 0 0;
+        }
+
+        /* Новая система аккордеонов */
+        .new-accordion-content {
+            display: none;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 10px;
+        }
+
+        .new-accordion-content.show {
+            display: block !important;
+        }
+
+        .new-accordion-content.hide {
+            display: none !important;
+        }
+
+        .new-accordion-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .new-accordion-toggle .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .new-accordion-toggle.expanded .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dashboard {
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 968px) {
+            
+            .account-item {
+                flex: 0 0 auto;
+            }
+
+            .add-account-btn {
+                width: 90px;
+                height: 90px;
+            }
+
+            .add-account-btn svg {
+                width: 36px;
+                height: 36px;
+            }
+
+            .account-settings-item {
+                padding: 10px 12px;
+            }
+
+            .account-settings-actions {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .account-settings-btn {
+                padding: 5px 8px;
+                font-size: 11px;
+            }
+
+            .currency-rates-inline {
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            .currency-item-inline {
+                padding: 6px 10px;
+                min-width: 90px;
+                pointer-events: none;
+                user-select: none;
+                transition: none;
+            }
+
+            .currency-name-inline {
+                font-size: 13px;
+            }
+
+            .rate-value-inline {
+                font-size: 13px;
+            }
+        }
+
+        .sidebar {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Новые стили для горизонтальных табов */
+        .tabs-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-xs);
+            overflow: hidden;
+        }
+
+        .tabs-scroll {
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+
+        .tabs-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .tabs-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .tabs-scroll::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            min-width: max-content;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: var(--card-bg);
+        }
+
+        .tab-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 36px 36px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 3px solid transparent;
+        }
+
+
+        .tab-item.active {
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: var(--transition);
+        }
+
+        .tab-item.active svg {
+            fill: var(--primary);
+        }
+
+        /* Индикатор активного таба */
+        .tab-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+            border-radius: 2px 2px 0 0;
+            width: 0;
+        }
+
+        .tabs-nav {
+            position: relative;
+        }
+
+        .tab-indicator {
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+            border-radius: 2px 2px 0 0;
+        }
+
+        /* Анимация для контента табов */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Плавное появление контента */
+        .tab-content.fade-in {
+            animation: slideInUp 0.4s ease forwards;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Кнопки навигации для прокрутки */
+        .tabs-nav-wrapper {
+            position: relative;
+        }
+
+        .tabs-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border: none;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .tabs-nav-btn:hover {
+            opacity: 1;
+        }
+
+        .tabs-nav-btn.prev {
+            left: -16px;
+        }
+
+        .tabs-nav-btn.next {
+            right: -16px;
+        }
+
+        .tabs-nav-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-secondary);
+        }
+
+        .tabs-nav-btn:hover svg {
+            fill: var(--primary);
+        }
+
+        /* Скрытие кнопок навигации на мобильных */
+        @media (max-width: 768px) {
+            .tabs-nav-btn {
+                display: none;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-item.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-item.active svg {
+            fill: var(--primary);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow);
+            animation: slideUp 0.5s ease;
+            margin-bottom: var(--spacing-lg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        .card:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-left: auto;
+        }
+
+        .chart-type-btn {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+
+        .chart-type-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .card-title svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary);
+        }
+
+        .balance-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .balance-card {
+            background: transparent;
+            color: white;
+            padding: var(--spacing-lg);
+            animation: scaleIn 0.5s ease;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Переливающийся градиент фона */
+        .balance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                #4361ee 0%, 
+                #3a0ca3 25%, 
+                #1e3a8a 50%, 
+                #1e40af 75%, 
+                #4361ee 100%);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: flowingGradient 8s ease-in-out infinite;
+        }
+
+        /* Анимация переливающегося градиента */
+        @keyframes flowingGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 50% 0%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 50% 100%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Fallback для браузеров без поддержки анимации */
+        @supports not (animation: flowingGradient 4s ease-in-out infinite) {
+            .balance-card::before {
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                animation: none;
+            }
+        }
+
+        /* Hover эффект убран */
+
+        .balance-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin: var(--spacing-sm) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .accounts-balance-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .account-balance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+
+        .account-balance-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .account-balance-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .account-balance-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .account-balance-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Современные стили для плиток с расходами и доходами за месяц */
+        .monthly-stats-wrapper {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .monthly-stats-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .monthly-stat-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border-radius: 16px;
+            padding: var(--spacing-md);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-height: auto;
+            cursor: default;
+        }
+
+
+        /* Специальные стили для карточек */
+        .expense-stat .stat-amount {
+            color: #ff6b6b;
+        }
+
+        .income-stat .stat-amount {
+            color: #4caf50;
+        }
+
+        .expense-stat .stat-icon {
+            color: #ff6b6b;
+        }
+
+        .income-stat .stat-icon {
+            color: #4caf50;
+        }
+
+        .monthly-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, currentColor 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+
+
+        .monthly-stat-card .stat-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 2px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .expense-stat .stat-icon {
+            background: none;
+            color: #ff6b6b;
+        }
+
+        .income-stat .stat-icon {
+            background: none;
+            color: #4caf50;
+        }
+
+        .monthly-stat-card .stat-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            opacity: 0.7;
+        }
+
+        .monthly-stat-card .stat-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+            flex: 1;
+            justify-content: center;
+            padding: 4px 0;
+        }
+
+        .monthly-stat-card .stat-amount {
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .monthly-stat-card .stat-period {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .monthly-stat-card .stat-square {
+            font-size: 11px;
+            font-weight: 700;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 6px !important;
+            height: 28px !important;
+            width: auto !important;
+            min-width: auto !important;
+            flex-shrink: 0 !important;
+            background: none !important;
+            color: inherit !important;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: var(--spacing-xs);
+        }
+
+        .expense-square {
+            background: rgba(255, 107, 107, 0.2) !important;
+            color: #ff6b6b !important;
+        }
+
+        .income-square {
+            background: rgba(76, 175, 80, 0.2) !important;
+            color: #4caf50 !important;
+        }
+
+        .expense-stat .stat-amount {
+            color: #ff6b6b;
+        }
+
+        .expense-stat .stat-change {
+            color: #ff6b6b;
+        }
+
+        .income-stat .stat-amount {
+            color: #4caf50;
+        }
+
+        .income-stat .stat-change {
+            color: #4caf50;
+        }
+
+        /* Темная тема для сумм */
+        .dark-mode .expense-stat .stat-amount {
+            color: #ff8e8e !important;
+        }
+
+        .dark-mode .income-stat .stat-amount {
+            color: #66bb6a !important;
+        }
+
+        .stat-change.positive {
+            color: #4caf50;
+        }
+
+        .stat-change.negative {
+            color: #ff6b6b;
+        }
+
+        .stat-change-icon {
+            font-size: 10px;
+        }
+
+        /* Темная тема */
+        .dark-mode .monthly-stat-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .dark-mode .expense-stat .stat-icon {
+            color: #ff8e8e;
+        }
+
+        .dark-mode .income-stat .stat-icon {
+            color: #66bb6a;
+        }
+
+        .dark-mode .expense-square {
+            background: rgba(255, 142, 142, 0.3);
+            color: #ff8e8e;
+        }
+
+        .dark-mode .income-square {
+            background: rgba(102, 187, 106, 0.3);
+            color: #66bb6a;
+        }
+
+        /* Убираем обводку у квадратов статистики в темной теме */
+        .dark-mode .monthly-stat-card .stat-square {
+            border: none !important;
+        }
+
+        /* Специфичные стили для цветов процентов */
+        .monthly-stat-card .stat-square.expense-square {
+            background: rgba(255, 107, 107, 0.2) !important;
+            color: #ff6b6b !important;
+            padding: 4px 8px !important;
+        }
+
+        .monthly-stat-card .stat-square.income-square {
+            background: rgba(76, 175, 80, 0.2) !important;
+            color: #4caf50 !important;
+            padding: 4px 8px !important;
+        }
+
+        /* Темная тема для цветов процентов */
+        .dark-mode .monthly-stat-card .stat-square.expense-square {
+            background: rgba(255, 142, 142, 0.3) !important;
+            color: #ff8e8e !important;
+            padding: 4px 8px !important;
+        }
+
+        .dark-mode .monthly-stat-card .stat-square.income-square {
+            background: rgba(102, 187, 106, 0.3) !important;
+            color: #66bb6a !important;
+            padding: 4px 8px !important;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .balance-section {
+                gap: var(--spacing-sm);
+            }
+
+            .balance-amount {
+                font-size: 24px;
+            }
+
+            .account-balance-item {
+                padding: var(--spacing-sm);
+            }
+
+            .account-balance-name {
+                font-size: 13px;
+            }
+
+            .account-balance-amount {
+                font-size: 14px;
+            }
+
+            .monthly-stats-container {
+                flex-direction: row;
+                gap: 16px;
+                justify-content: space-between;
+                width: 100%;
+            }
+            
+            .monthly-stat-card {
+                padding: var(--spacing-md);
+                flex: 1;
+                min-height: auto;
+            }
+
+            .account-item {
+                min-width: 160px;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .add-account-btn {
+                width: 90px;
+                height: 90px;
+            }
+
+            .add-account-btn svg {
+                width: 36px;
+                height: 36px;
+            }
+
+            .account-selector {
+                gap: 12px;
+                padding: 6px 2px 8px 2px;
+            }
+            
+            .monthly-stat-card .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                padding: 6px;
+            }
+            
+            .monthly-stat-card .stat-amount {
+                font-size: 18px;
+            }
+            
+            .monthly-stat-card .stat-label {
+                font-size: 11px;
+            }
+            
+            .monthly-stat-card .stat-change {
+                font-size: 9px;
+                padding: 6px 8px;
+                height: 50px;
+                width: 50px;
+            }
+            
+            
+            .currency-section-divider {
+                margin: 15px 0 10px 0;
+            }
+            
+            .currency-section-divider span {
+                font-size: 11px;
+                padding: 0 10px;
+            }
+            
+            .crypto-currencies .currency-checkbox {
+                padding-left: 8px;
+            }
+
+            /* Оптимизация анимации фона для мобильных устройств */
+            .balance-card::before {
+                animation: flowingGradient 12s ease-in-out infinite;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .balance-card::before {
+                animation: flowingGradient 16s ease-in-out infinite;
+            }
+
+            .balance-amount {
+                font-size: 20px;
+            }
+
+            .balance-label {
+                font-size: 12px;
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Стили для фильтров */
+        .filters-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow);
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        .filters-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .filters-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .filters-toggle svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .filters-toggle.expanded svg {
+            transform: rotate(180deg);
+        }
+
+        .filters-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0;
+        }
+
+        .filters-content {
+            max-height: 0;
+            padding: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+
+        .filters-content.expanded {
+            max-height: 1000px;
+            padding: 15px 0 0 0;
+        }
+
+        .filters-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .filters-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: var(--spacing-md);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .filter-label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 12px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .filter-input {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid rgba(108, 117, 125, 0.2);
+            border-radius: 4px;
+            font-family: inherit;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            transition: border-color 0.3s ease;
+            font-size: 13px;
+            height: 32px;
+        }
+
+        .filter-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+        }
+
+        .filter-select {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid rgba(108, 117, 125, 0.2);
+            border-radius: 4px;
+            font-family: inherit;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            transition: border-color 0.3s ease;
+            cursor: pointer;
+            font-size: 13px;
+            height: 32px;
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+        }
+
+        .clear-filters-btn {
+            background-color: var(--gray);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            height: 36px;
+        }
+
+        .clear-filters-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .clear-filters-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Стили для кнопок действий в формах */
+        .form-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--spacing-md);
+        }
+
+        .form-actions .btn {
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .form-actions .btn-danger {
+            background-color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .form-actions .btn-danger:hover {
+            background-color: #d1144a;
+            border-color: #d1144a;
+        }
+
+        /* Стили для пошаговой навигации */
+        .step-navigation {
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+        }
+
+        /* Небольшие отступы сверху для модальных окон доходов и расходов */
+        #incomeModal .step-indicator,
+        #expenseModal .step-indicator {
+            margin-top: 16px;
+        }
+
+        #incomeModal .form-step,
+        #expenseModal .form-step {
+            margin-top: 16px;
+        }
+
+        /* Стили для кнопок по бокам в модальных окнах */
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding: 0 8px;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-actions .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-actions .btn:active {
+            transform: translateY(0);
+        }
+
+        .modal-actions .btn-secondary {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .modal-actions .btn-secondary:hover {
+            background-color: var(--bg-tertiary);
+            border-color: var(--primary);
+        }
+
+        .modal-actions .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .modal-actions .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .modal-actions .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            background-color: var(--bg-secondary);
+            padding: 0 var(--spacing-sm);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: var(--spacing-xs);
+            transition: all 0.3s ease;
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: white;
+            animation: stepIndicatorPulse 0.6s ease-in-out;
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step.completed .step-number {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .step.completed .step-label {
+            color: var(--success);
+        }
+
+        .form-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+            animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.slide-out-right {
+            animation: slideOutToRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-step.slide-out-left {
+            animation: slideOutToLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-content h3 {
+            margin: 0 0 var(--spacing-md) 0;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInFromRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        @keyframes slideOutToRight {
+            from { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+            to { 
+                opacity: 0; 
+                transform: translateX(30px) scale(0.95); 
+            }
+        }
+
+        @keyframes slideOutToLeft {
+            from { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+            to { 
+                opacity: 0; 
+                transform: translateX(-30px) scale(0.95); 
+            }
+        }
+
+        @keyframes stepIndicatorPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+
+
+        /* Темная тема для плиток с расходами и доходами за месяц */
+        .dark-mode .monthly-stat-card {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+
+        .dark-mode .monthly-stat-card .stat-label {
+            color: var(--text-secondary);
+        }
+
+
+
+        .dark-mode .monthly-stat-card .stat-amount {
+            color: var(--text-primary);
+        }
+
+        /* Темная тема для заголовка счетов */
+        .dark-mode .accounts-container {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .account-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .dark-mode .add-account-btn {
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+        }
+
+        .dark-mode .add-account-btn:hover {
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Логотипы банков для темной темы */
+        .dark-mode .bank-logo.alfabank { background-image: url('logo bank/Light/alfabank.svg'); }
+        .dark-mode .bank-logo.tbank { background-image: url('logo bank/Light/tbank.svg'); }
+        .dark-mode .bank-logo.gazprombank { background-image: url('logo bank/Light/gazprombank.svg'); }
+        .dark-mode .bank-logo.ozon { background-image: url('logo bank/Light/ozon.svg'); }
+        .dark-mode .bank-logo.raiffeisen { background-image: url('logo bank/Light/raiffeisen.svg'); }
+        .dark-mode .bank-logo.rosbank { background-image: url('logo bank/Light/rosbank.svg'); }
+        .dark-mode .bank-logo.sberbank { background-image: url('logo bank/Light/sberbank.svg'); }
+        .dark-mode .bank-logo.tochka { background-image: url('logo bank/Light/tochka.svg'); }
+        .dark-mode .bank-logo.vtb { background-image: url('logo bank/Light/vtb.svg'); }
+        .dark-mode .bank-logo.other { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ccc"><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="bold" fill="black">?</text></svg>'); }
+
+
+
+
+        /* Темная тема для разделителя валют */
+        .dark-mode .currency-section-divider::before {
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .dark-mode .currency-section-divider span {
+            background: var(--background);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Темная тема для криптовалют */
+        .dark-mode .crypto-currencies .currency-checkbox:hover {
+            background-color: rgba(67, 97, 238, 0.15);
+        }
+
+
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .chart-controls {
+                margin-left: 0;
+                margin-top: 10px;
+                width: 100%;
+
+            }
+
+            .chart-type-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .stat-hint {
+                font-size: 10px;
+            }
+
+
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            transition: transform 0.3s ease;
+        }
+
+
+        /* Стили для кликабельных статистических карточек */
+        .clickable-stat {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clickable-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .clickable-stat:hover::before {
+            left: 100%;
+        }
+
+        .clickable-stat:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+        }
+
+        .stat-hint {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .clickable-stat:hover .stat-hint {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+
+
+        /* Анимация клика для статистических карточек */
+        .clickable-stat:active {
+            transform: translateY(-2px) scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        /* Анимация возврата после клика */
+        .clickable-stat {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+
+
+
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #d1144a;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: var(--spacing-xl);
+            border-top: 2px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+            height: 56px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-actions .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        .modal-actions .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #d1144a;
+        }
+
+        .btn-sm {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: 14px;
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .btn:active svg {
+            transform: scale(0.95);
+        }
+
+        /* Специальные стили для кнопок в модальных окнах */
+        .modal .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Градиентный эффект убран */
+
+        /* Стили для блокировки прокрутки */
+        body.modal-open {
+            overflow: hidden;
+            /* position и width устанавливаются через JavaScript для сохранения позиции прокрутки */
+        }
+
+        /* Скрытие виджета когда модальное окно открыто */
+        body.modal-open .floating-action-widget {
+            display: none !important;
+        }
+
+        /* Анимация кнопок действий убрана */
+
+        /* Улучшенные стили для кнопок */
+        .modal-actions .btn {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-actions .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .modal-actions .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .modal-actions .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .modal-actions .btn-danger:hover {
+            background-color: #d1144a;
+        }
+
+        /* Стили для кнопки перевода */
+        .transfer-submit-btn {
+            width: 100% !important;
+            background: var(--primary) !important;
+            background-color: var(--primary) !important;
+            color: white !important;
+            border: 1px solid var(--primary) !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .transfer-submit-btn:hover {
+            background: var(--secondary) !important;
+            background-color: var(--secondary) !important;
+            border-color: var(--secondary) !important;
+        }
+
+        /* Анимация для кнопок с иконками */
+        .btn svg {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .btn:active svg {
+            transform: scale(0.95);
+        }
+
+        /* Стили для кнопок действий в счетах убраны, так как они больше не отображаются в плашках */
+
+        .transactions-list {
+            list-style: none;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.5s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+
+        .transaction-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            flex: 1;
+        }
+
+        .transaction-title {
+            font-weight: 500;
+        }
+
+        .transaction-category {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .transaction-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        .transaction-amount {
+            font-weight: 600;
+        }
+
+        /* Стили для иконки редактирования */
+        .transaction-item {
+            position: relative;
+        }
+
+        .transaction-edit-icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .transaction-edit-icon:hover {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .transaction-edit-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+        }
+
+
+
+        .transaction-content {
+            background-color: var(--card-bg);
+            position: relative;
+            padding-right: var(--spacing-xl);
+        }
+
+        .transaction-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .transaction-actions {
+            opacity: 1;
+        }
+
+        .income {
+            color: #10b981;
+        }
+
+        .expense {
+            color: #ef4444;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Анимация появления модального окна снизу вверх */
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 20px 20px 0 0;
+            padding: var(--spacing-xl);
+            width: 100%;
+            height: 85%;
+            max-width: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-top: 20%;
+        }
+
+        /* Анимация закрытия модального окна вниз */
+        .modal.closing .modal-content {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        /* Дублирующийся стиль убран */
+
+        /* Анимация для мобильных устройств */
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: var(--spacing-lg);
+                width: 100%;
+                height: 90%;
+                border-radius: 16px 16px 0 0;
+                margin-top: 15%;
+            }
+            
+            .modal-header h2 {
+                font-size: 24px;
+            }
+            
+            .form-input, .form-select {
+                height: 48px;
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 14px;
+            }
+            
+            .modal-actions .btn {
+                height: 48px;
+                font-size: 14px;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: var(--spacing-sm);
+            }
+            
+            .category-item {
+                min-height: 80px;
+                padding: var(--spacing-sm);
+            }
+            
+            .transaction-date {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Адаптация заглушки для очень маленьких экранов */
+            .completed-goals-placeholder {
+                padding: var(--spacing-md) var(--spacing-xs);
+                margin: var(--spacing-xs);
+            }
+
+            .completed-goals-placeholder svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            .completed-goals-placeholder h3 {
+                font-size: 15px;
+            }
+
+            .completed-goals-placeholder p {
+                font-size: 12px;
+            }
+
+            .completed-goals-placeholder .btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .create-goal-btn {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
+            .modal-content {
+                padding: var(--spacing-md);
+                width: 100%;
+                height: 95%;
+                border-radius: 12px 12px 0 0;
+                margin-top: 10%;
+            }
+            
+            .modal-header h2 {
+                font-size: 20px;
+            }
+            
+            .form-input, .form-select {
+                height: 44px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 13px;
+            }
+            
+            .modal-actions .btn {
+                height: 44px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 13px;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-xs);
+            }
+            
+            .category-item {
+                min-height: 70px;
+                padding: var(--spacing-xs);
+            }
+            
+            .category-item svg {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .transaction-date {
+                font-size: 10px;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+            position: relative;
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            position: relative;
+        }
+
+        /* Убрана градиентная полоска под заголовком */
+
+        /* Анимация заголовка убрана */
+
+        /* Улучшенные стили для заголовка */
+        .modal-header h2 {
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .modal-header h2 {
+            color: var(--text-primary);
+        }
+
+        .close-modal {
+            background: rgba(67, 97, 238, 0.1);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .close-modal:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .close-modal:active {
+            transform: rotate(90deg) scale(0.95);
+        }
+
+        /* Анимация кнопки закрытия убрана */
+
+        /* Улучшенные стили для кнопки закрытия */
+        .close-modal::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(67, 97, 238, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid rgba(108, 117, 125, 0.2);
+            border-radius: 12px;
+            font-family: inherit;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 16px;
+            height: 56px;
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
+        }
+
+        .form-input:hover, .form-select:hover {
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+
+        /* Специальные стили для полей в модальных окнах */
+        .modal .form-group {
+            position: relative;
+        }
+
+        .modal .form-label {
+            position: relative;
+            display: inline-block;
+        }
+
+        .modal .form-label::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal .form-input:focus + .form-label::before,
+        .modal .form-select:focus + .form-label::before {
+            opacity: 1;
+        }
+
+        /* Улучшенные стили для полей ввода */
+        .modal .form-input,
+        .modal .form-select {
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal .form-input:focus,
+        .modal .form-select:focus {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Анимация полей ввода убрана */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .category-item {
+            padding: var(--spacing-md);
+            text-align: center;
+            border: 2px solid rgba(108, 117, 125, 0.2);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            min-height: 100px;
+            background-color: var(--card-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .category-item:hover::before {
+            left: 100%;
+        }
+
+        .category-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.2);
+        }
+
+        .category-item.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+        }
+
+        .category-item svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Анимация появления категорий убрана */
+
+        /* Анимация сетки категорий убрана */
+
+        /* Стили для выбранной категории */
+        .category-item.selected {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-item.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Анимация галочки убрана */
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Современные стили для карточек целей */
+        .goal-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6, #ec4899);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(108, 117, 125, 0.2);
+        }
+
+        .goal-card.completed-goal {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .goal-card.completed-goal::before {
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+        }
+
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .goal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .goal-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .goal-status.active {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(139, 92, 246, 0.1));
+            color: var(--primary);
+            border: 1px solid rgba(67, 97, 238, 0.2);
+        }
+
+        .goal-status.completed {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .goal-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .goal-stat-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(108, 117, 125, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(108, 117, 125, 0.08);
+        }
+
+        .goal-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .goal-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .goal-progress {
+            margin-bottom: 24px;
+        }
+
+        .goal-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .goal-progress-percentage {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .goal-progress-deadline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .goal-progress-bar {
+            height: 12px;
+            background: rgba(108, 117, 125, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .goal-progress-bar .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            border-radius: 6px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .goal-progress-bar .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .goal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        /* Адаптивные стили для карточек целей */
+        @media (max-width: 768px) {
+            .goal-card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+
+            .goal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .goal-title {
+                font-size: 18px;
+            }
+
+            .goal-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .goal-stat-item {
+                padding: 12px;
+            }
+
+            .goal-stat-value {
+                font-size: 20px;
+            }
+
+            .goal-actions {
+                justify-content: stretch;
+            }
+
+            .goal-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .goal-card {
+                padding: 16px;
+                border-radius: 12px;
+            }
+
+            .goal-title {
+                font-size: 16px;
+            }
+
+            .goal-stat-value {
+                font-size: 18px;
+            }
+
+            .goal-progress-percentage {
+                font-size: 16px;
+            }
+
+            .goal-progress-deadline {
+                font-size: 12px;
+            }
+        }
+
+        /* Стили для кнопок в целях и счетах */
+        .goal-actions .btn,
+        #accountsList .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .goal-actions .btn:hover,
+        #accountsList .btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .goal-actions .btn svg,
+        #accountsList .btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Стили для кнопки оплаты целей */
+        .pay-goal {
+            background-color: #8b5cf6 !important;
+            border-color: #8b5cf6 !important;
+        }
+
+        .pay-goal:hover {
+            background-color: #7c3aed !important;
+            border-color: #7c3aed !important;
+        }
+
+        .dark-mode .pay-goal {
+            background-color: #8b5cf6 !important;
+            border-color: #8b5cf6 !important;
+        }
+
+        .dark-mode #deleteGoalBtn {
+            background-color: #dc2626;
+            border-color: #dc2626;
+            color: white;
+        }
+
+        .dark-mode #deleteGoalBtn:hover {
+            background-color: #b91c1c;
+            border-color: #b91c1c;
+        }
+
+        /* Стили для модального окна оплаты цели */
+        .pay-goal-content {
+            padding: 20px 0;
+        }
+
+        .goal-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+        }
+
+        .goal-info h3 {
+            margin: 0 0 20px 0;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .goal-progress-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .progress-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .goal-progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(108, 117, 125, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .goal-progress-bar .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .payment-hints {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .payment-hint-btn {
+            padding: 6px 12px;
+            border: 1px solid rgba(108, 117, 125, 0.2);
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-hint-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+        
+        .payment-hint-btn:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .account-balance {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .account-balance span:last-child {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Стили для поля выбора цели в транзакциях */
+        #goalSelectionGroup {
+            transition: all 0.3s ease;
+        }
+
+        #goalSelectionGroup.show {
+            display: block !important;
+            animation: slideDown 0.3s ease;
+        }
+
+        #goalSelectionGroup.hide {
+            display: none !important;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Стили для отображения цели в транзакции */
+        .transaction-goal {
+            font-size: 12px;
+            color: var(--primary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .dark-mode .transaction-goal {
+            color: #8b5cf6;
+        }
+
+        /* Темная тема для модального окна оплаты цели */
+        .dark-mode .goal-info {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .payment-hint-btn {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        .dark-mode .payment-hint-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .dark-mode .payment-hint-btn:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.3);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-actions .btn {
+            flex: 1;
+        }
+
+        .form-actions .btn-danger {
+            flex: 0 0 auto;
+        }
+
+        /* Стили для отключенной кнопки */
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background-color: var(--text-secondary) !important;
+            border-color: var(--text-secondary) !important;
+        }
+
+        .btn:disabled:hover {
+            background-color: var(--text-secondary) !important;
+            border-color: var(--text-secondary) !important;
+        }
+
+        /* Стили для кнопки удаления цели в модальном окне */
+        #deleteGoalBtn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        #deleteGoalBtn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Темная тема для карточек целей */
+        .dark-mode .goal-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 0, 0, 0.2) 100%);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Темная тема для плашек счетов */
+        .dark-mode .account-balance-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+
+        .dark-mode .account-balance-icon {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+
+
+        .dark-mode .goal-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .goal-stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .goal-progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { 
+                box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            }
+            50% { 
+                box-shadow: 0 4px 20px rgba(67, 97, 238, 0.6), 0 0 30px rgba(139, 92, 246, 0.4);
+            }
+        }
+
+        /* Анимации модальных окон убраны, оставлены только основные анимации открытия/закрытия */
+
+        .pulse {
+            animation: pulse 0.6s ease;
+        }
+
+        .shake {
+            animation: shake 0.6s ease;
+        }
+
+        /* Анимация для переключения вкладок */
+        .tab-content {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Плавная анимация для активного таба */
+        .tab-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tab-item:hover::before {
+            left: 100%;
+        }
+
+        .tab-item.active::before {
+            display: none;
+        }
+
+        /* Анимация для появления элементов списка */
+        .transaction-item {
+            animation: slideUp 0.3s ease;
+        }
+
+        /* Стили для табов целей */
+        .goals-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid rgba(108, 117, 125, 0.1);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .goal-tab {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 3px solid transparent;
+        }
+
+        .goal-tab:hover {
+            color: var(--primary);
+        }
+
+        .goal-tab.active {
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            border-bottom-color: var(--primary);
+        }
+
+        .goal-tab svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: var(--transition);
+        }
+
+        .goal-tab.active svg {
+            fill: var(--primary);
+        }
+
+        .goal-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .goal-tab-content.active {
+            display: block;
+        }
+
+        /* Стили для модального окна оплаты цели */
+        .pay-goal-content {
+            padding: 20px 0;
+        }
+
+        .goal-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(108, 117, 125, 0.1);
+        }
+
+        .goal-info h3 {
+            margin: 0 0 20px 0;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .goal-progress-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .progress-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .goal-progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(108, 117, 125, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .goal-progress-bar .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .payment-hints {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .payment-hint-btn {
+            padding: 6px 12px;
+            border: 1px solid rgba(108, 117, 125, 0.2);
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-hint-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        /* Стили для кнопки с остатком */
+        .payment-hint-remaining {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6) !important;
+            border-color: var(--primary) !important;
+            color: white !important;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+            min-width: 120px;
+            padding: 8px 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .payment-hint-remaining:hover {
+            background: linear-gradient(135deg, #5b6bf9, #7c3aed) !important;
+            border-color: #5b6bf9 !important;
+            color: white !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .payment-hint-remaining:active {
+            transform: translateY(0) scale(0.98);
+            animation: none;
+        }
+        
+        .payment-hint-remaining:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3), 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .payment-hint-remaining .remaining-amount-text {
+            display: block;
+            font-size: 10px;
+            opacity: 0.9;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .payment-hint-remaining .remaining-amount-value {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: 'Inter', monospace;
+        }
+        
+        /* Стили для успешного состояния кнопки с остатком */
+        .payment-hint-remaining.success {
+            background: linear-gradient(135deg, var(--success), #10b981) !important;
+            border-color: var(--success) !important;
+        }
+        
+        .payment-hint-remaining.success:hover {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+            border-color: #059669 !important;
+        }
+
+        .account-balance {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .account-balance span:last-child {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Темная тема для модального окна оплаты цели */
+        .dark-mode .goal-info {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .payment-hint-btn {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        .dark-mode .payment-hint-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        /* Темная тема для кнопки с остатком */
+        .dark-mode .payment-hint-remaining {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7) !important;
+            border-color: #8b5cf6 !important;
+        }
+
+        .dark-mode .payment-hint-remaining:hover {
+            background: linear-gradient(135deg, #7c3aed, #9333ea) !important;
+            border-color: #7c3aed !important;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .dark-mode .payment-hint-remaining:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .dark-mode .payment-hint-remaining:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.4), 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Темная тема для успешного состояния кнопки с остатком */
+        .dark-mode .payment-hint-remaining.success {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            border-color: #10b981 !important;
+        }
+        
+        .dark-mode .payment-hint-remaining.success:hover {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+            border-color: #059669 !important;
+        }
+
+        /* Стили для управления категориями */
+        .categories-section {
+            margin-bottom: 20px;
+        }
+
+        .categories-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        /* Специальные стили для аккордеона категорий */
+        #categoriesAccordionContent {
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+
+        .category-settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .category-settings-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .category-settings-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-settings-icon {
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .category-settings-item:hover .category-settings-icon {
+            background-color: rgba(67, 97, 238, 0.2);
+            transform: scale(1.1);
+        }
+
+        .category-settings-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-settings-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .category-settings-type {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: capitalize;
+        }
+
+        .category-settings-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .category-settings-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .category-settings-btn:hover {
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .category-settings-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+        }
+
+        /* Стили для модального окна категорий */
+        .icon-hints {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .icon-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+
+        .icon-hint-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+
+        .icon-hint-btn:hover {
+            border-color: var(--primary);
+            background: var(--light);
+        }
+
+        /* Темная тема для категорий */
+        .dark-mode .category-settings-item {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .category-settings-item:hover {
+            border-color: var(--primary);
+        }
+
+        .dark-mode .icon-hint-btn {
+            background-color: var(--card-bg);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .icon-hint-btn:hover {
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .category-settings-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Стили для группы выбора цели */
+        #goalSelectionGroup {
+            transition: all 0.3s ease;
+        }
+
+        #goalSelectionGroup:not([style*="display: none"]) {
+            animation: fadeIn 0.3s ease;
+        }
+
+        #transactionGoal {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--border-radius);
+            padding: 10px 12px;
+            font-size: 14px;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        #transactionGoal:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        #transactionGoal option {
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+        }
+
+        /* Темная тема для группы выбора цели */
+        .dark-mode #transactionGoal {
+            background-color: var(--input-bg);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+        }
+
+        .dark-mode #transactionGoal:focus {
+            border-color: var(--primary);
+        }
+
+        .dark-mode #transactionGoal option {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* Стили для завершенных целей */
+        .completed-goal {
+            opacity: 0.8;
+            background-color: rgba(76, 201, 240, 0.05);
+        }
+
+        .completed-goal .goal-progress .progress-bar {
+            background-color: var(--success);
+        }
+
+        .completed-goal h3 {
+            color: var(--text-secondary);
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            /* Адаптация заглушки для мобильных */
+            .completed-goals-placeholder {
+                padding: var(--spacing-lg) var(--spacing-sm);
+                margin: var(--spacing-sm);
+            }
+
+            .completed-goals-placeholder svg {
+                width: 48px;
+                height: 48px;
+            }
+
+            .completed-goals-placeholder h3 {
+                font-size: 16px;
+            }
+
+            .completed-goals-placeholder p {
+                font-size: 13px;
+            }
+
+            .completed-goals-placeholder .btn {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
+            .create-goal-btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+            
+            .balance-amount {
+                font-size: 28px;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .transaction-actions {
+                opacity: 1;
+                flex-direction: column;
+            }
+
+            /* Адаптация фильтров для планшетов */
+            .filters-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .filters-container {
+                padding: 12px;
+            }
+
+            .filters-content.expanded {
+                padding: 12px 0 0 0;
+            }
+
+
+
+            /* Адаптация иконки редактирования для мобильных */
+            .transaction-edit-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .transaction-edit-icon svg {
+                width: 16px;
+                height: 16px;
+            }
+
+
+
+            /* Адаптация табов для мобильных */
+            .tabs-container {
+                margin-bottom: 20px;
+            }
+
+            .tab-item {
+                padding: 14px 20px;
+                font-size: 13px;
+            }
+
+            .tab-item svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* Адаптация табов целей для мобильных */
+            .goals-tabs {
+                gap: var(--spacing-xs);
+                margin-bottom: var(--spacing-md);
+            }
+
+            .goal-tab {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 13px;
+            }
+
+            .goal-tab svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            /* Адаптация кнопок для мобильных */
+            .btn svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .goal-actions,
+            #accountsList .btn {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            /* Адаптация модального окна оплаты цели для планшетов */
+            .pay-goal-content {
+                padding: 15px 0;
+            }
+
+            .goal-info {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .payment-hints {
+                gap: 6px;
+            }
+
+            .payment-hint-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+            
+            .payment-hint-remaining {
+                min-width: 100px;
+                padding: 6px 10px;
+            }
+            
+            .payment-hint-remaining .remaining-amount-text {
+                font-size: 9px;
+            }
+            
+            .payment-hint-remaining .remaining-amount-value {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            .logo svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .card-title {
+                font-size: 16px;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .stat-hint {
+                font-size: 9px;
+            }
+
+
+
+            /* Адаптация фильтров для мобильных */
+            .filters-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            /* Адаптация модального окна оплаты цели для мобильных */
+            .pay-goal-content {
+                padding: 10px 0;
+            }
+
+            .goal-info {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+
+            .goal-info h3 {
+                font-size: 16px;
+            }
+
+            .payment-hints {
+                gap: 4px;
+            }
+
+            .payment-hint-btn {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+            
+            .payment-hint-remaining {
+                min-width: 90px;
+                padding: 5px 8px;
+            }
+            
+            .payment-hint-remaining .remaining-amount-text {
+                font-size: 8px;
+            }
+            
+            .payment-hint-remaining .remaining-amount-value {
+                font-size: 10px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .filters-container {
+                padding: 10px;
+            }
+
+            .filters-content.expanded {
+                padding: 10px 0 0 0;
+            }
+
+            .filters-title {
+                font-size: 14px;
+            }
+
+            .filters-toggle {
+                font-size: 12px;
+            }
+
+            .filter-label {
+                font-size: 11px;
+            }
+
+            .filter-input,
+            .filter-select {
+                padding: 5px 6px;
+                font-size: 12px;
+                height: 28px;
+            }
+
+            .clear-filters-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+                height: 32px;
+            }
+
+            /* Адаптация кнопок действий для мобильных */
+            .form-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .form-actions .btn {
+                max-width: none;
+                width: 100%;
+            }
+
+            /* Адаптация кнопок транзакций для мобильных */
+            .transaction-actions-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            .transaction-action-btn {
+                height: 40px;
+                font-size: 11px;
+                padding: 8px 6px;
+            }
+
+
+
+            .transaction-edit-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .transaction-edit-icon svg {
+                width: 14px;
+                height: 14px;
+            }
+
+
+
+            /* Адаптация табов для очень маленьких экранов */
+            .tabs-container {
+                margin-bottom: 15px;
+            }
+
+            .tab-item {
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            .tab-item svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            /* Адаптация табов целей для очень маленьких экранов */
+            .goals-tabs {
+                gap: 4px;
+                margin-bottom: 15px;
+            }
+
+            .goal-tab {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+            .goal-tab svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .tabs-nav-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            /* Адаптация кнопок для очень маленьких экранов */
+            .btn svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .goal-actions .btn,
+            #accountsList .btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .add-account-btn {
+                width: 80px;
+                height: 80px;
+            }
+
+            .add-account-btn svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .account-settings-item {
+                padding: 8px 10px;
+            }
+
+            .account-settings-icon {
+                font-size: 18px;
+            }
+
+            .account-settings-name {
+                font-size: 13px;
+            }
+
+            .account-settings-type {
+                font-size: 11px;
+            }
+
+            .account-settings-balance {
+                font-size: 14px;
+                margin-right: 10px;
+            }
+
+            .account-settings-btn {
+                padding: 4px 6px;
+                font-size: 10px;
+            }
+
+            .account-settings-btn svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .accordion-header {
+                padding: 12px 0;
+            }
+
+            .accordion-header h3 {
+                font-size: 16px;
+            }
+
+            .accordion-toggle {
+                font-size: 13px;
+            }
+
+            .accordion-toggle svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .accordion-content.expanded {
+                padding: 15px 0;
+            }
+
+            .currency-rates-inline {
+                gap: 6px;
+                margin-bottom: 10px;
+            }
+
+            .currency-item-inline {
+                padding: 6px 8px;
+                min-width: 70px;
+                pointer-events: none;
+                user-select: none;
+                transition: none;
+            }
+
+            .currency-name-inline {
+                font-size: 12px;
+            }
+
+            .currency-full-name-inline {
+                font-size: 9px;
+            }
+
+            .rate-value-inline {
+                font-size: 12px;
+            }
+        }
