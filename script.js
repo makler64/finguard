@@ -1,4 +1,4 @@
-﻿    // Основные переменные
+    // Основные переменные
     let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     let goals = JSON.parse(localStorage.getItem('goals')) || [];
@@ -201,8 +201,7 @@
             }
             
             if (Object.keys(allRates).length > 0) {
-                // Убеждаемся, что настройки валют загружены
-                loadCurrencySettings();
+                // Настройки валют уже загружены при инициализации
                 
                 // Получаем курсы за предыдущий день от ЦБ РФ
                 const previousDayRates = await fetchPreviousDayRates();
@@ -461,6 +460,11 @@
 
     // Функция для загрузки настроек валют
     function loadCurrencySettings() {
+        // Если настройки уже загружены, не загружаем повторно
+        if (currencySettingsLoaded) {
+            return;
+        }
+        currencySettingsLoaded = true;
         console.log('Загрузка настроек валют...');
         
         // Загружаем состояние аккордеона курсов валют
@@ -671,8 +675,7 @@
 
     // Функция для загрузки сохраненных курсов валют
     function loadSavedCurrencyRates() {
-        // Убеждаемся, что настройки валют загружены
-        loadCurrencySettings();
+        // Настройки валют уже загружены при инициализации
         
         const saved = localStorage.getItem('currencyRates');
         if (saved) {
@@ -813,6 +816,7 @@
             updateDashboard();
             
             // Переинициализируем обработчики событий после рендеринга
+            eventListenersSetup = false; // Сбрасываем флаг для переинициализации
             setupEventListeners();
         }, 100);
         initCharts();
@@ -936,6 +940,12 @@
     function loadCategoriesSettings() {
         const expenseCategoriesList = document.getElementById('expenseCategoriesList');
         const incomeCategoriesList = document.getElementById('incomeCategoriesList');
+        
+        // Если настройки уже загружены, не загружаем повторно
+        if (categoriesSettingsLoaded) {
+            return;
+        }
+        categoriesSettingsLoaded = true;
         
         console.log('loadCategoriesSettings called');
         console.log('expenseCategoriesList:', expenseCategoriesList);
@@ -1275,6 +1285,7 @@
         updateStats();
         
         // Переинициализируем обработчики событий после рендеринга транзакций
+        eventListenersSetup = false; // Сбрасываем флаг для переинициализации
         setupEventListeners();
     }
 
@@ -2535,8 +2546,18 @@
         }
     }
 
+    // Флаги для предотвращения множественных вызовов
+    let eventListenersSetup = false;
+    let currencySettingsLoaded = false;
+    let categoriesSettingsLoaded = false;
+
     // Настройка обработчиков событий
     function setupEventListeners() {
+        // Если обработчики уже настроены, не добавляем их снова
+        if (eventListenersSetup) {
+            return;
+        }
+        eventListenersSetup = true;
         // Переключение темы
         const themeCheckbox = document.getElementById('themeCheckbox');
         if (themeCheckbox) {
@@ -2751,22 +2772,22 @@
             accountForm.addEventListener('submit', handleAccountSubmit);
         }
         if (incomeForm) {
-            // Удаляем старый обработчик, если он существует
-            if (incomeSubmitHandler) {
-                incomeForm.removeEventListener('submit', incomeSubmitHandler);
-            }
-            // Создаем новый обработчик и сохраняем ссылку
+            // Полностью пересоздаем обработчик для предотвращения дублирования
+            const newIncomeForm = incomeForm.cloneNode(true);
+            incomeForm.parentNode.replaceChild(newIncomeForm, incomeForm);
+            
+            // Создаем новый обработчик
             incomeSubmitHandler = (e) => { e.preventDefault(); handleIncomeSubmit(); };
-            incomeForm.addEventListener('submit', incomeSubmitHandler);
+            newIncomeForm.addEventListener('submit', incomeSubmitHandler);
         }
         if (expenseForm) {
-            // Удаляем старый обработчик, если он существует
-            if (expenseSubmitHandler) {
-                expenseForm.removeEventListener('submit', expenseSubmitHandler);
-            }
-            // Создаем новый обработчик и сохраняем ссылку
+            // Полностью пересоздаем обработчик для предотвращения дублирования
+            const newExpenseForm = expenseForm.cloneNode(true);
+            expenseForm.parentNode.replaceChild(newExpenseForm, expenseForm);
+            
+            // Создаем новый обработчик
             expenseSubmitHandler = (e) => { e.preventDefault(); handleExpenseSubmit(); };
-            expenseForm.addEventListener('submit', expenseSubmitHandler);
+            newExpenseForm.addEventListener('submit', expenseSubmitHandler);
         }
 
         // Форма категорий
@@ -3668,12 +3689,6 @@
         }
         handleIncomeSubmit.lastCall = now;
         
-        // Проверяем валидацию всех шагов перед обработкой
-        if (!validateIncomeStep(1) || !validateIncomeStep(2) || !validateIncomeStep(3)) {
-            isIncomeSubmitting = false;
-            return;
-        }
-        
         const formData = {
             id: document.getElementById('incomeId').value || null,
             type: 'income',
@@ -3684,9 +3699,21 @@
             accountId: parseInt(document.getElementById('incomeAccount').value)
         };
 
-        // Валидация
-        if (!formData.amount || !formData.category || !formData.date || !formData.accountId) {
-            alert('Пожалуйста, заполните все обязательные поля');
+        // Валидация - проверяем только один раз
+        if (!formData.amount || formData.amount <= 0) {
+            alert('Пожалуйста, введите корректную сумму');
+            isIncomeSubmitting = false;
+            return;
+        }
+        
+        if (!formData.category) {
+            alert('Пожалуйста, выберите категорию');
+            isIncomeSubmitting = false;
+            return;
+        }
+        
+        if (!formData.accountId) {
+            alert('Пожалуйста, выберите счет');
             isIncomeSubmitting = false;
             return;
         }
@@ -3780,12 +3807,6 @@
         }
         handleExpenseSubmit.lastCall = now;
         
-        // Проверяем валидацию всех шагов перед обработкой
-        if (!validateExpenseStep(1) || !validateExpenseStep(2) || !validateExpenseStep(3)) {
-            isExpenseSubmitting = false;
-            return;
-        }
-        
         const formData = {
             id: document.getElementById('expenseId').value || null,
             type: 'expense',
@@ -3802,9 +3823,28 @@
             formData.goalId = null;
         }
 
-        // Валидация
-        if (!formData.amount || !formData.category || !formData.date || !formData.accountId) {
-            alert('Пожалуйста, заполните все обязательные поля');
+        // Валидация - проверяем только один раз
+        if (!formData.category) {
+            alert('Пожалуйста, выберите категорию');
+            isExpenseSubmitting = false;
+            return;
+        }
+        
+        if (!formData.accountId) {
+            alert('Пожалуйста, выберите счет');
+            isExpenseSubmitting = false;
+            return;
+        }
+        
+        if (!formData.amount || formData.amount <= 0) {
+            alert('Пожалуйста, введите корректную сумму');
+            isExpenseSubmitting = false;
+            return;
+        }
+        
+        // Если выбрана категория "Цели", проверяем, что выбрана цель
+        if (formData.category === 'goals' && !formData.goalId) {
+            alert('Пожалуйста, выберите цель');
             isExpenseSubmitting = false;
             return;
         }
@@ -5056,6 +5096,7 @@
         
         // Обновление приложения
         updateLocalStorage();
+        categoriesSettingsLoaded = false; // Сбрасываем флаг для перезагрузки
         loadCategoriesSettings();
         renderTransactions();
         updateDashboard();
@@ -5507,6 +5548,7 @@
         
         // Обновление приложения
         updateLocalStorage();
+        categoriesSettingsLoaded = false; // Сбрасываем флаг для перезагрузки
         loadCategoriesSettings();
         renderTransactions();
         updateDashboard();
@@ -6159,12 +6201,9 @@
 
         // Инициализация настроек валют при загрузке DOM
         document.addEventListener('DOMContentLoaded', function() {
-            // Загружаем настройки валют после полной загрузки DOM
-            setTimeout(() => {
-                loadCurrencySettings();
-                console.log('Настройки валют инициализированы при загрузке DOM');
-            }, 200);
-                });
+            // Настройки валют уже загружены при инициализации
+            console.log('Настройки валют инициализированы при загрузке DOM');
+        });
         
         // Дополнительная проверка кнопки добавления счета
         setTimeout(() => {
